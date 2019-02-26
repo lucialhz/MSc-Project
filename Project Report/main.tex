@@ -1,0 +1,83 @@
+\documentclass[10pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{xcolor}
+\newcommand\furtherwork[1]{\textcolor{red}{#1}}
+
+\usepackage{hyperref}
+
+\usepackage[
+backend=biber,
+style=ieee,
+sorting=ynt
+]{biblatex}
+ 
+\addbibresource{bibs/project.bib}
+
+
+\newif\iflitreview
+\litreviewtrue % or \litreviewfalse
+
+\iflitreview
+
+\title{
+	{Securing Firmware for Embedded Systems: Binding Firmware and Hardware}\\
+	{\large Royal Holloway}\\
+}
+
+\else
+
+\title{
+	{Thesis Title}\\
+	{\large Royal Holloway}\\
+	{\includegraphics[scale=0.5]{royalholloway.jpg}}
+}
+
+\fi
+
+\author{Luke Atherton}
+\date{26th February 2019}
+
+\begin{document}
+
+\maketitle
+
+\iflitreview
+
+\else
+
+\chapter*{Abstract}
+This is my abstract
+
+\chapter*{Dedication}
+This is my dedication
+
+\chapter*{Declaration}
+This is my declaration
+
+\chapter*{Acknowledgements}
+Thanks everyone!
+
+\fi
+
+\tableofcontents
+
+\iflitreview
+
+\chapter{Literature Review}
+\input{chapters/literature_review}
+\else
+
+\chapter{Introduction}
+\input{chapters/introduction}
+
+\appendix
+\chapter{Appendix Title}
+\input{chapters/appendix}
+
+\fi
+\begin{sloppypar}
+\printbibliography
+\end{sloppypar}
+\end{document}

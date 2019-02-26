@@ -1,0 +1,188 @@
+\documentclass[10pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{xcolor}
+\newcommand\furtherwork[1]{\textcolor{red}{#1}}
+
+\usepackage{hyperref}
+
+\usepackage[
+backend=biber,
+style=ieee,
+sorting=ynt
+]{biblatex}
+ 
+%\addbibresource{bibs/project.bib}
+
+
+\title{
+	{Securing Firmware for Embedded Systems: Binding Firmware and Hardware}\\
+	{\large Royal Holloway}\\
+	%{\includegraphics[scale=0.5]{royalholloway.jpg}}
+}
+
+\author{Luke Atherton}
+\date{26th February 2019}
+
+\begin{document}
+
+\maketitle
+
+\chapter*{Statement of Objectives}
+
+\section*{What I plan to achieve}
+\begin{itemize}
+	\item Produce a clear definition of ``firmware''
+	\item Review real-world reasons justifying the need for further research into secure firmware, such as:
+	\begin{itemize}
+		\item Intellectual property counterfeiting and its financial effects 
+		\item Malicious code injection
+		\item Physical attacks
+	\end{itemize}
+	\item Review existing solutions for binding hardware and software
+	\item Understand the feasible alterations/additions which can be made to widely used embedded system chips such as FPGAs and ARM Cortex-M Series. Understand the primitives which will be used for creating suggestions and improvements such as software control-flow graphs and PUFs.
+	\item Provide suggestions for increasing firmware security though hardware to software binding including:
+	\begin{itemize}
+		\item Hardware-software binding through encryption wrappers:
+		\begin{itemize}
+			\item Whole program encryption and runtime decryption
+			\item Program block encryption and decryption through the use of control-flow graphs
+		\end{itemize}
+		\item Binding through the use of cryptographically protected control-flow graphs
+		\item ``Virtual binding'' through always on remote attestation 
+		\item Secure boot sequence used to decrypt firmware
+	\end{itemize}
+	\item Present remarks on secure firmware transfer using the suggested methods
+\end{itemize}
+
+\section*{Why I have chosen the project}
+As a software developer, neat and elegant solutions to problems appeal to me greatly. The computing constraints of embedded systems present the need for neat, elegant and efficient solutions. This cross-over is why the project interests me. To further my interest, embedded systems in the form of Internet of Things (IoT) and Operational Technology (OT) are becoming increasingly used and therefore their security is vital for consumers, businesses and the national critical infrastructure.
+
+The project itself is of interest due to the lightweight use of encryption, examination and development of protocols and gaining a deeper understanding of embedded systems.
+
+\chapter*{Methodology}
+
+\section*{How will I achieve the objectives of the above list}
+\begin{itemize}
+	\item Researching the following topics through journal articles, conference proceedings and books:
+	\begin{itemize}
+		\item Binding of hardware and software
+		\item Secure software execution
+		\item Common attacks on embedded systems
+		\item Commercial cost of IP theft (through counterfeiting and other methods)
+	\end{itemize}
+	\item Research, understand and critique primitives such as control-flow graphs and PUFs in line with my overall goal.
+	\item Gain a deep enough understanding of FPGA and ARM Cortex-M to assess what is possible when it comes to hardware adjustments for the purpose of security.
+	\item Experiment with implementing basic hardware to software binding, this will include:
+	\begin{itemize}
+		\item Gaining access to either an FGPA or and ARM Cortex-M based development board
+		\item Understanding the processes behind writing software, provisioning and testing software as well as altering hardware.
+		\item Assess existing solutions for hardware to software binding for applicability for testing, e.g. is it possible, how much work would it be and what advantage would I get out of implementing it?		
+	\end{itemize}
+	\item Consider the design of a novel solution
+	\begin{itemize}
+		\item If solution requires remote interaction (through a server) a basic understanding and implementation of a server is required, this will be implemented either through a laptop acting as a server or running up a cloud instance.
+	\end{itemize}
+	\item Complete design and (if possible) implement a novel solution/s
+	\item Assess novel solution/s and investigate the firmware transfer process required	
+\end{itemize}
+
+\section*{What is my strategy for getting started}
+\begin{itemize}
+	\item Using the objectives set and predefined project chapters review literature which has already been read for the preliminary literature review, review literature which has already been gathered but not included in the literature review and review books for content which is applicable for this project.
+	\item Gain an understanding of technologies used (FGPA and/or ARM), perhaps gain access to a corresponding developer board and write a simple application.
+	\item Develop knowledge of control-flow graphs and the method of creating them.
+	\item Gain a deeper understanding of C, assembly language and C compilers.
+\end{itemize}
+
+\chapter*{Work plan}
+
+\section*{December 2018 - January 2019}
+Meet with project supervisor to begin discussions. Discuss potential project directions with supervisor.
+Gather and assess reading material followed by studying highly applicable material. Refine ideas for project title.
+
+\section*{February 2019}
+Meet with project supervisor to discuss project topic choice, once topic is decided commence literature review of literature already possessed and any further work which comes to light during the literature review. Fill out Project Description Form (PDF) and formalise Preliminary Literature Review (PLR) before submitting to supervisor for review. Once changes suggested from review are made make final submission to supervisor on 1st March 2019.
+
+\section*{March 2019}
+Begin work on understanding FPGA and ARM Cortex-M. Complete review-based chapters and submit to supervisor for review. Discussion with supervisor on learnings and thoughts so far.
+
+\section*{April 2019}
+As this period will be used mostly for exam preparation project work will be not proceed at a high pace. Practical understanding of FPGA and/or ARM Cortex-M will be gained, including writing and implementing software for said systems. Notes will be made during this phase.
+
+\section*{May 2019}
+As this period will also be used for exam preparation/partaking project work will not proceed at a high pace. Control-flow graphs and PUFs will be studied. Notes will be made during this phase.
+
+\section*{June 2019}
+Notes on understanding of hardware and primitives will be formalised into chapters. Existing solutions will be studied and compared, creating a chapter. This will be submitted to supervisor mid June 2019 (aiming for 14th June 2019).
+Begin work on producing a novel method for binding hardware and firmware.
+
+\section*{July 2019}
+Update chapters already submitted to supervisor with feedback provided. Meet with supervisor to discuss novel solution. Begin basic implementation of novel solution. Create chapter on firmware transfer. Submit first draft of project to supervisor at end of month (aim for 26th July 2019).
+
+\section*{August 2019}
+Finalise implementation of solution. Discuss findings with supervisor and write up respective chapter for review (aim for 9th August 2019). Submit final draft to supervisor 16th August. Submit MSc Project by deadline of 22nd August 2019.
+
+\chapter*{Draft Table of Contents}
+\begin{enumerate}
+	\item Introduction
+		\begin{enumerate}
+			\item Usage of embedded systems	
+			\item Definition of firmware		
+			\item Types of attacks
+			\item Security and financial repercussions 
+		\end{enumerate}
+	\item Existing research
+		\begin{enumerate}
+			\item Secure software execution
+			\item Binding of hardware and software
+			\item Remote attestation
+		\end{enumerate}
+	\item Processors used for embedded systems
+		\begin{enumerate}
+			\item Overview of the processors
+			\item FPGA special features and limitations relevant to binding of hardware and software
+			\item ARM Cortex-M special features and limitations relevant to binding of hardware and software
+		\end{enumerate}
+	\item Primitives
+		\begin{enumerate}
+			\item Control-flow graphs
+			\item PUFs
+			\item Secured boot (through ROM or a trusted execution environment such as ARM's TrustZone)			
+		\end{enumerate}
+	\item Critique of existing solutions
+		\begin{enumerate}
+			\item Categorising solutions
+			\item Assess constraints of solutions
+			\item Determine strengths and weaknesses of solutions in comparisons to attacks and platforms 
+		\end{enumerate}
+	\item The novel solution
+		\begin{enumerate}
+			\item Founding principles
+			\item Hardware requirements
+			\item Programmer/compiler requirements and constraints
+			\item Description of solution
+		\end{enumerate}
+	\item Implementation
+		\begin{enumerate}
+			\item Implementation steps
+			\item Implementation findings
+			\item Assessment of solution against attacks
+		\end{enumerate}
+	\item Updating firmware using the novel solution
+		\begin{enumerate}
+			\item Key parties
+			\item Update mechanism
+		\end{enumerate}
+	\item Remarks and Conclusion
+		\begin{enumerate}
+			\item Comparison with existing solutions
+			\item Conclusion
+		\end{enumerate}
+\end{enumerate}
+
+%\begin{sloppypar}
+%\printbibliography
+%\end{sloppypar}
+\end{document}
