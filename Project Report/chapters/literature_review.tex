@@ -2,15 +2,18 @@
 
 This section analyses and summarises contributing and related academic work applicable to this project.
 
-It will be broken up into several sections: the first section ``The Problem'' will discuss works which focus on or describe the problem to be addressed, this section comprises of several subsections with more focussed insights. The second section ``Solutions'' contains various solutions to the problems identified, with these solutions being analysed against the problems. The final section ``Building Blocks'' contains some background on the principles which will be used to create this solution to the problem. 
+It will be broken up into several sections: the first section ``The Problem'' will discuss works which focus on or describe the problem to be addressed, this section comprises of several subsections with more focussed insights. The second section ``Solutions'' contains various solutions to the problems identified, with these solutions being analysed against the problems. The final section ``Building Blocks'' contains some background on the principles which will be used to create this paper's solution to the problem. 
 
 \section{Subject-matter Surveys}
 
-Many surveys of the subject have been completed.
+Many surveys on solutions which increase security for firmware/software in embedded systems have been completed. One such survey \cite{Shepherd2016} focusses on existing mature solutions, while others \cite{Bryant2004}, \cite{Collberg2002} and \cite{Theissing2013} provide a look at broader principles. All of these surveys also paint a picture of the attacks and threats which embedded systems face.
 
-\subsection{Secure and Trusted Execution}
+Other surveys exist on the technologies described in this project, one such survey is \cite{Drimer2008} which focuses on FPGA security.
 
-\cite{Shepherd2016} looks in to technologies designed to ascertain trust for embedded systems. They compare various technologies, some of which are mature and some in their infancy. Studied solutions include: Trusted Platform Module (TPM), Secure Elements(SE), hypervisors and virtualisation (e.g. Java Card and Intel's Trusted eXecution technology), Trusted Execution Environments (TEEs), Host Card Emulation (HCE) and Encryption Execution Environments (E3 - which has also been directly discussed in \cite{Lee2016}). The paper sets out a series of criteria which solutions are tested against, including such criteria as ``Centralised Control', where the trust technology is under the control of the issuer or the maintainer, and ``Remote Attestation'' where the trust technology provides assurance to remote verifiers that the system is running as expected. The paper goes on to describe each technology in a small amount of detail and populates a matrix of technologies vs. criteria.
+
+\subsection{Existing Solutions}
+
+\cite{Shepherd2016} looks in to technologies designed to ascertain trust for embedded systems. They compare various technologies, some of which are mature and some in their infancy. Studied solutions include: Trusted Platform Module (TPM), Secure Elements(SE), hypervisors and virtualisation (e.g. Java Card and Intel's Trusted eXecution technology), Trusted Execution Environments (TEEs), Host Card Emulation (HCE) and Encryption Execution Environments (E3 - which has also been directly discussed in \cite{Lee2016}). The paper sets out a series of criteria which solutions are tested against, including such criteria as ``Centralised Control', where the trust technology is under the control of the issuer or the maintainer, and ``Remote Attestation'' where the trust technology provides assurance to remote verifiers that the system is running as expected. The paper goes on to describe each technology in a small amount of detail and populates a matrix of technologies vs. criteria. 
 
 In a survey of anti-tamper technologies \cite{Bryant2004}, a series of \textit{cracking} threats and software and hardware protection mechanisms are described, many of which apply to embedded systems. Such threats include: 
 \begin{itemize}
@@ -23,7 +26,7 @@ The general positives of using hardware solutions include: using a complex CPU w
 
 Software solutions described include:
 \begin{itemize}
-	\item Encryption wrappers, where all or just the critical portions of software are stored in a ciphertext form and dynamically decrypted. \furtherwork{there are no references provided for this method.} The value of this is that the attacker will not see all of the source program at the same time, however they can piece it together through snapshots or simply learn the encryption key/s;
+	\item Encryption wrappers, where all or just the critical portions of software are stored in a ciphertext form and dynamically decrypted. The value of this is that the attacker will not see all of the source program at the same time, however they can piece it together through snapshots or simply learn the encryption key/s. This paper does not cite any references for the subject of encryption wrappers;
 	\item Code obfuscation, where the look of the code is adjusted to make it not easily readable or understandable by the attacker but performs in the same manner;
 	\item Software watermarking and fingerprinting, which can be used for proof of ownership or authorship and for finding the source of leak of the software;
 	\item Guarding, which is the act of adding code purely to perform anti-tamper functionality. An example of guarding is comparing checksums of running code to expected value and performing certain actions if they do not match. It is recommended that guarding is implemented automatically rather than manually as providing sufficient coverage is a complex task. It is also noted that a guard should not react immediately so as to not reveal the point in the code which triggered it.
@@ -31,14 +34,6 @@ Software solutions described include:
 The paper also describes a series of steps to take when using anti-tamper technology as put forward by the ``Defence Acquisition Guidebook'' authored by the U.S. government.
 
 A similar survey \cite{Collberg2002} covers three types of attacks: reverse engineering, software piracy and tampering which it describes as ``malicious host attacks''. To defend against such attacks the paper states three corresponding defences: code obfuscation (as well as anti-disassembly and anti-debugging measures), watermarking and tamper-proofing. The authors note that they could not find a wealth of information on tamper-proofing at the time of writing (2002) but they do draw an interesting parallel with the anti-tamper mechanisms used in computer viruses.  
-
-\subsection{Attacks}
-
-\cite{Yuce2016a} describes attacks which can be used to break instruction-level countermeasures. This paper discusses various attack countermeasures and how these are broken. The only countermeasures broken in this paper are algorithm-level and instruction-level (both of which are mostly redundancy-based). This paper suggests that a purely software-based countermeasure could be a futile defence.
-
-\cite{Kelly2017} finds that physical faults can be injected in a non-random manner and in a low cost environment, this contradicts assumptions made in many of the examined solutions that physical attacks are too costly. It finds that instruction-skipping attacks create a vulnerability to skipped-instruction errors (which, in my opinion, drives the motivation behind control-flow monitoring right down to the intra-block level).
-
-\cite{GebotysCatherineH2010Sied} Provides further details on side-channel attacks, as well as a brief description of the security concerns associated with FPGAs. This book could provide a good reference point.
 
 \subsection{Defence against fault injection}
 
@@ -50,14 +45,23 @@ The experiments found that a combination of redundant condition checks \furtherw
 
 \cite{Drimer2008} provides an excellent high-coverage survey on FPGA security, its contents include the background of FPGAs, attacks associated with FPGAs, defences for protecting FPGA implementations (existing at the time and ongoing research) and many more. 
 
+\section{Attacks}
+
+The following are some examples of analysis of threats, all of which are aimed towards disrupting the flow of software, the likes of which are the focus secure software execution solutions. 
+
+\cite{Yuce2016a} describes attacks which can be used to break instruction-level countermeasures. This paper discusses various attack countermeasures and how these are broken. The only countermeasures broken in this paper are algorithm-level and instruction-level (both of which are mostly redundancy-based). This paper suggests that a purely software-based countermeasure could be a futile defence.
+
+\cite{Kelly2017} finds that physical faults can be injected in a non-random manner and in a low cost environment, this contradicts assumptions made in many of the examined solutions that physical attacks are too costly. It finds that instruction-skipping attacks create a vulnerability to skipped-instruction errors (which, in my opinion, drives the motivation behind control-flow monitoring right down to the intra-block level).
+
+\cite{GebotysCatherineH2010Sied} Provides further details on side-channel attacks, as well as a brief description of the security concerns associated with FPGAs. This book could provide a good reference point.
+
 \section{Solutions}
 
-A myriad of creative technical solutions have been put forward which address the problems already discussed. They can be placed in to one of two categories - binding hardware and software or secure software execution.
+A myriad of creative technical solutions have been put forward which address the problems already discussed. They can be placed in to one of two categories - binding hardware (\cite{Lee2016}, \cite{Schaller2014}, \cite{Gora2010} and \cite{Simpson2006}) and software or secure software execution(\cite{Werner2016}, \cite{Wang2016}, \cite{Abera2016} and \cite{Arora2006}). \cite{Kleber2015} and \cite{Kohnhauser2015} are cross-overs of the two approaches.
 
 \subsection{Binding Hardware and Software}
 
 Hardware software binding is a technique where hardware and software a co-designed in such a way that software needs to be tailored to run on an individual instance of hardware. The same principle works the other way in that a individual piece of hardware will not execute software unless is it specifically tailored to it.
-
 
 The first piece of work we consider is \cite{Lee2016}. The problem the paper aims to address is device counterfeiting. An example of the requirement for binding of hardware and software is for Graphics Processing Units (GPUs), where GPUs are fabricated and then tested on their operating performance and subsequently graded. Once graded, the GPUs are loaded with firmware which controls their voltage and clockspeed. The paper states that firmware aimed towards the superior graded GPUs could be installed on lesser graded GPUs which would then be sold on as superior GPUs.
 
@@ -128,6 +132,8 @@ Chapter 9 of \cite{AhoAlfredV.2014C:pt} contains a wealth of information on data
 \subsection{PUFs}
 
 A huge amount of prior research has been undertaken into PUFs and their application towards security in embedded systems. One very good overview is the PhD thesis \cite{Maes2012}, which provides a thorough examination into most aspects of PUFs including the types, analysis of each type in terms of uniqueness and reproducibility and uses including entity-authentication and key generation.
+
+Much of the literature (\cite{Lee2016}, \cite{Schaller2014}, \cite{Kleber2015}, \cite{Kohnhauser2015}, \cite{Gora2010} and \cite{Simpson2006}) already described explain the use of PUFs and their reasoning behind their choice in PUFs.
 
 \section{Conclusion}
 
