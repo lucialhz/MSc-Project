@@ -3,6 +3,7 @@
 \usepackage{graphicx}
 \graphicspath{{images/}}
 \usepackage{xcolor}
+\usepackage{enumerate}
 \newcommand\furtherwork[1]{\textcolor{red}{#1}}
 
 \usepackage{hyperref}
@@ -33,27 +34,11 @@ sorting=ynt
 
 \section*{What I plan to achieve}
 \begin{itemize}
-	\item Produce a clear definition of ``firmware''
-	\item Review real-world reasons justifying the need for further research into secure firmware, such as:
-	\begin{itemize}
-		\item Intellectual property counterfeiting and its financial effects 
-		\item Malicious code injection
-		\item Physical attacks
-	\end{itemize}
-	\item Review existing solutions for binding hardware and software
-	\item Understand the feasible alterations/additions which can be made to widely used embedded system chips such as FPGAs and ARM Cortex-M Series. Understand the primitives which will be used for creating suggestions and improvements such as software control-flow graphs and PUFs.
-	\item Provide suggestions for increasing firmware security though hardware to software binding including:
-	\begin{itemize}
-		\item Hardware-software binding through encryption wrappers:
-		\begin{itemize}
-			\item Whole program encryption and runtime decryption
-			\item Program block encryption and decryption through the use of control-flow graphs
-		\end{itemize}
-		\item Binding through the use of cryptographically protected control-flow graphs
-		\item ``Virtual binding'' through always on remote attestation 
-		\item Secure boot sequence used to decrypt firmware
-	\end{itemize}
-	\item Present remarks on secure firmware transfer using the suggested methods
+	\item Produce a clear definition of ``firmware'';
+	\item Review real-world reasons justifying the need for further research into secure firmware;
+	\item Review existing solutions for binding hardware and software;
+	\item Understand the feasible alterations/additions which can be made to widely used embedded system chips such as FPGAs and ARM Cortex-M Series. Understand the primitives which will be used for creating suggestions and improvements such as software control-flow graphs and PUFs;
+	\item Provide suggestions for increasing firmware security though hardware to software binding.
 \end{itemize}
 
 \section*{Why I have chosen the project}
@@ -127,56 +112,56 @@ Finalise implementation of solution. Discuss findings with supervisor and write 
 \chapter*{Draft Table of Contents}
 \begin{enumerate}
 	\item Introduction
-		\begin{enumerate}
+		\begin{enumerate}[{1.}1]
 			\item Usage of embedded systems	
-			\item Definition of firmware		
+			\item Definition of firmware	
 			\item Types of attacks
 			\item Security and financial repercussions 
 		\end{enumerate}
 	\item Existing research
-		\begin{enumerate}
+		\begin{enumerate}[{2.}1]
 			\item Secure software execution
 			\item Binding of hardware and software
 			\item Remote attestation
 		\end{enumerate}
 	\item Processors used for embedded systems
-		\begin{enumerate}
+		\begin{enumerate}[{3.}1]
 			\item Overview of the processors
 			\item FPGA special features and limitations relevant to binding of hardware and software
 			\item ARM Cortex-M special features and limitations relevant to binding of hardware and software
 		\end{enumerate}
 	\item Primitives
-		\begin{enumerate}
+		\begin{enumerate}[{4.}1]
 			\item Control-flow graphs
 			\item PUFs
 			\item Secured boot (through ROM or a trusted execution environment such as ARM's TrustZone)			
 		\end{enumerate}
 	\item Critique of existing solutions
-		\begin{enumerate}
+		\begin{enumerate}[{5.}1]
 			\item Categorising solutions
 			\item Assess constraints of solutions
 			\item Determine strengths and weaknesses of solutions in comparisons to attacks and platforms 
 		\end{enumerate}
 	\item The novel solution
-		\begin{enumerate}
+		\begin{enumerate}[{6.}1]
 			\item Founding principles
 			\item Hardware requirements
 			\item Programmer/compiler requirements and constraints
 			\item Description of solution
 		\end{enumerate}
 	\item Implementation
-		\begin{enumerate}
+		\begin{enumerate}[{7.}1]
 			\item Implementation steps
 			\item Implementation findings
 			\item Assessment of solution against attacks
 		\end{enumerate}
 	\item Updating firmware using the novel solution
-		\begin{enumerate}
+		\begin{enumerate}[{8.}1]
 			\item Key parties
 			\item Update mechanism
 		\end{enumerate}
 	\item Remarks and Conclusion
-		\begin{enumerate}
+		\begin{enumerate}[{9.}1]
 			\item Comparison with existing solutions
 			\item Conclusion
 		\end{enumerate}
