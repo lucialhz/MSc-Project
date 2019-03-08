@@ -1,0 +1,33 @@
+\section{Introduction}
+\section{Smart Card Attacks}
+\subsection{Introduction}
+\subsection{Invasive Attacks}
+Page 196.
+Invasive attacks: microprocessor removed, and attacked directly through physical methods.
+In theory any microprocessor can be attacked in this way.
+Requires expensive equipment and large investment in time.
+Examples of attack:
+Probing bus lines between blocks on a chip (with a hole being made in a chip's passivation layer). Secret information is derived by observing information sent from one block on to another.
+Extreme example: Use focused ion beam to destroy or create tracks on the chip's surface. This could be used to reconnect disconnected fuses (think fuse used to deactivate PUF derivation). Use of fuses can also be to turn off test mode which is used to read/write to memory addresses during manufacture. This vulnerabiltiy has now been removed as test circuit is axtually removed from when the chip is cut from the die. \cite{Anderson1996} \cite{Kommerling1999}
+\subsection{Semi-Invasive Attacks}
+Semi-invasive attacks: surface of chip needs to be exposed, security is compromised without directly modifying the chip.
+Examples: Observing electo-magnetic eminations using a suitable probe \cite{Gandolfi2007}, \cite{Quisquater2001}, injecting faults using laser \cite{Bar-el2006} or white light \cite{Skorobogatov2007}. Numerous more \cite{Skorobogatov2005}.
+\subsubsection{Fault Injection}
+Variations in supply voltage \cite{Anderson1996},\cite{Blomer2010}: may cause processor to misinterpret or skip instructions.
+Variations in external clock \cite{Anderson1996},\cite{Street},\cite{Kommerling1999}: Data can be misread (data is attempted to be read before memory has time to latch-out correct value). Instruction miss.
+Extremes of temperature \cite{Boneh},\cite{Govindavajhala2003}: unpredictable effects in microprocessor. Two effects obtained \cite{Bar-el2006}: random modification of RAM cells due to overheating, read and write temperature thresholds in most NVM do not coincide. If temperature is set to level where write ops work by read do not a number of attacks can be mounted.
+Laser light (French!!(15), \cite{Habing1965}, Frechn!!(39)): Light arriving on metal surface induces a current, if intense enough could induce fault in a circuit.
+White light \cite{Anderson1996}: Proposed as alternative to laser \cite{Skorobogatov2007}, but not directional so may be a challenge to apply to particular portions of microprocessor.
+Electromagnetic flux \cite{Samyde2003}: change values in RAM, strong eddy currents can affect microprocceors - only observed in insecure microprocessors.
+
+Effects:
+Reset data: force data to blank state
+Data randomisation: Change data to new random value.
+Modifying opcodes: Change intstructions executed on chip's cpu \cite{Anderson1996}. Often same effect as previous effects. Additionally removal of functions and breaking of loops. 
+
+Countermeasures given in \cite{Bar-el2006}
+  
+\subsection{Non-Invasive Attacks}
+Non-invasive attacks: Derive information without modification.
+Derive information through information that leaks during computation of given command, or attempt to inject faults in manner other than light.
+Examples: Observe power consumption \cite{Maurer1999}, \cite{MangardStefan2007Paa:}, inject faults by glitching power supply \cite{Anderson1996}, \cite{Bar-el2006}

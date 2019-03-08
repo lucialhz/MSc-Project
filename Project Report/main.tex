@@ -7,6 +7,8 @@
 
 \usepackage{hyperref}
 
+\DeclareUnicodeCharacter{2217}{*}
+
 \usepackage[
 backend=biber,
 style=ieee,
@@ -17,7 +19,8 @@ sorting=none
 
 
 \newif\iflitreview
-\litreviewtrue % or \litreviewfalse
+%\litreviewtrue 
+\litreviewfalse
 
 \newif\ifnotesincluded
 %\notesincludedtrue 
@@ -75,6 +78,9 @@ Thanks everyone!
 
 \chapter{Introduction}
 \input{chapters/introduction}
+
+\chapter{Introduction}
+\input{chapters/chapter03-attacks}
 
 \appendix
 \chapter{Appendix Title}
