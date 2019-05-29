@@ -1,0 +1,16 @@
+\section{Introduction}
+\section{Control Flow Integrity}
+\subsection{Introduction}
+\subsection{Control Flow Graphs}
+Abadi et al. \cite{Abadi2005}introduced CFG as a method to protect code, using static analysis of a application binary to create Control Flow Graph (CFG). Only control flow transfers within the CFG are permitted.
+
+Clerq and Verbauwhede \cite{DeClercq2017} posed CFGs as a solution for instructions causing control flow transfers. Lee et al. \cite{Lee2019} note that they do not focus on sequential transitions. They argue that the method used in \cite{DeClercq2017} (where forward edges are described as control flow transfers caused by jumps and calls and backward edges are described as those caused by returns) is disadvantageous as by considering all jumps and calls equally there is a loss in distinction between jumps to register-determined and instruction-determined locations, and they state that when implementing a scheme instruction-dependant transitions are simpler to process than instruction-independent transitions. This is described in reference to \cite{Lee2016}.
+\ifnotesincluded
+\furtherwork{What are sequential transitions vs control flow transfers?}
+\fi
+\subsection{Others?}
+\cite{Abadi2005} Describes jump labelling. 
+
+\cite{DeClercq2017} Describes Shadow Call Stacks
+
+\cite{DeClercq2017a} Describes SOFIA 
