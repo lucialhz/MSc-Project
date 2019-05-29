@@ -20,11 +20,35 @@ Clerq and Verbauwhede \cite{DeClercq2017} posed CFGs as a solution for instructi
 \cite{Abadi2005} states that CFGs can be defined by analysis-type methods or explicit policies. Examples of analysis-type methods include source-code analysis, binary, analysis binary analysis or execution profiling. An example of an explicit security policy method is writing as security automatat \cite{Erlingsson2004}.
 
 
-CFGs have been used to provide protection against soft faults (single-event upsets) using software based methods \cite{40,45,57}. 
-\cite{40} restricts control flow through inlined labels and checks. The CFG is embedded through a set of static, immdeidate bit patterns in program code. The problem with this is that they are evaluated at the destimations of all branches and jumps but not at the sources. These fail to prevent jumps into middle of functions (e.g. ones which bypass seucrity checks such as access control)
+CFGs have been used to provide protection against soft faults (single-event upsets) using software based methods \cite{Oh2002} \cite{Sharma2012} \cite{Venkatasubramanian2003}. 
+\cite{Abadi2005} restricts control flow through inlined labels and checks. The CFG is embedded through a set of static, immdeidate bit patterns in program code. The problem with this is that they are evaluated at the destimations of all branches and jumps but not at the sources. These fail to prevent jumps into middle of functions (e.g. ones which bypass seucrity checks such as access control)
 
 The method descibed in \cite{Abadi2005} ensures that whenever a machine-code instruction instruction transfers control, it targets a valid destination as determined by the CFG (ahead of time). When the destination is determined at runtime this must go through a dynamic check.
 
-Static checks in \cite{Abadi2005} are made by rewriting machine code using modern tools for binary instrumentation to get around the resulting new memory addresses \cite{52,53}.
+Static checks in \cite{Abadi2005} are made by rewriting machine code using modern tools for binary instrumentation to get around the resulting new memory addresses \cite{Edwards2001} \cite{Srivastava1994}.
 
-Dynamic checks are a little more complex. \furtherwork{If this need to be understood then lets do that at a later time.}
+Dynamic checks are a little more complex. \furtherwork{If this need to be understood then lets do that at a later time.} 
+
+Instrumentation codes are used.\furtherwork{If this need to be understood then look up instrumentation codes.} 
+
+Standard control flow analysis techniques exist \cite{AhoAlfredV.2014C:pt} \cite{Atkinson} \cite{Wagner2002} which run at compile time. Unique IDs could be created at run-time. \furtherwork{Could this be useful to bind hardware to software?}.
+
+Tools used: Vulcan \cite{Edwards2001}, Techniquies from programming languages and intrustion detection literatures \cite{AhoAlfredV.2014C:pt} \cite{Feng2003} \cite{Gopalakrishna2005} \cite{Wagner2002}. Measured overhead on SPEC computation benchmarks http://www.spec.org/cpu2017/.
+
+\subsection{Hardware-based CFI}
+
+\cite{DeClercq2017} includes a reference to \cite{Burow} , a survey for software-based CFI.
+
+Generating CFG from static analysis is troublesome and often an over-approximation is used which is not fully precise \cite{Carlini2015} \cite{Kinder2012}, again \cite{Burow} classifies the precision of computing CFG using differenct static analysis techniques.
+
+Problems: Unintended branches \cite{Kayaalp2014} - the majority of gadgets in a program consists of unintended branches. 
+
+Seems similar: \cite{Mao2010}
+
+Branch limitation is an alternative to CFG \cite{He2017} \cite{Corporation2017}.
+Another alternative is Code Pointer Integrity described in \cite{Security2017} and implemented in \cite{Kuznetsov:204783} \cite{Mashtizadeh2014} \cite{Szekeres2013}.
+
+Generalised path signature analysis \cite{Mahmood1988} while \cite{Werner2016} implemented in Arm Cortex-M3.
+
+\subsection{Software-based CFI}
+\cite{Burow} Performs a survey
