@@ -52,3 +52,15 @@ Generalised path signature analysis \cite{Mahmood1988} while \cite{Werner2016} i
 
 \subsection{Software-based CFI}
 \cite{Burow} Performs a survey
+
+\subsection{Building Control Flow Graphs}
+\cite{Nguyen2013} Talks of Control Flow Graph construction and uses Jakstab\cite{Kinder2008} for comparison. 
+
+\furtherwork{"Jakstab translates machine code to a low level intermediate language on the fly as it performs data flow analysis on the growing control flow graph. Data flow information is used to resolve branch targets and discover new code locations. Other analyses can either be implemented in Jakstab to run together with the main control flow reconstruction to improve precision of the disassembly, or they can work on the resulting preprocessed control flow graph."}
+
+In his dissertation \cite{Kinder2010} the author of Jakstab goes into more detail about everything...
+
+Jakstab creates a 'dot' extension file. \href{https://en.wikipedia.org/wiki/DOT_(graph_description_language)} describes DOT as a graph description language which can be viewed with such tools as 
+
+neo4j is a graphical database which could be an ideal method of storing the resultant CFGs. neo4j uses cypher as its description language - I have been unable to find a method of converting the resultant dot files to neo4j.
+ 
