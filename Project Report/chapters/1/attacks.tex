@@ -1,5 +1,5 @@
 \section{Introduction}
-\section{Smart Card Attacks}
+\section{Attacks on hardware - taken from Smart Card Attacks}
 \subsection{Introduction}
 \subsection{Invasive Attacks}
 Page 196.
@@ -31,3 +31,24 @@ Countermeasures given in \cite{Bar-el2006}
 Non-invasive attacks: Derive information without modification.
 Derive information through information that leaks during computation of given command, or attempt to inject faults in manner other than light.
 Examples: Observe power consumption \cite{Maurer1999}, \cite{MangardStefan2007Paa:}, inject faults by glitching power supply \cite{Anderson1996}, \cite{Bar-el2006}
+
+\section{Software attacks}
+\subsection{Buffer overflow}
+
+Target of attack is manipulating control-flow information stored on the stack and heap of a program in order to achieve further objectives.
+
+\subsection{Injected code}
+
+Where control flow is deviated to existing injected code (usually as data) - usually solved by using NX bit which marks data memory as non-executable.
+
+\subsection{Code re-use attack}
+Where control flow is deviated to existing code such as system functions or unintended code sequences (refactor last phrase).
+
+\subsection{Return Oriented Programming (ROP)}
+An attacker can string together (benign) existing code sequences (gadgets) to form malicious program actions.
+
+\subsection{jump-to-libc}
+\subsection{return-to-libc}
+\subsection{Pointer subterfuge}
+\subsection{Non-control data attacks}
+Corrupting data used to decide on control flow for example in a comparison in an if statement. These usually produce unintended yet valid program flow, however there are examples which do not induce unintended flows - as discussed by Shacham \cite{Shacham2007}.
