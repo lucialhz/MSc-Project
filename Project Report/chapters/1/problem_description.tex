@@ -1,0 +1,29 @@
+\section{Introduction}
+\section{Problem Description}
+\subsection{Introduction}
+
+CFI has long been an issue: examples include etc. Several means of defence have been designed to address some or all of the problematic results. These include:
+
+\subsubsection{Prevention}
+\begin{itemize}
+	\item Read XOR Write memory
+	\item Encrypted instructions (allowing decryption based on a particular order of instructions following the application CFG)
+\end{itemize}
+
+\subsubsection{Detection}
+\begin{itemize}
+	\item Stack canaries (detect ROP attempts, prevents CFI loss)
+	\item Shadow stacks which aid in preventing return-oriented programming (detect ROP attempts, prevents CFI loss)
+	\item Software-based CFI – Adabi et. al \cite{Abadi2005} and all afterwards
+\end{itemize}
+
+\subsubsection{Attestation}
+\begin{itemize}
+	\item Basic-block IDs hashed to create hash of control-flow path taken.
+	\item Instructions intercepted by secondary hardware monitor to take flow measurements 
+\end{itemize}
+
+\subsection{What about audit?}
+CFI prevention/detection has proven to lead to a high computational overhead, while attestation requires an always-on connection. What if we can store the control flow of an application on a hard disk, which can be retrieved later? This could be useful to prove to a third party that a particular device did what it should have done when the result wasn’t as expected, or if a particularly important operation has been carried out. It could also be useful for spot-checking inaccessible devices which have no internet connection – such as ICS components. Also see medical devices.
+
+So, while we would not provide immediate detection or real-time attestation, the contents of the audit file can be compared with the CFG for an application at a later time. This could also be useful for reducing computing requirements as comparisons could be scheduled rather than being performed on an ad-hoc basis.
