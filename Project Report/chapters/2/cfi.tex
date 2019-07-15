@@ -21,9 +21,9 @@ Clerq and Verbauwhede \cite{DeClercq2017} posed CFGs as a solution for instructi
 
 
 CFGs have been used to provide protection against soft faults (single-event upsets) using software based methods \cite{Oh2002} \cite{Sharma2012} \cite{Venkatasubramanian2003}. 
-\cite{Abadi2005} restricts control flow through inlined labels and checks. The CFG is embedded through a set of static, immdeidate bit patterns in program code. The problem with this is that they are evaluated at the destimations of all branches and jumps but not at the sources. These fail to prevent jumps into middle of functions (e.g. ones which bypass seucrity checks such as access control)
+\cite{Abadi2005} restricts control flow through in-lined labels and checks. The CFG is embedded through a set of static, intimidate bit patterns in program code. The problem with this is that they are evaluated at the destinations of all branches and jumps but not at the sources. These fail to prevent jumps into middle of functions (e.g. ones which bypass security checks such as access control)
 
-The method descibed in \cite{Abadi2005} ensures that whenever a machine-code instruction instruction transfers control, it targets a valid destination as determined by the CFG (ahead of time). When the destination is determined at runtime this must go through a dynamic check.
+The method described in \cite{Abadi2005} ensures that whenever a machine-code instruction instruction transfers control, it targets a valid destination as determined by the CFG (ahead of time). When the destination is determined at runtime this must go through a dynamic check.
 
 Static checks in \cite{Abadi2005} are made by rewriting machine code using modern tools for binary instrumentation to get around the resulting new memory addresses \cite{Edwards2001} \cite{Srivastava1994}.
 
