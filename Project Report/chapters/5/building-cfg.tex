@@ -1,0 +1,39 @@
+\section{Building CFGs}
+
+\subsection{The problem behind building CFGs}
+
+CFGs 
+
+\subsection{Existing tools}
+
+\subsubsection{LLVM}
+
+LLVM provides various methods of building CFGs which could be of use, for example:
+
+https://llvm.org/docs/Passes.html#dot-cfg-print-cfg-of-function-to-dot-file
+
+https://llvm.org/docs/Passes.html#simplifycfg-simplify-the-cfg
+
+https://llvm.org/docs/Passes.html#view-cfg-view-cfg-of-function
+
+I understand that this may not be a simple procedure and will need further investigation.
+
+The dot format is highly used in CFG but I'm not sure if it will map well with what we receive while monitoring it.
+
+\subsubsection{Vulcan}
+
+Vulcan \cite{Edwards2001} is used by \cite{Davi2012} and the seminal work \cite{Abadi2005}. Though it has since been taken out of production by Microsoft.
+
+\subsubsection{Jakstab}
+
+Jakstab \cite{Kinder2008} can also be used to create a dot file containing the CFG of x86 executables, so this may need features adding in order to support embedded systems. The last development activity on this was 31st March 2017. I tested this out but was unable to produce any CFGs from my test programs (written in C Sharp. My lack of understanding of windows executables. 
+
+\subsubsection{Others}
+
+Kinder \cite{Kinder2012} has been trying to improve on this where the CFG is under approximated.
+
+In C-FLAT \cite{Abera2016} the authors create their own analysis tool to achieve their branch-based requirements rather than create CFGs.
+
+LiteHAX \cite{Dessouky2018} uses the 'angr' http://angr.io/ \cite{Shoshitaishvili2016} framework to generate the CFG outputting a networkx DiGraph. This could be good one as it is still under active development. The output of this process would need to be compatible with the dynamic attestation. angr offers two types of computation methods - CFGFast (a static CFG) and CFGEmulated (a dynamic CFG). LiteHax is worth another read as it seems to be quite thorough.
+
+IDA Pro. 
