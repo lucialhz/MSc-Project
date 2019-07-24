@@ -10,11 +10,7 @@ CFGs
 
 LLVM provides various methods of building CFGs which could be of use, for example:
 
-https://llvm.org/docs/Passes.html#dot-cfg-print-cfg-of-function-to-dot-file
-
-https://llvm.org/docs/Passes.html#simplifycfg-simplify-the-cfg
-
-https://llvm.org/docs/Passes.html#view-cfg-view-cfg-of-function
+\url{https://llvm.org/docs/Passes.html#dot-cfg-print-cfg-of-function-to-dot-file}, \url{https://llvm.org/docs/Passes.html#simplifycfg-simplify-the-cfg}, \url{https://llvm.org/docs/Passes.html#view-cfg-view-cfg-of-function}
 
 I understand that this may not be a simple procedure and will need further investigation.
 
@@ -34,6 +30,6 @@ Kinder \cite{Kinder2012} has been trying to improve on this where the CFG is und
 
 In C-FLAT \cite{Abera2016} the authors create their own analysis tool to achieve their branch-based requirements rather than create CFGs.
 
-LiteHAX \cite{Dessouky2018} uses the 'angr' http://angr.io/ \cite{Shoshitaishvili2016} framework to generate the CFG outputting a networkx DiGraph. This could be good one as it is still under active development. The output of this process would need to be compatible with the dynamic attestation. angr offers two types of computation methods - CFGFast (a static CFG) and CFGEmulated (a dynamic CFG). LiteHax is worth another read as it seems to be quite thorough.
+LiteHAX \cite{Dessouky2018} uses the 'angr' \footnote{\url{http://angr.io/}} \cite{Shoshitaishvili2016} framework to generate the CFG outputting a networkx DiGraph. This could be good one as it is still under active development. The output of this process would need to be compatible with the dynamic attestation. angr offers two types of computation methods - CFGFast (a static CFG) and CFGEmulated (a dynamic CFG). LiteHax is worth another read as it seems to be quite thorough.
 
 IDA Pro. 
