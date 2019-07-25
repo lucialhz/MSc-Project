@@ -2,7 +2,7 @@
 
 \subsection{The problem behind building CFGs}
 
-CFGs 
+C-FLAT \cite{Abera2016} notes that efficiently computing a generic program's CFG, and accompanying exploration of all possible execution paths is an open problem. However it is also noted that static embedded application software is typically far simpler and therefore possible to reasonably compute a CFG for. 
 
 \subsection{Existing tools}
 
@@ -10,7 +10,9 @@ CFGs
 
 LLVM provides various methods of building CFGs which could be of use, for example:
 
-\url{https://llvm.org/docs/Passes.html#dot-cfg-print-cfg-of-function-to-dot-file}, \url{https://llvm.org/docs/Passes.html#simplifycfg-simplify-the-cfg}, \url{https://llvm.org/docs/Passes.html#view-cfg-view-cfg-of-function}
+\url{https://llvm.org/docs/Passes.html#dot-cfg-print-cfg-of-function-to-dot-file},
+\url{https://llvm.org/docs/Passes.html#simplifycfg-simplify-the-cfg},
+\url{https://llvm.org/docs/Passes.html#view-cfg-view-cfg-of-function}
 
 I understand that this may not be a simple procedure and will need further investigation.
 

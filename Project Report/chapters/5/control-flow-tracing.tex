@@ -1,0 +1,34 @@
+\section{Tracing Control-Flow}
+
+\subsection{Using existing hardware}
+
+CFGs 
+
+Recording of every executed instruction is infeasible as the overhead added would be enormous, computationally if each is hashed as we go or memory/storage if each instruction is recorded prior to processing.
+
+CFG granularity can be broken down into three levels \cite{Abera2016}:
+\begin{enumerate}
+	\item{Entire functions}
+	\item{Basic Blocks ending in a direct branch (this would cover most ROP attacks)}
+	\item{Basic Blocks ending in any branch instruction, this would provide the highest level of detail}
+\end{enumerate}
+
+We will most likely choose option 3.
+
+We can build up a hash of the flow by taking the ID of the source node and hashing that with the previous hash. If at the start the previous hash would be replaced with zero, or a nonce? so H1 = (ID1,0/nonce), H2 = (ID2,H1) etc.
+
+We will implement a special method in the secure world where a save is triggered. This will enable software authors an opportunity to save at key points - for example after a key decision is made. Hashes could also be stored along with variables used if we are able to implement that.
+
+BLAKE-2 \url{https://blake2.net} has been suggested as a lightweight hash function, however this is only one such potential candidate.
+
+\subsubsection{Challenges of CFG tracking}
+
+Loops are a considerable issue when it comes to tracking control flow, as the number of possible paths could be overwhelming, especially if the loops contain branch instructions or function calls.
+
+To overcome the problems presented by loops, C-FLAT \cite{Abera2016} begins with treating loops as sub-programs. Where each run of a loop has a hash derived from it, and the total number of each time that hash was calculated is stored (therefore storing the number of times that exact sequence occurs). The result of this is the growth of the stored audit as each loop will need to be referenced separately, when tested by C-FLAT was 1527 bytes for a path containing 16 loop invocations and 18 unique loop paths (this could probably be calculated at compile time, with a warning presented perhaps). Another path containing 12 loop invocations and 14 unique paths resulted in a 1179 byte result. Another second study (which is not as well documented by the paper) produced a maximum result of 490 bytes. The previous hash is also included to show where the was called from. 
+
+Return call matching is used to do clever stuff. Read more about it please! Call and return edges are indexed during static analysis, so only valid routes are authorised.
+
+Break statements need to be dealt with in a special manner as they are an additional place where a loop can exit. 
+
+For all of this see section 4.2 of C-FLAT.
