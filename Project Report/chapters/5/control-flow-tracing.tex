@@ -32,3 +32,13 @@ Return call matching is used to do clever stuff. Read more about it please! Call
 Break statements need to be dealt with in a special manner as they are an additional place where a loop can exit. 
 
 For all of this see section 4.2 of C-FLAT.
+
+\subsubsection{Instrumentation}
+
+Branches are identified, with direct jump addresses stored in a branch table. They are then directed to the trampoline assembly code which sends it off to the measurement engine to be measured.
+
+\subsubsection{Trampolines}
+
+A trampoline is an easy method of handing off from the main.
+
+In C-FLAT \cite{Abera2016} the trampoline manages the return address register as well as the register holding the destination address in indirect branches. Reference C-FLAT for a detailed explanation. 

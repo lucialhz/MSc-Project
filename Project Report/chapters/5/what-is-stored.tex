@@ -1,0 +1,19 @@
+\section{What is stored}
+
+\subsection{Other running processes}
+
+When implemented on an OS, the save will query the running processes from the OS and add them to the control-flow manifest. Query process IDs will be a different process between operating systems, so we will evaluate which OS will potentially be used prior to finalising the process.
+
+While there has been some work done in regards to CFG, we will need to investigate this further.
+
+\subsubsection{Variables}
+
+We will implement a function where the software can assert (send information to secure world on) variables in use either when saving or as an additional instruction through the solution's API.
+
+Again this will be implemented as part of this project.
+
+External data or internal data: I'm not completely sure what this means, but Raja mentioned it.
+
+\subsubsection{Previous hash}
+
+A hash chain will be built to prove the control-flow was tied to the previous control flow and the static attestation report.
