@@ -16,7 +16,7 @@
 \label{tab:features}
 \begin{tabular}{@{}lc GG !{\kern1em} GGG !{\kern1em} GG@{}}
 \toprule
-Scheme  & Example & \multicolumn{6}{c}{Requirements} & \multicolumn{15}{c}{Properties}\\
+Scheme &  & \multicolumn{6}{c}{Requirements} & \multicolumn{15}{c}{Properties}\\
 \midrule
 % rotated items
 && \rot{Works with compiled binaries}
@@ -46,15 +46,15 @@ Scheme  & Example & \multicolumn{6}{c}{Requirements} & \multicolumn{15}{c}{Prope
  & \rot{Uses CFG or another method}
  & \rot{Success rate}\\
 \midrule
-\ex{C-FLAT}{\dag*}{TCPCrypt}            {000}{002} {222}{222}{222} {222}{222}\\
-\ex{LO-FAT}{\dag}{-}                    {111}{102} {222}{022}{022} {022}{222}\\
-\ex{CEP-LEE}{\dag*}{TextSecure}         {111}{102} {222}{222}{020} {022}{222}\\
+\ex{C-FLAT}{\dag*}{}							{000}{002} {222}{222}{222} {222}{222}\\
+\ex{LO-FAT}{\dag}{}							{111}{102} {222}{022}{022} {022}{222}\\
+\ex{CEP-LEE}{\dag*}{}							{111}{102} {222}{222}{020} {022}{222}\\
 \midrule
-\ex{CCFI-Cache}{\dag*}{Threema}        	{222}{212} {000}{002}{000} {022}{222}\\
-\ex{HCFI}{\dag*}{SilentText}  			{222}{212} {000}{002}{000} {002}{202}\\
-\ex{Hafix}{\dag*}{ZRTP}					{222}{212} {000}{012}{000} {022}{202}\\
-\ex{SAFIA}{\dag*}{OTR}             		{222}{212} {000}{020}{000} {022}{202}\\
-\ex{Sullivan}{\dag*}{SafeSlinger}       {222}{212} {000}{020}{022} {022}{202}\\
+\ex{CCFI-Cache}{\dag*}{}						{222}{212} {000}{002}{000} {022}{222}\\
+\ex{HCFI}{\dag*}{}							{222}{212} {000}{002}{000} {002}{202}\\
+\ex{Hafix}{\dag*}{}							{222}{212} {000}{012}{000} {022}{202}\\
+\ex{SAFIA}{\dag*}{}							{222}{212} {000}{020}{000} {022}{202}\\
+\ex{Sullivan}{\dag*}{}						{222}{212} {000}{020}{022} {022}{202}\\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -66,4 +66,38 @@ $\text{\feature0}=\text{does not provide property}$;
 
 \end{table}
 
+\begin{table}
+\newcommand*\rot[1]{\hbox to1em{\hss\rotatebox[origin=br]{-60}{#1}}}
+\centering
+\begin{tabular}{c c c c c c c c c c c c c c c c c c c c c c}
+\toprule
+Scheme & \multicolumn{6}{c}{Requirements} & \multicolumn{15}{c}{Properties} \\
+\midrule
+ & \rot{Works with compiled binaries}
+ & \rot{Works with external libraries}
+ & \rot{Can be used for binding}
+ & \rot{Works with embedded systems}
+ & \rot{Immediate identification}
+ & \rot{Not reliant on TPM}
+ & \rot{Hardware-based}
+ & \rot{Software-based}
+ & \rot{Hardware modification required}
+ & \rot{Source-code modification required} 
+ & \rot{Granularity}
+ & \rot{Security provided by}
+ & \rot{CPU overhead}
+ & \rot{FPGA area overhead}
+ & \rot{Memory overhead}
+ & \rot{Time overhead}
+ & \rot{Compatible architectures}
+ & \rot{Action on identification}
+ & \rot{Prevention or detection or attestation}
+ & \rot{Uses CFG or another method}
+ & \rot{Success rate}\\
+\midrule
+C-FLAT & \CIRCLE & \CIRCLE & \Circle & \CIRCLE & \Circle & \Circle & \CIRCLE & \CIRCLE & \Circle & Control flow instructions re-written to go via trampolines & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22\\
+LO-FAT & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22\\
+\bottomrule
+\end{tabular}
+\end{table}
 See~\ref{tab:features}.
