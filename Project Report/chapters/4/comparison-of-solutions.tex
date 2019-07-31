@@ -1,13 +1,28 @@
 \section{Comparison of solutions}
 
-\subsection{C-FLAT}
+\subsubsection{C-FLAT}
 Uses ARM TrustZone to facilitate control-flow monitoring and attestation. Binaries are re-factored to enable normal-world programs to log control-flow changes with a measurement engine operating within the secure world (via trampolines set up in normal world). Control-flow edges are hashed together to form a hash of the complete control flow. Loops are handled as their own sub-program which require separate meta data to be gathered and included in the attestation report.
 
-\subsection{LO-FAT}
+\subsubsection{LO-FAT}
 Implements a hardware-based solution which monitors control-flow instructions by collecting the program counter and instruction executed for each clock cycle, then filtering out branch, jump and return. LO-FAT follows a similar method as C-FLAT where a hash is built up of each control-flow operation, along with special meta data for loops. It uses additional hardware components (designed onto an FPGA - Virtex-7 XC7Z020) to operate alongside the main processing unit. Through the use of these components (almost co-processors) the solution is able to run alongside normal operations, therefore removing the burden of additional instruction executions and the requirement for software instrumentation (changing the contents of software to meet the requirements of the solution).
 
-\subsection{Secure-Execution Processor (SEP)}
+\subsubsection{Secure-Execution Processor (SEP)}
 Uses encryption of each instruction which uses the previously executed instruction as an input to the decryption algorithm. Decryption is performed in the processor pipeline which therefore prevents subverting control-flow, if an attempt is made to subvert control-flow the processor will attempt to execute a garbage instruction, the result of which will be to hit the 'kill switch'. The solution goes into great detail in how to deal with particularly troublesome instructions. Unfortunately due to the large memory and execution overhead (235\%), the limited instruction set and the use of a slow encryption mechanism, this solution still has a long way to go before it can be properly considered, however the principal and elegance of the solution is promising.
 
 \subsubsection{CCFI-Cache}
-Implements a hardware-based solution where control-flow metadata (including the number of instructions in the BBL, the valid destination addresses for the current BBL and a hash value of the instructions of the contained within the BBL. This is fetched by the cache (CCFI-cache) and checked by the checker (CCFI-checker). The metadata and BBLs are padded out to ensure that their length matches (empty regions for the metadata and nops for the BBL), this enables the checker to know if either has been modified in a manner which affects the length. The checker checks the destination of a BBL matches the pre-computed metadata and that the hashed instructions within the BBL match the stored hash. It also utilises a shadow stack to ensure the correctness of return addresses. If a violation is detected in interrupt on the CPU will be triggered.
+Implements a hardware-based solution where control-flow metadata (including the number of instructions in the BBL, the valid destination addresses for the current BBL and a hash value of the instructions of the contained within the BBL. This is fetched by the cache (CCFI-cache) and checked by the checker (CCFI-checker). The metadata and BBLs are padded out to ensure that their length matches (empty regions for the metadata and nops for the BBL), this enables the checker to know if either has been modified in a manner which affects the length. The checker checks the destination of a BBL matches the pre-computed metadata and that the hashed instructions within the BBL match the stored hash. It also utilises a shadow stack to ensure the correctness of return addresses. If a violation is detected in interrupt on the CPU will be triggered. In this author's opinion this solution provides the best coverage for protecting control-flow integrity.
+
+\subsubsection{HCFI}
+Implements a shadow-stack on additional hardware. It does not describe how it ensures integrity of forward edges but is a thorough analysis of backward-edge protection through the use of a shadow stack.
+
+\subsubsection{HAFIX}
+HAFIX (like HCFI) focuses on backward-edge protection through their implementation of a shadow stack. HAFIX and HCFI fight it out over how to deal with recursive functions etc.
+
+\subsubsection{SOFIA}
+Works in a similar manner to SEP, where instructions are decrypted using program counters of previously executed instructions. SOFIA handles instructions with multiple callers by creating a multiplexor block, which allows two predecessors, so multiple predecessors can  be used by building up multiplexor blocks. The fast expansion of multiplexor blocks is a concern for size and operating time of applications. I wonder how SEP (Lee) does it.
+
+\subsubsection{Sullivan}
+
+
+\subsubsection{Learnings}
+Backward edges cannot be protected against without the use of shadow stacks - as returns may be legal for many functions (e.g. printf). Is this where CF auditing can be useful? By keeping track of the flow taken.
