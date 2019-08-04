@@ -1,10 +1,10 @@
 \section{Control Flow}
-Control flow is how instructions within software transition from one to another.
+Control flow is how instructions within software applications transition from one to another, applications can be logically broken down into basic blocks (BBLs) through which the executing application traverses. The tracing of these transitions forms the control flow taken.
 
 \subsection{Basic Blocks}
-Basic blocks is a useful way of breaking down the instructions of an application into manageable chunks. A basic block is a set of instructions which sequentially run from beginning to end. For example from the following pseudo-code:
+The principle of basic blocks creates a useful way of breaking down the instructions of an application into manageable chunks containing sequences of instructions. A basic block is a set of instructions which sequentially run from beginning to end. For example take the pseudo-code in code~\ref{lst:basic_code}.
 
-\begin{verbatim}
+\begin{lstlisting}[language={[Sharp]C},caption={An example of code which can be broken down into basic blocks},label={lst:basic_code}]
 void GreaterThanPlusOne(int firstNum, int secondNum)
     {
         string message;
@@ -13,24 +13,30 @@ void GreaterThanPlusOne(int firstNum, int secondNum)
         {
             message = "firstNum plus one is greater than secondNum";
         }
-        else
+        if (firstNum <= secondNum)
         {
-            message = "firstNum plus one is nto greater than secondNum"
+            message = "firstNum plus one less than or equal to secondNum"
         }
     }
-\end{verbatim}
+\end{lstlisting}
 
-The instructions from \verb|string message;| to and including \verb|if (firstNum > secondNum)| will sequentially (barring an exception being thrown). This is a basic block. The contents within the \verb|if| and also the \verb|else| parenthesis are also basic blocks.
+The instructions from \verb|string message;| (line 3) up to and including \verb|if (firstNum > secondNum)| (line 5), \textit{basic block 1}, will execute sequentially (barring an exception being thrown). This is a basic block. The contents within the first \verb|if| (line 5) and also the second\verb|if| (line 9) parenthesis are also basic blocks, \textit{basic blocks 2 and 3}.
 
-So in this example the sequence of instructions can flow from the first basic block to either the second or the third basic block. An unauthorised flow would be from BB 2 to BB 3.
+So in this example the sequence of instructions can flow from the first basic block to either the second or the third basic block. An unauthorised flow would be from basic block 2 to basic block 3 as there is no way that under normal operation both of these sequences of instructions would execution after one another.
 
-Called functions can also be a separator creating basic blocks, as they can be called from multiple places and return to multiple places.
+Other examples of programming objects which could form basic blocks are switch cases, loops, break statements and functions, as the these allow the diversion of instruction execution depending on the current running circumstances (e.g. variable state).
+
+\begin{figure}
+  \includegraphics[scale=1]{cfg.png}
+  \caption{The control-flow graph for code above ~\ref{lst:basic_code}}
+  \label{fig:basicCFG}
+\end{figure}
 
 \subsection{Control-flow graphs}
-Control-flow graphs (CFGs) are the graphical representation of the series of valid basic blocks within an application. It is logical that a CFG can become enourmous as the size of an application grows (need to find reference for this). So essentially a valid control flow is one which follows a CFG for a given application.
+Control-flow graphs (CFGs) are the graphical representation of the series of valid transitions between basic blocks within an application, see \ref{fig:basicCFG} for a CFG of ~\ref{lst:basic_code}. It is conceivable that a CFG can become enormous as the size of an application grows \furtherwork{(need to find reference for this)}. Valid control flow is where the flow which follows a CFG for a given application, for example using the graph for the code described above BBL 1 $\rightarrow$ BBL 2 and BBL 1 $\rightarrow$ BBL 3 are both valid flows, however BBL 1 $\rightarrow$ BBL 2 $\rightarrow$ BBL 3 is invalid. To create BBL 1 $\rightarrow$ BBL 2 $\rightarrow$ BBL 3 an attacker could change the value of \verb|secondVum| to one which is greater than or equal to \verb|firstNum| once the first \verb|if| statement has been passed. 
 
 \subsection{Types of branches}
-An important aspect to consider is the difference between branch instruction types: direct, indirect and unintended.
+An important aspect to consider is the difference between the various branch types: direct, indirect and unintended.
 
 \subsubsection{Direct}
 A direct branch is one where the jump to instruction is hard coded - the control can flow to a pre-defined location.

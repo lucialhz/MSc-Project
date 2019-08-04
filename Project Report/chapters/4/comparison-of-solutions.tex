@@ -22,6 +22,9 @@ HAFIX (like HCFI) focuses on backward-edge protection through their implementati
 Works in a similar manner to SEP, where instructions are decrypted using program counters of previously executed instructions. SOFIA handles instructions with multiple callers by creating a multiplexor block, which allows two predecessors, so multiple predecessors can  be used by building up multiplexor blocks. The fast expansion of multiplexor blocks is a concern for size and operating time of applications. I wonder how SEP (Lee) does it. Requires code instrumentation (multiplexor blocks and encryption).
 
 \subsubsection{Strategy without tactics (Sullivan)}
+Uses trampolines to deal with multiple callers, where a single destination is replaced with a trampoline, this addition transforms a call source/destination pair into a unique call source/trampoline pair. From the trampoline, a direct jump is issued to the original destination (REFACTOR THE LAST TWO SENTENCES AS THEY WERE COPIED). A label state stack records backward-edges. Label state register records forward-edges. I struggle to fully comprehend this solution so could be worth re-reading.
+
+
 
 \subsubsection{Learnings}
 Backward edges cannot be protected against without the use of shadow stacks - as returns may be legal for many functions (e.g. printf). Is this where CF auditing can be useful? By keeping track of the flow taken.
