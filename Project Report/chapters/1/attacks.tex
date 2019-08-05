@@ -1,4 +1,3 @@
-\section{Introduction}
 \section{Attacks on hardware}
 \subsection{Introduction}
 
@@ -27,22 +26,27 @@ The effects of fault injection include reset data where data is forced to a blan
 Non-invasive attacks can be used to derive information without modification of hardware through information that leaks during computation of given command, or attempting to inject faults in manners other than light. Examples include monitoring power consumption \cite{Maurer1999}, \cite{MangardStefan2007Paa:} and injecting faults by glitching the power supply \cite{Anderson1996}, \cite{Bar-el2006}.
 
 \section{Software attacks}
-\subsection{Buffer overflow}
+\subsubsection{Buffer overflow}
 
-Target of attack is manipulating control-flow information stored on the stack and heap of a program in order to achieve further objectives.
+The aim of a buffer overflow attack is to manipulate control-flow information stored on the stack and heap of a program in order to achieve further objectives, examples of such information could be return addresses or other variables on which the basis of decisions are made (e.g. \verb|if| statements).
 
-\subsection{Injected code}
+\subsubsection{Injected code}
 
-Where control flow is deviated to existing injected code (usually as data) - usually solved by using NX bit which marks data memory as non-executable.
+When making use of injected code, control flow is deviated to existing injected code (usually as data). To mitigate against this NX bit can be implemented, this marks data memory as non-executable.
 
 \subsection{Code re-use attack}
-Where control flow is deviated to existing code such as system functions or unintended code sequences (refactor last phrase).
+Existing code such as system functions or sequences of code which, when combined, have unintended consequences can be be the target of a deviated control-flow. See also return oriented programming and return-to-libc attacks.
 
-\subsection{Return Oriented Programming (ROP)}
-An attacker can string together (benign) existing code sequences (gadgets) to form malicious program actions.
+\subsubsection{Return Oriented Programming (ROP)}
+An attacker can string together (ordinarily benign) existing code sequences to form gadgets, which can result in malicious program actions. This is done through changing the return addresses on the stack to point to each snippet of the code sequence.
 
-\subsection{jump-to-libc}
-\subsection{return-to-libc}
-\subsection{Pointer subterfuge}
-\subsection{Non-control data attacks}
-Corrupting data used to decide on control flow for example in a comparison in an if statement. These usually produce unintended yet valid program flow, however there are examples which do not induce unintended flows - as discussed by Shacham \cite{Shacham2007}.
+\subsubsection{return-to-libc}
+
+An attacker replaces the return address on the stack to one which contains subroutines which already exist in memory such as functions which allow the execution of shell commands. \verb|libc| refers to the C standard library.
+
+\subsubsection{Pointer subterfuge}
+
+Pointer subterfuge is where the value of a pointer is modified by an attacker, there are various methods of achieving this and various points of attack. The simplest example is overrunning a buffer which is next to data in memory which is assigned to a pointer.
+
+\subsubsection{Non-control data attacks}
+These involve corrupting data which is used to decide on control flow, for example in a comparison in an \verb|if| statement. These usually produce unintended yet valid program flow, however there are examples which do not induce unintended flows (yet still allow an attacker to achieve their objectives), this is discussed in detail by Shacham \cite{Shacham2007}.
