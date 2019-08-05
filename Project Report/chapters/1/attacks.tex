@@ -34,7 +34,7 @@ The aim of a buffer overflow attack is to manipulate control-flow information st
 
 When making use of injected code, control flow is deviated to existing injected code (usually as data). To mitigate against this NX bit can be implemented, this marks data memory as non-executable.
 
-\subsection{Code re-use attack}
+\subsubsection{Code re-use attack}
 Existing code such as system functions or sequences of code which, when combined, have unintended consequences can be be the target of a deviated control-flow. See also return oriented programming and return-to-libc attacks.
 
 \subsubsection{Return Oriented Programming (ROP)}

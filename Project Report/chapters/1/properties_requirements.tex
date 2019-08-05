@@ -1,48 +1,13 @@
-\section{Introduction}\label{requirementsIntro}
+\subsection{Introduction}
 
+In this section we will define the requirements which we will aim to meet with the solution produced as a result of this project. These have been built up using the literature for CFI and attestation methods as well as the the requirements identified from the attack model.
 
-\section{Requirements}\label{Requirements}
-
-\begin{enumerate}
-	\item Works with compiled binaries
-	\item Works with external libraries
-	\item Can be used to bind software and hardware
-	\item Works with embedded systems
-	\item Immediate identification
-	\item Not reliant of TPM (TEE)
-\end{enumerate}
-
-\section{Properties}\label{Properties}
+\subsection{Requirements}
 
 \begin{enumerate}
-	\item Hardware based
-	\item Software based
-	\item Hardware modification required
-	\item Source code modification required
-	\item Granularity
-	\item Provisioning method
-	\item How it is secured?
-	\item CPU Overhead
-	\item Storage overhead
-	\item Memory overhead
-	\item Execution time overhead
-	\item Compatible architectures
-	\item Action after identification of insecure event
-	\item Prevention / Detection / Attestation
-	\item CFG or other
+	\item Works with compiled binaries: where the original source code does not need adjusting to be compatible with the solution.
+	\item Works with external libraries: similar to compatibility with compiled binaries but with the added constraint of no access to the external library source code. 
+	\item Can be used to bind software to hardware: this would allow for the solution to that the software running on the devices is the software specially designed and deployed for said device.
+	\item Works with embedded systems: a crucial element as the solution is aimed at solving the problem for embedded devices.
+	\item Granularity: the solution should (at a minimum) be able to keep track of transition between basic blocks (including direct branches).
 \end{enumerate}
-
-\section{Solutions}\label{Solutions}
-
-\begin{enumerate}
-	\item C-FLAT \cite{Abera2016}
-	\item LO-FAT \cite{Dessouky2017}
-	\item CEP-LEE \cite{Lee2019}
-	\item CCFI-Cache \cite{Danger2018}
-	\item HCFI \cite{Christoulakis2016}
-	\item Hafix \cite{Davi2015}
-	\item SOFIA \cite{DeClercq2017b}
-	\item Sullivan \cite{Sullivan2016}
-\end{enumerate}
-
-\section{Conclusion}
