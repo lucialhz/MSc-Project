@@ -1,31 +1,23 @@
 \section{Introduction}
 \section{Control Flow Integrity}
 \subsection{Introduction}
-Control-Flow Integrity (CFI) security policy states that software execution must follow a path of a Control-Flow Graph (CFG).
+A Control-Flow Integrity (CFI) security policy is one which states that software execution must follow a path of a Control-Flow Graph (CFG).
 \subsection{Control Flow Graphs}
-Abadi et al. \cite{Abadi2005}introduced CFG as a method to protect code, using static analysis of a application binary to create Control Flow Graph (CFG). Only control flow transfers within the CFG are permitted.
+Abadi et al. \cite{Abadi2005} introduced CFI as a method to protect the secure execution of software, using static analysis of a application binary to create a Control Flow Graph (CFG). Only control flow transfers within the CFG are permitted.
 
-Clerq and Verbauwhede \cite{DeClercq2017} posed CFGs as a solution for instructions causing control flow transfers. Lee et al. \cite{Lee2019} note that they do not focus on sequential transitions. They argue that the method used in \cite{DeClercq2017} (where forward edges are described as control flow transfers caused by jumps and calls and backward edges are described as those caused by returns) is disadvantageous as by considering all jumps and calls equally there is a loss in distinction between jumps to register-determined and instruction-determined locations, and they state that when implementing a scheme instruction-dependant transitions are simpler to process than instruction-independent transitions. This is described in reference to \cite{Lee2016}.
+Clerq and Verbauwhede \cite{DeClercq2017} posed CFGs as part of a solution for tracking instructions causing control flow transfers, however Lee et al. \cite{Lee2019} note that they do not focus on sequential transitions. They argue that the method used in \cite{DeClercq2017} (where forward edges are described as control flow transfers caused by jumps and calls, and backward edges are described as those caused by returns) is disadvantageous as by considering all jumps and calls equally there is a loss in distinction between jumps to register-determined and instruction-determined locations. They state that when implementing a scheme, instruction-dependant transitions are simpler to process than instruction-independent transitions. This is described in reference to \cite{Lee2016}. SEP \cite{Lee2019} and SOFIA \cite{DeClercq2017b} go one step further where the integrity of each instruction is protected/.
 \ifnotesincluded
 \furtherwork{What are sequential transitions vs control flow transfers?}
 \fi
-\subsection{Others?}
-\cite{Abadi2005} Describes jump labelling. 
-
-\cite{DeClercq2017} Describes Shadow Call Stacks
-
-\cite{DeClercq2017b} Describes SOFIA 
 
 \subsection{Introduction to CFGs}
-\cite{Abadi2005} states that CFGs can be defined by analysis-type methods or explicit policies. Examples of analysis-type methods include source-code analysis, binary, analysis binary analysis or execution profiling. An example of an explicit security policy method is writing as security automatat \cite{Erlingsson2004}.
+Adabi et al. \cite{Abadi2005} state that CFGs can be defined by analysis-type methods or explicit policies. Examples of analysis-type methods include source-code analysis, binary analysis or execution profiling. An example of an explicit security policy method is writing as security automatat \cite{Erlingsson2004}. \furtherwork{What is this???}
 
 
 CFGs have been used to provide protection against soft faults (single-event upsets) using software based methods \cite{Oh2002} \cite{Sharma2012} \cite{Venkatasubramanian2003}. 
-\cite{Abadi2005} restricts control flow through in-lined labels and checks. The CFG is embedded through a set of static, intimidate bit patterns in program code. The problem with this is that they are evaluated at the destinations of all branches and jumps but not at the sources. These fail to prevent jumps into middle of functions (e.g. ones which bypass security checks such as access control)
+The solution put forward by Adabi et al. \cite{Abadi2005} restricts control flow through in-lined labels and checks. The CFG is embedded through a set of static, intermediate bit patterns in program code. The problem with this is that they are evaluated at the destinations of all branches and jumps but not at the sources. These fail to prevent jumps into middle of functions (e.g. ones which bypass security checks such as access control)
 
-The method described in \cite{Abadi2005} ensures that whenever a machine-code instruction instruction transfers control, it targets a valid destination as determined by the CFG (ahead of time). When the destination is determined at runtime this must go through a dynamic check.
-
-Static checks in \cite{Abadi2005} are made by rewriting machine code using modern tools for binary instrumentation to get around the resulting new memory addresses \cite{Edwards2001} \cite{Srivastava1994}.
+The method described in \cite{Abadi2005} ensures that whenever an instruction transfers control, it targets a valid destination as determined by the CFG (ahead of time). When the destination is determined at runtime this must go through a dynamic check. Static checks in \cite{Abadi2005} are made by rewriting machine code using modern tools for binary instrumentation to get around the resulting new memory addresses \cite{Edwards2001} \cite{Srivastava1994}.
 
 Dynamic checks are a little more complex. \furtherwork{If this need to be understood then lets do that at a later time.} 
 
