@@ -32,6 +32,9 @@ Other examples of programming objects which could form basic blocks are switch c
   \label{fig:basicCFG}
 \end{figure}
 
+\subsection{Basic Blocks}
+As a result of investigating CFGs I learnt about basic blocks (BBs). These are sequences of instructions which will run all the way from the start to the end, i.e. there will be no branches within (for example if/else). Various academics have leveraged the principle of BBs to simplify CFI, where source code / assembly is analysed to build basic blocks and determine how they link up. This leads on to the types of branches/jumps (e.g. direct or indirect) which I will focus on in a later blog post. Many authors of papers leverage some sort of method to label which blocks can lead to others (and back again). The issue with this is that it can, again, accumulate for larger programs. Also keeping track of commonly called functions, and where they return to is a tricky problem (as discussed/attempted to address in various papers).
+
 \subsection{Control-flow graphs}
 Control-flow graphs (CFGs) are the graphical representation of the series of valid transitions between basic blocks within an application, see \ref{fig:basicCFG} for a CFG of ~\ref{lst:basic_code}. It is conceivable that a CFG can become enormous as the size of an application grows \furtherwork{(need to find reference for this)}. Valid control flow is where the flow which follows a CFG for a given application, for example using the graph for the code described above BBL 1 $\rightarrow$ BBL 2 and BBL 1 $\rightarrow$ BBL 3 are both valid flows, however BBL 1 $\rightarrow$ BBL 2 $\rightarrow$ BBL 3 is invalid. To create BBL 1 $\rightarrow$ BBL 2 $\rightarrow$ BBL 3 an attacker could change the value of \verb|secondVum| to one which is greater than or equal to \verb|firstNum| once the first \verb|if| statement has been passed. 
 

@@ -4,7 +4,7 @@
 
 CFGs 
 
-Recording of every executed instruction is infeasible as the overhead added would be enormous, computationally if each is hashed as we go or memory/storage if each instruction is recorded prior to processing.
+Recording of every executed instruction is infeasible as the overhead added would be too large. If each instruction is hashed in real time the computational overhead would increase or if each instruction is recorded in storage prior to processing the memory\slash storage\slash IO capacity would see a significant overhead increase.
 
 CFG granularity can be broken down into three levels \cite{Abera2016}:
 \begin{enumerate}
@@ -42,3 +42,7 @@ Branches are identified, with direct jump addresses stored in a branch table. Th
 A trampoline is an easy method of handing off from the main.
 
 In C-FLAT \cite{Abera2016} the trampoline manages the return address register as well as the register holding the destination address in indirect branches. Reference C-FLAT for a detailed explanation. 
+
+\subsubsection{Hardware-assisted}
+
+A co-processor designed specifically for the purpose of providing audit of control-flow would offload the heavy lifting and therefore have a negligible impact on normal operation. Examples of designs which could be tailored to provide auditing are provided in \cite{DeClercq2017}.

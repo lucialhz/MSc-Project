@@ -44,69 +44,21 @@ Another common base for embedded systems are field programmable gate arrays (FPG
 
 \section{Problem Description, Assumptions and Requirements}
 
-Instructions can be skipped, replaced or be re-ordered. Malicious code can be injected or return-oriented programming can make use of existing code simply by redirecting return addresses. 
-
-Skipping instructions can be used to bypass checks.
-
-Replacing instructions can be used to extract data or pass checks etc.
-
-Re-ordering instructions can be used to bypass cryptographic protections (similar to ECB vulnerabilities) to achieve the attackers goals.
-
-Attackers goals could be: changing program flow, ...
-
-Assumptions could include: attacker having direct access to memory, not internal registers. They cannot break cryptographic protections.
+We assume that attacker may have direct access to memory but not internal registers, they cannot break cryptographic protections and that cryptographic keys can be safely stored.
 
 Requirements: 
 \begin{itemize}
-	\item An attacker cannot change the sequential order of instructions.
-	\item An attacker cannot change the execution order of blocks
-	\item An attacker cannot re-order instructions
-	\item An attacker cannot skip instructions
-	\item An attacker cannot subvert control flow to existing code (libc...)
+	\item \textbf{An attacker must be detected if they change the sequential order of instructions.} Re-ordering instructions can be used to bypass cryptographic protections (similar to ECB vulnerabilities) to achieve the attackers goals.
+	\item \textbf{An attacker must be detected if they change the execution order of basic blocks.} Re-ordering BBLs can be used to execute code in a manner which violates the control-flow graph.
+	\item \textbf{An attacker must be detected if they skip instructions} Skipping instructions can be used to bypass checks.
+	\item \textbf{An attacker must be detected if they subvert control flow to existing code (e.g. return-to-libc)} Subverting control-flow to external existing code could enable an attacker to perform functions not permitted through normal usage of the application.
 \end{itemize}
-
-\section{Common Attacks}
-
-Physical attacks - power ...
-
-Return to lib-c
-
-Return oriented programming
-
-\section{Control Flow Integrity}
-
-Fine grained, course grained.
-
-Flow down to low level - sequential
-Basic blocks
-
-Control flow graphs
-
-Shadow return address tables
-
-Program counter
 
 \section{Data Flow Integrity}
 
 Data flow integrity is a measure used to ensure that data only flows in the correct direction from authorised callers. This can be used to ensure only the correct caller has changed an important variable - for example one which a decision is based on (e.g. if...), this can also be used to protect the stack.
 One example of this maintains a table for each piece of data accessed with the address of last accessor. If the last accessor is not within the legal list a security failure exists and an exception is thrown.
 
-\section{Existing Solutions}
-
-Software - Microsoft (talked about in some sort of paper).
-Other software implementations
-
-Hardware - program counter, encrypted computing, all of the CFG examples
-
-Additional notable - NX bit, canaries
+\section{Dynamic taint analysis}
 
 Dynamic taint analysis - detect control-data and non-control-data attacks. No need for source code. But false positives, high overhead and require hardware support.
-
-Problems:
-PUFs
-CFG generation
-Checking code being altered
-
-Compare to objectives
-
-\section{Conclusion}
