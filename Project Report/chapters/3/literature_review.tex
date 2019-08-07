@@ -2,13 +2,13 @@
 
 This section analyses and summarises contributing and related academic work applicable to this project.
 
-It will be broken up into several sections: the first section ``Subject-matter Surveys'' will discuss works which describe the problems to be addressed and existing solutions to said problems, this section also included a subsection on FPGA security which makes useful reading as many embedded systems are FPGA-based. The second section ``Attacks'' contains a brief look at other physical attacks not addressed in the first section. The third section ``Solutions'' gives a deeper analysis of a handful of existing solutions, some of which directly address binding of software and hardware and some of which focus on the related subject of secure software execution. The fourth section ``Primitives'' provides a brief introduction into some of the founding principles used in many of the solutions already described and which will be heavily used in this project. Finally the conclusion will sum up the literature seen so far and describe its place in relation to this project.
+It will be broken up into several sections: the first section ``Subject-matter Surveys'' will discuss works which describe the problems to be addressed and existing solutions to said problems, this section also included a subsection on FPGA security which makes useful reading as many embedded systems are FPGA-based. The second section ``Attacks'' contains a brief look at other physical attacks not addressed in the first section. The third section ``Solutions'' gives a deeper analysis of a handful of existing solutions, some of which directly address binding of software and hardware and some of which focus on the related subject of secure software execution and attestation. The fourth section ``Primitives'' provides a brief introduction into some of the founding principles used in many of the solutions already described and which will be heavily used in this project. Finally the conclusion will sum up the literature seen so far and describe its place in relation to this project.
 
 \section{Subject-matter Surveys}\label{subjectMatterSurveys}
 
 Many surveys on solutions which increase security for firmware/software in embedded systems have been completed. One such survey \cite{Shepherd2016} focusses on existing mature solutions, while others \cite{Bryant2004}, \cite{Collberg2002} and \cite{Theissing2013} provide a look at broader principles. All of these surveys also paint a picture of the attacks and threats which embedded systems face. Other surveys exist on the technologies described in this project, one such survey is \cite{Drimer2008} which focuses on FPGA security.
 
-These subject-matter surveys will be discussed in \ref{solutionSurveys} and \ref{faultInjectionDefenceSurveys} and a deeper analysis of some of the solutions presented will be discussed in \ref{bindingSolutions} and \ref{secureExecutionSolutions}.
+These subject-matter surveys will be discussed in \ref{solutionSurveys} and \ref{faultInjectionDefenceSurveys} and a deeper analysis of some of the solutions presented will be discussed in \ref{bindingSolutions}, \ref{secureExecutionSolutions} and \ref{staticAttestationSolutions}.
 
 
 \subsection{Surveys on Existing Solutions for IP Protection and Secure Execution}\label{solutionSurveys}
@@ -59,9 +59,9 @@ Findings that physical faults can be injected in a non-random manner and in a lo
 
 Further details on side-channel attacks, as well as a brief description of the security concerns associated with FPGAs are provided in \cite{GebotysCatherineH2010Sied}.
 
-\section{Solutions}
+\section{Solutions} \label{solutionsDescriptions}
 
-A myriad of creative technical solutions have been put forward which address the problems already discussed. They can be placed in to one of two categories - binding hardware \ref{bindingSolutions} (\cite{Lee2016}, \cite{Schaller2014}, \cite{Gora2010} and \cite{Simpson2006}) and software or secure software execution \ref{secureExecutionSolutions} (\cite{Werner2016}, \cite{Wang2016}, \cite{Abera2016} and \cite{Arora2006}). Hybrids of the two approaches are presented in \cite{Kleber2015} and \cite{Kohnhauser2015}.
+A myriad of creative technical solutions have been put forward which address the problems already discussed. They can be placed in to one of two categories - binding hardware \ref{bindingSolutions} (\cite{Lee2016}, \cite{Schaller2014}, \cite{Gora2010} and \cite{Simpson2006}) and software or secure software execution \ref{secureExecutionSolutions} (\cite{Werner2016}, \cite{Wang2016}, \cite{Abera2016} and \cite{Arora2006}). Hybrids of the two approaches are presented in \cite{Kleber2015} and \cite{Kohnhauser2015}. Attestation is another important aspect and can be split into static (\cite{For},\cite{Li2011},\cite{Seshadri2007},\cite{Seshadri2004},\cite{AbuHmed2009}) and dynamic (\cite{Kil2009}) attestation, we have also included a discussion on attacks against various attestation methods\cite{Castelluccia2009} and a short conclusion discussing attestation.
 
 \subsection{Binding Hardware and Software}\label{bindingSolutions}
 
@@ -157,6 +157,63 @@ The method builds a hash of the path taken from node to node which is then repor
 
 The fourth paper \cite{Arora2006} lists various attacks, ranging from buffer overflow attacks to physical attacks. Their method measures inter-procedural control flow, intra-procedural control flow and instruction stream integrity. Control flow monitoring is provided by an additional hardware element which tracks instruction addresses and compares them to known acceptable values stored in lookup tables. Instruction steam integrity monitoring utilises the lookup tables in addition to corresponding hash values of the basic clock. If a violation is discovered it is reported to the processor which should then terminate execution of the current program. Details of the violation are included in the report to the processor to enable a finer-grained view of the violation.
 
+\subsection{Attestation of code integrity} \label{staticAttestationSolutions}
+
+\subsubsection{SMART: Secure and Minimal Architecture for (Establishing a Dynamic) Root of Trust}
+SMART \cite{For} provides a simple method of attesting the state of a user application through slight hardware alterations. As an input from the verifier it takes a nonce, start memory address and end memory address (as well as additional parameters for an optional start position of user application). The prover replies with a SHA-1 HMAC of the requested code space.
+
+Important properties required by SMART are:
+\begin{itemize}
+	\item Secure key storage - this has not been directly addressed here however options are presented such as the key being hard-coded at production time (and never changed again) or by implementing a secure means of modifying by an authorized party, but not reading (as in the key can only be read by SMART). The second option was deferred to being future work.
+	\item Secure key access - only SMART code on ROM can access the key. This is provided by registers only allowing access to the key while the program counter is located within SMART application space.
+	\item It is not possible to enter or exit SMART instructions other than in the beginning or end. E.g. if the PC is outside of SMART its previous location must also be outside of SMART (or the last instruction), and if the PC is inside SMART its previous location must be at the start or also within SMART.
+	\item Smart code is not editable, it is stored on ROM.
+\end{itemize}
+
+SMART was implemented on low-end MCUs such as MSP430 or AVR. After implementation it was realised that only the memory access controller needed to be modified, therefor making the solution possibly compatible with “black box” processors such as low-end ARM cores.
+
+To critique the method - it uses SHA1 which is now outdated. It also could succumb to cold-boot attacks but states that due to the typical MCU design where the processor and memory are a single package meaning that memory could not be accessed directly.
+
+\subsubsection{VIPER: Verifying the Integrity of PERipherals’ Firmware}
+
+VIPER \cite{Li2011} is a software only solution designed to provide attestation for peripherals’ firmware, where a the host CPU queries peripherals. It uses combinations of checksums, hashes and time-frame based checks to ensure peripheral firmware is correct.
+
+\subsubsection{Pioneer: Verifying Code Integrity and Enforcing Untampered Code Execution on Legacy Systems}
+
+Pioneer \cite{Seshadri2007} is another software-only solution which works in a similar way to VIPER but is designed to attesting legacy systems. A checksum is calculated throughout the execution of the verifying (testing mechanism) code, the resulting execution time is compared to an expected execution time known to the verifier. This proves that the testing mechanism is correct. The testing mechanism then builds a hash of the target code.
+
+\subsubsection{SWATT: SoftWare-based ATTestation for Embedded Devices}
+
+SWATT \cite{Seshadri2004} is another software-based solution which uses a random number generator to generate random memory addresses which are attested - this means an attacker cannot predict which regions they need to leave intact. They also use time measurement to ensure an attacker is not manipulating the results. This author questions whether that time-based checking is a reliable component, especially when attestation is taking place remotely ,e.g. over a network.
+\ifnotesincluded
+\furtherwork{Do I care?} 
+\fi
+This paper also references solutions which use secure coprocessors which are used during system initialisation to bootstrap trust, examples of these are TCG (Trusted Computing Group, formerly known as TCPA) and Next-Generation Secure Computing Base (NGSCB, formerly Palladium) which may be of interest at a later point as we will be able to see if they produce a useful output after startup has occurred.
+
+\subsubsection{Software-Based Remote Code Attestation in Wireless Sensor Network}
+
+AbuHMed at al \cite{AbuHmed2009} (again software-based) focusses on filling empty memory with predictable contents (such as ciphertext generated by the verifier) in an attempt to prevent an attacker from utilizing free space for malicious instructions.
+
+\subsection{Dynamic attestation of code integrity} \label{dynamicAttestationSolutions}
+
+\subsubsection{Remote Attestation to Dynamic System Properties: Towards Providing Complete System Integrity Evidence}
+
+Kil et al \cite{Kil2009} aim to solve a different problem of attestation - that of dynamic attestation. It uses various different components to measure run-time statistics such as data invariants. They state that they aim for full coverage of the source code rather than all execution paths, the problem of achieving coverage is described as the equivalent to solving the halting problem. By being heavily interwoven with the Linux kernel they track all system calls. It heavily relies on the TPM to do the heavy lifting of signing attestation reports and isolating records of violations. This solution utilises a Merkel hash tree for use in authenticating input files for the proc file.
+
+\subsection{Attacks on software-based static attestation} \label{attestationSolutionsAttacks}
+
+\subsubsection{On the Difficulty of Software-Based Attestation of Embedded Devices}
+
+This paper \cite{Castelluccia2009} that software-based attestation is a problematic solution. They attack SWATT \cite{Seshadri2004} by adding a hook into the attestation code which swaps out malicious code to data memory, as a result they recommend covering all memory in attestation processes (which they note would not be easy in embedded systems). They find that the time overhead relied upon by SWATT \cite{Seshadri2004} is imprecise and that their attacks fit within the tolerance. The paper also attacks solutions which fill empty memory with noise, as they found they could compress legitimate applications to make room for malicious ones.
+
+\subsection{Conclusions on attestation} \label{attestationConclusion}
+
+To provide attestation one usually requires a nonce and an area of memory to attest. The problem of offline attestation (audit) is that a previous good report could be cloned. To overcome this we should consider sequence numbers - where they need to be unique each time the process occurs, these would be stored alongside the HMAC prior to being encrypted. Another option could be using a time-stamp, however the time value would have to be strongly protected and secure in order to prevent an attacker from changing the time to the desired time when the attack is planned in order to create a ``good'' report. Chaining reports together may provide protection against this.
+
+It seems that a large amount of the focus of the software-only mechanisms focus on proving the integrity of the verification software, which is a legitimate concern. Secure operating conditions or self attestation should  be able to provide for this.
+
+A key learning from the solutions and the attack described is the importance of attesting all parts of memory.
+
 \section{Primitives}
 
 \subsection{Control-flow Graphs}
@@ -166,7 +223,7 @@ The use of control flow checking for accidental program flow changes is consider
 Chapter 9 of \cite{AhoAlfredV.2014C:pt} contains a wealth of information on data-flow and will provide a good basis for understanding both the essence of data(control)-flow and how compilers use them for code optimisation. This chapter should be referenced in order to gain a meaningful understanding of control-flow.
 
 
-\subsection{Physical Unclonable Functions (PUFs)}
+\subsection{Physical Unclonable Functions (PUFs)}\label{PUFExplaination}
 
 A huge amount of prior research has been undertaken into PUFs and their application towards security in embedded systems. One very good overview is the PhD thesis \cite{Maes2012}, which provides a thorough examination into most aspects of PUFs including the types, analysis of each type in terms of uniqueness and reproducibility and uses including entity-authentication and key generation.
 
@@ -174,4 +231,4 @@ Much of the literature (\cite{Lee2016}, \cite{Schaller2014}, \cite{Kleber2015}, 
 
 \section{Conclusion}
 
-In this literature review we have seen the reasons why the security of firmware of embedded devices is an important matter which needs to be addressed. We then saw reviews of existing solutions and introductions to primitives used. After an introduction to potential physical attacks we then provided an in depth review of solutions which enabled the binding of hardware and software and solutions which provide secure software. Finally we looked at two primitives which were prominent in many of the solutions examined.
+In this literature review we have seen the reasons why the security of firmware of embedded devices is an important matter which needs to be addressed. We then saw reviews of existing solutions and introductions to primitives used. After an introduction to potential physical attacks we then provided an in depth review of solutions which enabled the binding of hardware and software and solutions which provide secure software and attestation of code. Finally we looked at two primitives which were prominent in many of the solutions examined.

@@ -1,7 +1,7 @@
 \section{Problem Description}
 \subsection{Introduction}
 
-CFI has long been an issue, with examples of attacks including return oriented programming, stack overflows and hardware-based attacks \furtherwork{link to attacks sections}. Several means of defence have been designed to address some or all of the problematic results \furtherwork{link to lit review and comparisons}. These include:
+CFI has long-held problem in computer security, with examples of attacks including return oriented programming, stack overflows and hardware-based attacks (see \ref{hardwareAttacks}). Several means of defence have been designed to address some or all of the problematic results (see \ref{solutionsDescriptions}). These include:
 
 \subsubsection{Prevention}
 Where violation of the control-flow integrity is prevented before it occurs. Methods include:
@@ -21,13 +21,20 @@ Where processes are put in place to detect a violation of control-flow integrity
 \subsubsection{Attestation}
 Where a third party (verifier) receives a report, which could only have come from the device (prover), stating either that the control-flow integrity has not been violated or describing the taken control-flow therefore allowing the verifier to compare against the CFG to be sure that control-flow integrity has been maintained. Example methods include:
 \begin{itemize}
-	\item Basic-block IDs hashed to create hash chain representation of the control-flow path taken.
-	\item Instructions intercepted by secondary hardware monitor to take flow measurements, comparing to the valid instructions as described by the CFG.
+	\item Basic-block IDs are hashed to create hash chain representation of the control-flow path taken.
+	\item Instructions are intercepted by secondary hardware monitor to take flow measurements, comparing to the valid instructions as described by the CFG.
 \end{itemize}
 
+\subsubsection{Data-flow integrity}
+
+Data flow integrity \cite{Castro2006} is a measure used to ensure that data only flows in the correct direction from authorised callers. This can be used to ensure only the correct caller has changed an important variable - for example one which a decision is based on (e.g. if...), this can also be used to protect the stack.
+In this paper the solution maintains a table for each piece of data accessed with the address of last accessor. If the last accessor is not within the legal list a security failure exists and an exception is thrown.
+
+Dynamic taint analysis is another method \cite{Davi2009} used to detect control-data and non-control-data attacks by labelling data as untrusted and tracking that data to make sure it is not used to determine program execution. With dynamic taint analysis there is no need for source code however it does yield false positives, has a high overhead and requires additional hardware support as noted by \cite{Castro2006}.
+
 \subsection{Auditing control-flow}
-CFI prevention and detection has proven to lead to a high computational overhead, while attestation requires an always-on connection. What if we can store the control flow of an application on a hard disk, which can be retrieved later? This could be useful to prove to a third party that a disputed result of a computation is correct (or at least the steps taken during the computation was correct), or keeping a record of the control-flow taken during a vitally important operation has been carried out.
+CFI prevention and detection has proven to lead to a high computational overhead, while attestation requires an always-on connection. What if we can store the control flow of an application on a hard disk, which can be retrieved later? This could be useful to prove to a third party that a disputed result of a computation is correct (or at least the steps taken during the computation was correct), or providing a record of the control-flow which has been taken during when a vitally important operation has been carried out.
 
-Keeping audit records of control-flow could also be useful for spot-checking inaccessible devices which have no internet connection, such as ICS components or medical devices which can only be communicated with during medical check-ups.
+Keeping audit records of control-flow could also be useful for spot-checking inaccessible devices which have no internet connection, such as industrial control systems (ICS) components or medical devices which can only be communicated with during medical check-ups.
 
-So, while we would not provide immediate detection or real-time attestation, the contents of the audit file can be compared with the CFG for an application at a later time. This could also be useful for reducing computing requirements as comparisons could be appropriately scheduled for the efficient use of processor time rather than being performed on an ad-hoc basis as required by some attestation methods.
+So, while we would not provide immediate detection or real-time attestation, the contents of the audit file can be compared with the CFG for an application at a later time. This could also be useful for reducing computing requirements as comparisons could be appropriately scheduled for the efficient use of processor time, rather than being performed on an ad-hoc basis as required by some attestation methods.

@@ -58,37 +58,19 @@ sorting=none
 \litreviewfalse
 
 \newif\ifnotesincluded
-\notesincludedtrue 
-%\notesincludedfalse 
-
-\iflitreview
-
-\title{
-	{Towards Auditing of Control-Flow-Integrity (CFA)}\\
-	{\large Royal Holloway}\\
-}
-
-\else
-
-\title{
-	{Towards Auditing of Control-Flow-Integrity (CFA)}\\
-	{\large Royal Holloway}\\
-	{\includegraphics[scale=0.5]{royalholloway.jpg}}
-}
-
-\fi
-
-\author{Luke Atherton (100905113)}
-\date{\today}
+%\notesincludedtrue 
+\notesincludedfalse 
 
 \begin{document}
 
-\maketitle
+\input{chapters/title_page}
 
 \iflitreview
 
 \else
 
+\fi
+\ifnotesincluded
 \chapter*{Abstract}
 This is my abstract
 
@@ -112,6 +94,10 @@ Thanks everyone!
 
 \chapter{Literature Review}
 \input{chapters/literature_review}
+
+\appendix
+\chapter{Appendix Title}
+\input{chapters/appendix}
 \else
 
 \chapter{Introduction}
@@ -122,38 +108,37 @@ Thanks everyone!
 \input{chapters/1/properties_requirements}
 \input{chapters/1/project_structure}
 
-\chapter{Control Flow Integrity}
+\chapter{Control Flow Integrity} \label{chapterCFI}
 \input{chapters/2/cfi}
 
-\chapter{Associated background}
+\chapter{Associated background} \label{chapterBackground}
 \input{chapters/3/literature_review}
-\input{chapters/3/static_attestation}
 \input{chapters/3/high_level}
 \input{chapters/3/arm_trustzone}
 
-\chapter{Comparison of Solutions}
+\chapter{Comparison of Solutions} \label{chapterComparison}
 \input{chapters/4/comparison-of-solutions}
 \input{chapters/4/properties_requirements}
 \input{chapters/4/comparison-of-solutions-table}
-\input{chapters/4/thoughts-after-comparison}
 
-\chapter{Theoretical Solution}
+\chapter{Theoretical Solution} \label{chapterTheoreticalSolution}
 \input{chapters/5/building-cfg}
 \input{chapters/5/control-flow-tracing}
 \input{chapters/5/what-is-stored}
 \input{chapters/5/provisioning}
 
-\chapter{Practical Implementation}
+\chapter{Security Analysis} \label{chapterSecurityAnalysis}
+\input{chapters/7/security_analysis}
 
-\chapter{Security Analysis}
-
-\chapter{Conclusion and Further Work}
-
-\appendix
-\chapter{Appendix Title}
-\input{chapters/appendix}
 
 \fi
+
+
+\ifnotesincluded
+\chapter{Practical Implementation} \label{chapterPracticalImplementation}
+\chapter{Conclusion and Further Work} \label{chapterConclusion}
+\fi
+
 \begin{sloppypar}
 \printbibliography
 \end{sloppypar}

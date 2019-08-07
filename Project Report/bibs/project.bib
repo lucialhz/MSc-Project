@@ -326,6 +326,13 @@ title = {{CAMFAS: A Compiler Approach to Mitigate Fault Attacks via Enhanced SIM
 volume = {2017-Janua},
 year = {2017}
 }
+@article{Carlini2015,
+author = {Carlini, Nicolas and Barresi, Antonio and Z{\"{u}}rich, E T H and Payer, Mathias and Wagner, David and Gross, Thomas R and Z{\"{u}}rich, E T H and Carlini, Nicolas and Barresi, Antonio and Wagner, David and Gross, Thomas R},
+file = {:D$\backslash$:/Downloads/sec15-paper-carlini.pdf:pdf},
+isbn = {9781931971232},
+title = {{Sec15-Paper-Carlini}},
+year = {2015}
+}
 @article{Drimer2008,
 abstract = {Volatile FPGAs, the dominant type of programmable logic devices, are used in space, military, automotive, and consumer electronics applications which require them to operate in a wide range of environments. The continuous growth in both their capability and capacity now requires significant resources to be invested in the designs that are created for them. This has brought increased interest in the security attributes of FPGAs; specifically, how well do they protect the information processed within it, how are designs protected during distribution, and how developers' ownership rights are protected while designs from multiple sources are combined. This survey establishes the foundations for discussing ``FPGA security'', examines a wide range of attacks and defenses along with the current state of industry offerings, and finally, outlines on-going research and latest developments.},
 author = {Drimer, Saar},
@@ -601,13 +608,6 @@ pages = {627--641},
 title = {{Design and evaluation of system-level checks for on-line control flow error detection}},
 volume = {10},
 year = {1999}
-}
-@article{Carlini2015,
-author = {Carlini, Nicolas and Barresi, Antonio and Z{\"{u}}rich, E T H and Payer, Mathias and Wagner, David and Gross, Thomas R and Z{\"{u}}rich, E T H and Carlini, Nicolas and Barresi, Antonio and Wagner, David and Gross, Thomas R},
-file = {:D$\backslash$:/Downloads/sec15-paper-carlini.pdf:pdf},
-isbn = {9781931971232},
-title = {{Sec15-Paper-Carlini}},
-year = {2015}
 }
 @article{Zhang2019,
 abstract = {Recently, code reuse attacks (CRAs), such as return-oriented programming (ROP) and jump-oriented programming (JOP), have emerged as a new class of ingenious security threatens. Attackers can utilize CRAs to hijack the control flow of programs to perform malicious actions without injecting any codes. Many defenses, classed into software-based and hardware-based, have been proposed. However, software-based methods are difficult to be deployed in practical systems due to high performance overhead. Hardware-based methods can reduce performance overhead but may require extending instruction set architectures (ISAs) and modifying compiler or suffer the vulnerability of key leakage. To tackle these issues, this paper proposes a new hardware-based control flow checking method to resist CRAs with negligible performance overhead without extending ISAs, modifying compiler and leaking the encryption/decryption key. The key technique involves two control flow checking mechanisms. The first one is the encrypted Hamming distances (EHDs) matching between the physical unclonable function (PUF) response and the return addresses, which prevents attackers from returning between gadgets so long as the PUF response is secret, thus resisting ROP attacks. The second one is the liner encryption/decryption operation (XOR) between PUF response and the instructions at target addresses of call and jmp instructions to defeat JOP attacks. Advanced return-based full-function reuse attacks will be prevented with the dynamic key-updating method. Experimental evaluations on benchmarks demonstrate that the proposed method introduces negligible 0.95{\%} run-time overhead and 0.78{\%} binary size overhead on average.},
@@ -909,21 +909,6 @@ title = {{Shining Light On Shadow Stacks}},
 url = {http://arxiv.org/abs/1811.03165},
 year = {2018}
 }
-@inproceedings{Kelly2017,
-abstract = {Abstract—Effective software defences against errors created by fault attacks need to anticipate the probable error response of the target micro-controller. The range of errors and their probability of occurrence is referred to as the Fault Model. Software defences are necessarily a compromise between the impact of an error, its likelihood of occurrence, and the cost of the defence in terms of code size and execution time. In this work we first create a fault insertion system and then use it to demonstrate a technique for precisely triggering and capturing individual error responses within a running micro-controller. This enables a more realistic calibration of a micro-controller's fault model. We apply the system to a representative micro-controller and the results show that error insertion is far more predictable than anticipated, and is consistent over a wide range of experimental tolerances. This observation undermines some widely deployed software defences recommended for fault attack protection.},
-annote = {Shows that software runtime checking does not necessarity work},
-author = {Kelly, Martin S and Mayes, Keith and Walker, John F},
-booktitle = {2017 IEEE International Symposium on Hardware Oriented Security and Trust (HOST)},
-doi = {10.1109/HST.2017.7951802},
-file = {:C$\backslash$:/Users/Luke/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Kelly, Mayes, Walker - 2017 - Characterising a CPU fault attack model via run-time data analysis.pdf:pdf},
-isbn = {978-1-5386-3929-0},
-month = {may},
-pages = {79--84},
-publisher = {IEEE},
-title = {{Characterising a CPU fault attack model via run-time data analysis}},
-url = {http://ieeexplore.ieee.org/document/7951802/},
-year = {2017}
-}
 @article{Jacob2007,
 abstract = {Executing binaries without interference by an outside adversary has been an ongoing duel between protection methods and at- tacks. Recently, an efficient kernel-patch attack has been pre- sented against commonly used self-checking code techniques that use checksumming ahead of execution. While methods based on self-modifying code can defend against this attack, such techniques depend on low-level architectural details and may not be practical in the long run. An alternative defense is to use oblivious hashing (OH). Instead of checking code integrity prior to execution, OH can verify untampered runtime behavior continuously. However, earlier OH approaches have some weaknesses, particularly with binary code: Physical instruction bytes cannot be easily checked during execution, and an attacker may be able to detect and remove OH checks, since OH alone does not provide tamper-resistance or obfuscation. In our approach, we deliberately overlap a program's basic blocks so that they share instruction bytes. This increases tamper- resistance implicitly because malicious modifications affect mul- tiple instructions simultaneously. Also, our scheme facilitates explicit anti-tampering checks via injection of OH instructions overlapped with target code, enabling OH that can verify in- tegrity of both runtime state and executing instructions. Thus, our method addresses anti-checksum attacks without resorting to self-modifying code, and also extends OH to verify physical code, not only program state. In addition, overlapping facilitates resis- tance against disassembly and decompilation. Our approach works on processor architectures and byte-codes that support variable- length instructions. To our knowledge, this is the first technique that blends tamper-resistance into architecture and therefore sig- nificantly improves robustness of binaries.},
 author = {Jacob, Matthias and Jakubowski, Mariusz H and Venkatesan, Ramarathnam},
@@ -976,6 +961,17 @@ title = {{Protecting software code by guards}},
 volume = {2320},
 year = {2002}
 }
+@article{Avots2005,
+abstract = {This paper presents a context-sensitive, inclusion-based, field-sensitive points-to analysis for C, which we use to detect and prevent program security vulnerabilities. In addition to a conservative points-to analysis, we propose an optimistic analysis that assumes a more restricted C semantics reflecting common C usage in order to increase the precision of the analysis. Using the proposed pointer alias analyses, we infer the types of variables in C programs and show that most C variables are used in a manner consistent with their declared types. We show that pointer analysis can be used to reduce the overhead of a dynamic string-buffer overflow detector by 30{\%} to 100{\%} among applications with significant overheads. Finally, using pointer analysis, we statically discover twelve actual format string vulnerabilities in three of the 12 programs we analyze.},
+author = {Avots, Dzintars and Dalton, Michael and Livshits, V. Benjamin and Lam, Monica S.},
+doi = {10.1145/1062455.1062520},
+file = {:D$\backslash$:/Downloads/icse05.pdf:pdf},
+isbn = {1581139632},
+keywords = {buffer overflows,context-sensitive,dynamic analysis,error detection,format string violations,pointer analysis,program analysis,safety,security flaws,software security,type},
+pages = {332},
+title = {{Improving software security with a C pointer analysis}},
+year = {2005}
+}
 @article{Asokan2014,
 abstract = {Trusted computing technologies for mobile devices have been researched, developed, and deployed over the past decade. Although their use has been limited so far, ongoing standardization may change this by opening up these technologies for easy access by developers and users. In this survey, we describe the current state of trusted computing solutions for mobile devices from research, standardization, and deployment perspectives.},
 author = {Asokan, N. and Ekberg, Jan Erik and Kostiainen, Kari and Rajan, Anand and Rozas, Carlos and Sadeghi, Ahmad Reza and Schulz, Steffen and Wachsmann, Christian},
@@ -990,28 +986,6 @@ publisher = {IEEE},
 title = {{Mobile trusted computing}},
 volume = {102},
 year = {2014}
-}
-@article{Avots2005,
-abstract = {This paper presents a context-sensitive, inclusion-based, field-sensitive points-to analysis for C, which we use to detect and prevent program security vulnerabilities. In addition to a conservative points-to analysis, we propose an optimistic analysis that assumes a more restricted C semantics reflecting common C usage in order to increase the precision of the analysis. Using the proposed pointer alias analyses, we infer the types of variables in C programs and show that most C variables are used in a manner consistent with their declared types. We show that pointer analysis can be used to reduce the overhead of a dynamic string-buffer overflow detector by 30{\%} to 100{\%} among applications with significant overheads. Finally, using pointer analysis, we statically discover twelve actual format string vulnerabilities in three of the 12 programs we analyze.},
-author = {Avots, Dzintars and Dalton, Michael and Livshits, V. Benjamin and Lam, Monica S.},
-doi = {10.1145/1062455.1062520},
-file = {:D$\backslash$:/Downloads/icse05.pdf:pdf},
-isbn = {1581139632},
-keywords = {buffer overflows,context-sensitive,dynamic analysis,error detection,format string violations,pointer analysis,program analysis,safety,security flaws,software security,type},
-pages = {332},
-title = {{Improving software security with a C pointer analysis}},
-year = {2005}
-}
-@article{Song2017,
-abstract = {—The operation system kernel is the foundation of the whole system and is often the de facto trusted computing base for many higher level security mechanisms. Unfortunately, kernel vulnerabilities are not rare and are continuously being introduced with new kernel features. Once the kernel is compromised, attack-ers can bypass any access control checks, escalate their privileges, and hide the evidence of attacks. Many protection mechanisms have been proposed and deployed to prevent kernel exploits. However, a majority of these techniques only focus on preventing control-flow hijacking attacks; techniques that can mitigate non-control-data attacks either only apply to drivers/modules or im-pose too much overhead. The goal of our research is to develop a principled defense mechanism against memory-corruption-based privilege escalation attacks. Toward this end, we leverage data-flow integrity to enforce security invariants of the kernel access control system. In order for our protection mechanism to be practical, we develop two new techniques: one for automatically inferring data that are critical to the access control system without manual annotation, and the other for efficient DFI enforcement over the inference results. We have implemented a prototype of our technology for the ARM64 Linux kernel on an Android device. The evaluation results of our prototype implementation show that our technology can mitigate a majority of privilege escalation attacks, while imposing a moderate amount of performance overhead.},
-author = {Song, Chengyu and Lee, Byoungyoung and Lu, Kangjie and Harris, William and Kim, Taesoo and Lee, Wenke},
-doi = {10.14722/ndss.2016.23218},
-file = {:D$\backslash$:/Downloads/kenali.pdf:pdf},
-isbn = {189156241X},
-number = {February},
-pages = {21--24},
-title = {{Enforcing Kernel Security Invariants with Data Flow Integrity}},
-year = {2017}
 }
 @article{Kleber2015a,
 author = {Kleber, Stephan and Unterstein, Florian and Matousek, Matthias and Kargl, Frank and Slomka, Frank and Hiller, Matthias},
@@ -1695,6 +1669,17 @@ publisher = {IEEE},
 title = {{Language abstractions for hardware-based control-flow integrity monitoring}},
 year = {2019}
 }
+@article{Song2017,
+abstract = {—The operation system kernel is the foundation of the whole system and is often the de facto trusted computing base for many higher level security mechanisms. Unfortunately, kernel vulnerabilities are not rare and are continuously being introduced with new kernel features. Once the kernel is compromised, attack-ers can bypass any access control checks, escalate their privileges, and hide the evidence of attacks. Many protection mechanisms have been proposed and deployed to prevent kernel exploits. However, a majority of these techniques only focus on preventing control-flow hijacking attacks; techniques that can mitigate non-control-data attacks either only apply to drivers/modules or im-pose too much overhead. The goal of our research is to develop a principled defense mechanism against memory-corruption-based privilege escalation attacks. Toward this end, we leverage data-flow integrity to enforce security invariants of the kernel access control system. In order for our protection mechanism to be practical, we develop two new techniques: one for automatically inferring data that are critical to the access control system without manual annotation, and the other for efficient DFI enforcement over the inference results. We have implemented a prototype of our technology for the ARM64 Linux kernel on an Android device. The evaluation results of our prototype implementation show that our technology can mitigate a majority of privilege escalation attacks, while imposing a moderate amount of performance overhead.},
+author = {Song, Chengyu and Lee, Byoungyoung and Lu, Kangjie and Harris, William and Kim, Taesoo and Lee, Wenke},
+doi = {10.14722/ndss.2016.23218},
+file = {:D$\backslash$:/Downloads/kenali.pdf:pdf},
+isbn = {189156241X},
+number = {February},
+pages = {21--24},
+title = {{Enforcing Kernel Security Invariants with Data Flow Integrity}},
+year = {2017}
+}
 @article{Ngabonziza2017,
 abstract = {ARM TrustZone is a hardware security extension technology, which aims to provide secure execution environment by splitting computer resources between two execution worlds, namely normal world and secure world. TrustZone is supported on different flavors of ARM architectures, that include architecture deployed on targets running regular applications, such as mobile devices and architecture for micro-controllers. As ARM is widely deployed on the majority of mobile and micro-controller devices, TrustZone's goal is to provide security for those platforms. In this paper, we will discuss details of different ARM architectures that support TrustZone technology. Then, we will review how TrustZone is implemented in the hardware and software of ARM products. We will also compare TrustZone with other implementations of trusted execution environments on the market.},
 author = {Ngabonziza, Bernard and Martin, Daniel and Bailey, Anna and Cho, Haehyun and Martin, Sarah},
@@ -2077,6 +2062,56 @@ publisher = {CMP Books ;},
 title = {{Embedded systems design : an introduction to processes, tools, and techniques}},
 year = {2002}
 }
+@book{MayesKeithE2008SCTS,
+address = {Boston, MA},
+author = {Mayes, Keith E and Markantonakis, Konstantinos},
+isbn = {9780387721972},
+keywords = { Cryptology and Information Theory ; Computer Comm,Computer Science ; Data Encryption ; Systems and D},
+publisher = {Springer US},
+title = {{Smart Cards, Tokens, Security and Applications}},
+year = {2008}
+}
+@inproceedings{Kelly2017,
+abstract = {Abstract—Effective software defences against errors created by fault attacks need to anticipate the probable error response of the target micro-controller. The range of errors and their probability of occurrence is referred to as the Fault Model. Software defences are necessarily a compromise between the impact of an error, its likelihood of occurrence, and the cost of the defence in terms of code size and execution time. In this work we first create a fault insertion system and then use it to demonstrate a technique for precisely triggering and capturing individual error responses within a running micro-controller. This enables a more realistic calibration of a micro-controller's fault model. We apply the system to a representative micro-controller and the results show that error insertion is far more predictable than anticipated, and is consistent over a wide range of experimental tolerances. This observation undermines some widely deployed software defences recommended for fault attack protection.},
+annote = {Shows that software runtime checking does not necessarity work},
+author = {Kelly, Martin S and Mayes, Keith and Walker, John F},
+booktitle = {2017 IEEE International Symposium on Hardware Oriented Security and Trust (HOST)},
+doi = {10.1109/HST.2017.7951802},
+file = {:C$\backslash$:/Users/Luke/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Kelly, Mayes, Walker - 2017 - Characterising a CPU fault attack model via run-time data analysis.pdf:pdf},
+isbn = {978-1-5386-3929-0},
+month = {may},
+pages = {79--84},
+publisher = {IEEE},
+title = {{Characterising a CPU fault attack model via run-time data analysis}},
+url = {http://ieeexplore.ieee.org/document/7951802/},
+year = {2017}
+}
+@article{Sullivan2016,
+author = {Sullivan, Dean and Arias, Orlando and Davi, Lucas and Larsen, Per and Sadeghi, Ahmad-Reza and Jin, Yier},
+doi = {10.1145/2897937.2898098},
+file = {:D$\backslash$:/Downloads/07544404.pdf:pdf},
+isbn = {9781450342360},
+journal = {2016 53nd ACM/EDAC/IEEE Design Automation Conference (DAC)},
+pages = {1--6},
+publisher = {IEEE},
+title = {{Strategy without tactics}},
+year = {2016}
+}
+@article{Lee2019,
+author = {Lee, Robert P and Markantonakis, Konstantinos and Akram, Raja Naeem},
+doi = {10.1145/3284361},
+file = {:D$\backslash$:/Downloads/Robert Lee PhD.pdf:pdf},
+issn = {15399087},
+journal = {ACM Transactions on Embedded Computing Systems},
+keywords = {Hardware-Software Binding,Internet of Things,Platform Specific Execution,Secure Application Execution},
+month = {apr},
+number = {3},
+pages = {1--21},
+title = {{Ensuring Secure Application Execution and Platform-Specific Execution in Embedded Devices}},
+url = {http://dl.acm.org/citation.cfm?doid=3323876.3284361},
+volume = {18},
+year = {2019}
+}
 @article{Burow,
 author = {Burow, Nathan},
 file = {:D$\backslash$:/Downloads/17CSUR.pdf:pdf},
@@ -2173,32 +2208,6 @@ pages = {259--284},
 title = {{CFI CaRE: Hardware-Supported Call and, Return Enforcement for Commercial Microcontrollers}},
 volume = {10453 LNCS},
 year = {2017}
-}
-@article{Lee2019,
-author = {Lee, Robert P and Markantonakis, Konstantinos and Akram, Raja Naeem},
-doi = {10.1145/3284361},
-file = {:D$\backslash$:/Downloads/Robert Lee PhD.pdf:pdf},
-issn = {15399087},
-journal = {ACM Transactions on Embedded Computing Systems},
-keywords = {Hardware-Software Binding,Internet of Things,Platform Specific Execution,Secure Application Execution},
-month = {apr},
-number = {3},
-pages = {1--21},
-title = {{Ensuring Secure Application Execution and Platform-Specific Execution in Embedded Devices}},
-url = {http://dl.acm.org/citation.cfm?doid=3323876.3284361},
-volume = {18},
-year = {2019}
-}
-@article{Sullivan2016,
-author = {Sullivan, Dean and Arias, Orlando and Davi, Lucas and Larsen, Per and Sadeghi, Ahmad-Reza and Jin, Yier},
-doi = {10.1145/2897937.2898098},
-file = {:D$\backslash$:/Downloads/07544404.pdf:pdf},
-isbn = {9781450342360},
-journal = {2016 53nd ACM/EDAC/IEEE Design Automation Conference (DAC)},
-pages = {1--6},
-publisher = {IEEE},
-title = {{Strategy without tactics}},
-year = {2016}
 }
 @article{DeClercq2017b,
 abstract = {Software components are frequently used in cyber-physical systems (CPSes) to control a physical mechanism, such as a valve or brakes on a car. These systems are extremely sensitive to software vulnerabilities, as their exploitation could lead to injury, damage to equipment, or environmental catastrophe. This paper proposes a hardware-based security architecture called SOFIA, which protects software running on microprocessors used in CPSes. SOFIA provides mechanisms to protect software integrity and control flow integrity. This allows the processor to defend against a large number of attacks, including code injection, code reuse, and fault-based attacks on the program counter. In addition, the architecture also defends against software copyright infringement and reverse engineering. All protection mechanisms are enforced in hardware using cryptographic techniques. We are the first to propose a mechanism to enforce control flow integrity at the finest possible granularity using cryptographic techniques. A SOFIA core has been created by implementing the proposed architectural features on a LEON3 microprocessor. The SOFIA core requires that its software conforms to a strict format. To this end, we additionally designed and implemented a software toolchain to compile source code that adheres to the formatting rules. Several benchmarks were compiled with the SOFIA toolchain, and were executed on a SOFIA core running on an FPGA, showing an average total execution time overhead of 106{\%} compared to an unmodified LEON3 core. Our hardware evaluation shows a clock speed reduction of 23.2{\%}.},

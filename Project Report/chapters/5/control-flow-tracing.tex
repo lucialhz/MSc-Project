@@ -15,11 +15,12 @@ CFG granularity can be broken down into three levels \cite{Abera2016}:
 
 We will most likely choose option 3.
 
-We can build up a hash of the flow by taking the ID of the source node and hashing that with the previous hash. If at the start the previous hash would be replaced with zero, or a nonce? so H1 = (ID1,0/nonce), H2 = (ID2,H1) etc.
+We can build up a hash of the flow by taking the ID of the source node and hashing that with the previous hash. At the start ($ID_1$) the previous hash would be replaced with zero or a nonce. With the resulting chain appearing as: 
+$H_1 = H(ID_1,0)$ (or $H_1 = H(ID_1,nonce)$), $H_2 = H(ID_2,H_1)$ ... $H_n = H(ID_n,H_{n-1})$.
 
 We will implement a special method in the secure world where a save is triggered. This will enable software authors an opportunity to save at key points - for example after a key decision is made. Hashes could also be stored along with variables used if we are able to implement that.
 
-BLAKE-2 \url{https://blake2.net} has been suggested as a lightweight hash function, however this is only one such potential candidate.
+BLAKE-2 \footnote{\url{https://blake2.net}} has been suggested as a lightweight hash function, however this is only one such potential candidate.
 
 \subsubsection{Challenges of CFG tracking}
 
@@ -27,21 +28,15 @@ Loops are a considerable issue when it comes to tracking control flow, as the nu
 
 To overcome the problems presented by loops, C-FLAT \cite{Abera2016} begins with treating loops as sub-programs. Where each run of a loop has a hash derived from it, and the total number of each time that hash was calculated is stored (therefore storing the number of times that exact sequence occurs). The result of this is the growth of the stored audit as each loop will need to be referenced separately, when tested by C-FLAT was 1527 bytes for a path containing 16 loop invocations and 18 unique loop paths (this could probably be calculated at compile time, with a warning presented perhaps). Another path containing 12 loop invocations and 14 unique paths resulted in a 1179 byte result. Another second study (which is not as well documented by the paper) produced a maximum result of 490 bytes. The previous hash is also included to show where the was called from. 
 
-Return call matching is used to do clever stuff. Read more about it please! Call and return edges are indexed during static analysis, so only valid routes are authorised.
-
-Break statements need to be dealt with in a special manner as they are an additional place where a loop can exit. 
-
-For all of this see section 4.2 of C-FLAT.
+Return call matching is used where call and return edges are indexed during static analysis, so only valid routes are authorised. Break statements need to be dealt with in a special manner as they are an additional place where a loop can exit. Section 4.2 of C-FLAT \cite{Abera2016} describes this in detail.
 
 \subsubsection{Instrumentation}
 
-Branches are identified, with direct jump addresses stored in a branch table. They are then directed to the trampoline assembly code which sends it off to the measurement engine to be measured.
+Branches are identified, with direct jump addresses stored in a branch table then replaced with he address of the trampoline assembly code, which when executing triggers the measurement engine to be add the source address and destination address to the hash chain before redirecting the program counter to the corresponding entry on the branch table.
 
 \subsubsection{Trampolines}
 
-A trampoline is an easy method of handing off from the main.
-
-In C-FLAT \cite{Abera2016} the trampoline manages the return address register as well as the register holding the destination address in indirect branches. Reference C-FLAT for a detailed explanation. 
+A trampoline enables redirecting execution to a single piece of simple and secure code without needing to add too many instructions during instrumentation. A trampoline can carry out a number of functions but in C-FLAT \cite{Abera2016} it manages the return address register as well as the register holding the destination address in indirect branches. 
 
 \subsubsection{Hardware-assisted}
 

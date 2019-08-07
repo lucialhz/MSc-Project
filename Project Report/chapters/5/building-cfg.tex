@@ -14,35 +14,20 @@ LLVM provides various methods of building CFGs which could be of use, for exampl
 \url{https://llvm.org/docs/Passes.html#simplifycfg-simplify-the-cfg},
 \url{https://llvm.org/docs/Passes.html#view-cfg-view-cfg-of-function}
 
-I understand that this may not be a simple procedure and will need further investigation.
-
-The dot format is highly used in CFG but I'm not sure if it will map well with what we receive while monitoring it.
+Building CFGs in LLVM is not simple and is not a main feature of LLVM. The dot format is widely used in representing CFGs and further research is required to find whether it can be made to be compatible with control-flow tracing.
 
 \subsubsection{Vulcan}
 
-Vulcan \cite{Edwards2001} is used by \cite{Davi2012} and the seminal work \cite{Abadi2005}. Though it has since been taken out of production by Microsoft.
+Vulcan \cite{Edwards2001} is used by \cite{Davi2012} and the seminal work \cite{Abadi2005}. Though it has since been taken out of production by Microsoft and is currently unavailable.
 
 \subsubsection{Jakstab}
 
-Jakstab \cite{Kinder2008} can also be used to create a dot file containing the CFG of x86 executables, so this may need features adding in order to support embedded systems. The last development activity on this was 31st March 2017. I tested this out but was unable to produce any CFGs from my test programs (written in C Sharp. My lack of understanding of windows executables. 
+Jakstab \cite{Kinder2008},\cite{Kinder2010} can also be used to create a dot file containing the CFG of x86 executables, so this may need features adding in order to support embedded systems, it was successfully used in \cite{Nguyen2013} to construct CFGs. The last development activity on this was 31st March 2017. The tool's author has been trying to improve on this where they aim for the CFG to be under approximated \cite{Kinder2012} rather than over approximated (which can lead to vulnerabilities in resultant implementations).
 
 \subsubsection{Others}
 
-Kinder \cite{Kinder2012} has been trying to improve on this where the CFG is under approximated.
-
 In C-FLAT \cite{Abera2016} the authors create their own analysis tool to achieve their branch-based requirements rather than create CFGs. They also use Capstone disassembly engine \footnote{\url{http://www.capstone-engine.org/}} however this is more for use as dissasembling code rather than CFG building.
 
-LiteHAX \cite{Dessouky2018} uses the 'angr' \footnote{\url{http://angr.io/}} \cite{Shoshitaishvili2016} framework to generate the CFG outputting a networkx DiGraph. This could be good one as it is still under active development. The output of this process would need to be compatible with the dynamic attestation. angr offers two types of computation methods - CFGFast (a static CFG) and CFGEmulated (a dynamic CFG). LiteHax is worth another read as it seems to be quite thorough.
+LiteHAX \cite{Dessouky2018} uses the `angr' \footnote{\url{http://angr.io/}} \cite{Shoshitaishvili2016} framework to generate the CFG outputting a networkx DiGraph. This could be good one as it is still under active development. The output of this process would need to be compatible with the dynamic attestation. angr offers two types of computation methods - CFGFast (a static CFG) and CFGEmulated (a dynamic CFG). LiteHax is worth another read as it seems to be quite thorough.
 
-IDA Pro. 
-
-\subsubsection{Do we need this?}
-\cite{Nguyen2013} Talks of Control Flow Graph construction and uses Jakstab \cite{Kinder2008} for comparison. 
-
-\furtherwork{"Jakstab translates machine code to a low level intermediate language on the fly as it performs data flow analysis on the growing control flow graph. Data flow information is used to resolve branch targets and discover new code locations. Other analyses can either be implemented in Jakstab to run together with the main control flow reconstruction to improve precision of the disassembly, or they can work on the resulting preprocessed control flow graph."}
-
-In his dissertation \cite{Kinder2010} the author of Jakstab goes into more detail about everything...
-
-Jakstab creates a 'dot' extension file. \href{https://en.wikipedia.org/wiki/DOT_(graph_description_language)} describes DOT as a graph description language which can be viewed with such tools as 
-
-neo4j is a graphical database which could be an ideal method of storing the resultant CFGs. neo4j uses cypher as its description language - I have been unable to find a method of converting the resultant dot files to neo4j.
+IDA Pro is a popular tool for reverse-engineering which is able to create CFGs, however due to its high licence cost we have been unable to evaluate its suitability. The high cost also prohibits its utilisation as part of the tool chain.

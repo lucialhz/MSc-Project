@@ -1,4 +1,4 @@
-\section{Comparison of solutions}
+\ifnotesincluded
 \begin{table}
 \footnotesize
 \newcommand*\rot[1]{\hbox to1em{\hss\rotatebox[origin=br]{-60}{#1}}}
@@ -62,8 +62,8 @@ $\text{\feature0}=\text{does not provide property}$;
 \item \hfil\textsuperscript{\dag}has academic publication;
 \textsuperscript{*}end-user tool available
 \end{tablenotes}    \end{threeparttable}
-
 \end{table}
+\fi
 
 \begin{table}
 \newcommand*\rot[1]{\hbox to1em{\hss\rotatebox[origin=br]{-60}{#1}}}
@@ -105,5 +105,6 @@ SOFIA \cite{DeClercq2017b} & \Circle  & \Circle & \CIRCLE & \CIRCLE & \CIRCLE & 
 Sullivan \cite{Sullivan2016} & \Circle  & \CIRCLE & \Circle & \CIRCLE & \CIRCLE & \CIRCLE & \CIRCLE & \Circle & \CIRCLE  & \CIRCLE  & BBLs & Attacker cannot touch code & - & 1.78\% & - & 1.75\% & Leon3 / SPARC V8 & Termination of process & Detection & CFG & Dependant on CFG policy (assumed 100\%)\\
 \bottomrule
 \end{tabular}}
+\caption{Comparison of Control-flow Integrity and Control-flow Attestation schemes}
+\label{tab:solutionComparison}
 \end{table}
-See~\ref{tab:features}.
