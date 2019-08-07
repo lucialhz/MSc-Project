@@ -11,27 +11,19 @@ Clerq and Verbauwhede \cite{DeClercq2017} posed CFGs as part of a solution for t
 \fi
 
 \subsection{Introduction to CFGs}
-Adabi et al. \cite{Abadi2005} state that CFGs can be defined by analysis-type methods or explicit policies. Examples of analysis-type methods include source-code analysis, binary analysis or execution profiling. An example of an explicit security policy method is writing as security automatat \cite{Erlingsson2004}. \furtherwork{What is this???}
+Adabi et al. \cite{Abadi2005} state that CFGs can be defined by analysis-type methods or explicit policies. Examples of analysis-type methods include source-code analysis, binary analysis or execution profiling. An example of an explicit security policy method is writing as security automata as seen in \cite{Erlingsson2004}. \furtherwork{What is this???}
 
 
 CFGs have been used to provide protection against soft faults (single-event upsets) using software based methods \cite{Oh2002} \cite{Sharma2012} \cite{Venkatasubramanian2003}. 
 The solution put forward by Adabi et al. \cite{Abadi2005} restricts control flow through in-lined labels and checks. The CFG is embedded through a set of static, intermediate bit patterns in program code. The problem with this is that they are evaluated at the destinations of all branches and jumps but not at the sources. These fail to prevent jumps into middle of functions (e.g. ones which bypass security checks such as access control)
 
-The method described in \cite{Abadi2005} ensures that whenever an instruction transfers control, it targets a valid destination as determined by the CFG (ahead of time). When the destination is determined at runtime this must go through a dynamic check. Static checks in \cite{Abadi2005} are made by rewriting machine code using modern tools for binary instrumentation to get around the resulting new memory addresses \cite{Edwards2001} \cite{Srivastava1994}.
+The method described in \cite{Abadi2005} ensures that whenever an instruction transfers control, it targets a valid destination as determined by the CFG (ahead of time). When the destination is determined at runtime this must go through a dynamic check. Dynamic checks are enabled through the the use of static analysis and machine-code rewriting forming an instrumentation process. Machine-code is rewritten using modern tools for binary instrumentation in order to overcome the resulting new memory addresses which are the result of the rewriting process\cite{Edwards2001} \cite{Srivastava1994}. Control-flow analysis techniques are described in \cite{AhoAlfredV.2014C:pt} \cite{Atkinson} \cite{Wagner2002} which run at compile time. A list of tools used in \cite{Abadi2005} is: Vulcan \cite{Edwards2001}, \cite{AhoAlfredV.2014C:pt}, \cite{Feng2003} \cite{Gopalakrishna2005}, \cite{Wagner2002}.
 
-Dynamic checks are a little more complex. \furtherwork{If this need to be understood then lets do that at a later time.} 
+\subsection{Software-based CFI}
 
-Instrumentation codes are used.\furtherwork{If this need to be understood then look up instrumentation codes.} 
+An excellent survey on software-based CFI is provided by \cite{Burow}, which provides a detailed insight into the technical properties of a number of software-based CFI solutions.
 
-Standard control flow analysis techniques exist \cite{AhoAlfredV.2014C:pt} \cite{Atkinson} \cite{Wagner2002} which run at compile time. Unique IDs could be created at run-time. \furtherwork{Could this be useful to bind hardware to software?}.
-
-Tools used: Vulcan \cite{Edwards2001}, Techniquies from programming languages and intrustion detection literatures \cite{AhoAlfredV.2014C:pt} \cite{Feng2003} \cite{Gopalakrishna2005} \cite{Wagner2002}. Measured overhead on SPEC computation benchmarks http://www.spec.org/cpu2017/.
-
-\subsection{Hardware-based CFI}
-
-\cite{DeClercq2017} includes a reference to \cite{Burow} , a survey for software-based CFI.
-
-Generating CFG from static analysis is troublesome and often an over-approximation is used which is not fully precise \cite{Carlini2015} \cite{Kinder2012}, again \cite{Burow} classifies the precision of computing CFG using differenct static analysis techniques.
+Generating CFG from static analysis is troublesome and often an over-approximation is used which is not fully precise \cite{Carlini2015} \cite{Kinder2012}, again \cite{Burow} classifies the precision of computing CFG using different static analysis techniques.
 
 Problems: Unintended branches \cite{Kayaalp2014} - the majority of gadgets in a program consists of unintended branches. 
 
@@ -41,18 +33,4 @@ Branch limitation is an alternative to CFG \cite{He2017} \cite{Corporation2017}.
 Another alternative is Code Pointer Integrity described in \cite{Security2017} and implemented in \cite{Kuznetsov:204783} \cite{Mashtizadeh2014} \cite{Szekeres2013}.
 
 Generalised path signature analysis \cite{Mahmood1988} while \cite{Werner2016} implemented in Arm Cortex-M3.
-
-\subsection{Software-based CFI}
-\cite{Burow} Performs a survey
-
-\subsection{Building Control Flow Graphs}
-\cite{Nguyen2013} Talks of Control Flow Graph construction and uses Jakstab\cite{Kinder2008} for comparison. 
-
-\furtherwork{"Jakstab translates machine code to a low level intermediate language on the fly as it performs data flow analysis on the growing control flow graph. Data flow information is used to resolve branch targets and discover new code locations. Other analyses can either be implemented in Jakstab to run together with the main control flow reconstruction to improve precision of the disassembly, or they can work on the resulting preprocessed control flow graph."}
-
-In his dissertation \cite{Kinder2010} the author of Jakstab goes into more detail about everything...
-
-Jakstab creates a 'dot' extension file. \href{https://en.wikipedia.org/wiki/DOT_(graph_description_language)} describes DOT as a graph description language which can be viewed with such tools as 
-
-neo4j is a graphical database which could be an ideal method of storing the resultant CFGs. neo4j uses cypher as its description language - I have been unable to find a method of converting the resultant dot files to neo4j.
  

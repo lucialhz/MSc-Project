@@ -1,42 +1,34 @@
-\section{Important Principals}\label{principalsInto}
+\section{Important Principals}
 
 This section provides an insight into what we need to know in order to solve any problems.
 
 It will be broken up into several sections: the first section ``Introduction to Embedded Systems'' will attempt to define what an embedded systems is, specifying unique characteristics. The second section ``Problem description and requirements'' will identify and discuss security problems, codifying these into a set of requirements. The third section ``Common Attacks'' gives a deeper analysis of attacks used to exploit the problems identified in the second section. The fourth section ``Control Flow Integrity'' introduces us to the notion of control flow integrity (CFI) and examines, from a high level, existing implementations for providing CFI. The fifth section ``Data Flow Integrity'' discusses a data-focusses parallel of CFI. The sixth section ``Existing Solutions'' will identify, discuss and analyse existing solutions and compare them to the requirements attained in the second section. Finally the conclusion will provide a brief summation of the previous sections.
 
-\section{Introduction to Embedded Systems}\label{introEmbeddedSystems}
+\section{Introduction to Embedded Systems}
 
 In this section we will define embedded systems, their uses, understand their key properties or criteria and describe some common implementations.
 
 
-\subsection{A Definition of Embedded Systems}\label{defineEmbeddedSystems}
+\subsection{A Definition of Embedded Systems}
 
-Embedded systems are small-form, low power computer systems.
-
-From Embedded Systems Design (Arnold S Berger):
-VS a PC:
+Embedded systems are small-form, low power computer systems. A useful way of defining them is to compare an embedded system with a PC \cite{BergerArnold2002Esd:}:
 \begin{itemize}
-\item Dedicated to specific task (PCS are generic computing platforms) - A change of task will usually require redesigning an entire system
-\item Supported by a wide array of processors and processor architectures
-\item Usually cost sensitive
-\item Real-time constraints - if has an OS will be RTOS
-\item Implications of software failure far more serious than desktop systems (due to their usage)
-\item Often have power constrains
-\item Often operate in extreme conditions
-\item Far fewer system resources
-\item Often store object code in ROM
-\item Require specialized tools and efficiently design methods
+\item Dedicated to specific task (PCS are generic computing platforms) where a change of task will usually require redesigning an entire system.
+\item Supported by a wide array of processors and processor architectures.
+\item Usually cost sensitive.
+\item Real-time constraints - if has an OS will be RTOS. It should be noted that with the introduction of IoT devices this has become less of a constraint, with standard Linux distributions such as Ubuntu becoming more prominent.
+\item Implications of software failure far more serious than desktop systems (due to their usage).
+\item Often have power constrains.
+\item Often operate in extreme conditions.
+\item Far fewer system resources.
+\item Often software is stored in ROM.
+\item Require specialized tools and efficient design methods.
 \item Often have dedicated debugging circuitry.
 \end{itemize}
 
-
-
-
 \subsection{Uses of Embedded Systems}\label{usesEmbeddedSystems}
 
-Embedded systems are ideal for applications where the computer systems has one role - for example in traffic lights, where the flow of traffic needs to be monitored and the timing of the light sequence needs to be controlled.
-
-The low power consumption of embedded systems makes them ideal for use in medical devices which can only have small batteries such as insulin injection pumps, or as part of a collection of sensors which are served by a low power bus.
+Embedded systems are ideal for applications where the computer systems has one role - for example in traffic lights, where the flow of traffic needs to be monitored and the timing of the light sequence needs to be controlled. The low power consumption of embedded systems makes them ideal for use in medical devices which can only have small batteries such as insulin injection pumps, or as part of a collection of sensors which are served by a low power bus.
 
 The small-form (and corresponding low-weight) means they are a good candidate for use in aeronautics, such as sensor controllers on aircraft or flight computers in missiles.
 
@@ -46,11 +38,9 @@ Consumer IoT also makes use of embedded systems, exploiting their low-cost, foot
 An embedded system could have a small form factor, low computing power (in comparison to full computer systems such as PCs), low power consumption and resistant to hostile environments.
 
 \subsection{Common Implementations of Embedded Systems}\label{implementationsEmbeddedSystems}
-A large number of manufactures has an interest in embedded systems. A big player is ARM with their Cortex-M Series of CPUs, these are commonly used in applications such as...
+A large number of manufacturers has an interest in embedded systems. A big player is ARM with their Cortex-M Series of CPUs, one example of these being used is in the Pebble smartwatch \url{https://www.ifixit.com/Teardown/Pebble+Teardown/13319#s45416}.
 
-Another angle are field programmable gate arrays (FPGAs) which are essentially software defined circuits. These can be set up in a variety of ways, but in modern applications they often utilise soft-core processors - where FPGA code is used to define a processor (for example following the RISC-V instruction set).
-
-System on Chips (SoCs) are a good example of an embedded system - here everything is on a chip.
+Another common base for embedded systems are field programmable gate arrays (FPGAs) which are essentially software defined circuits. These can be set up in a variety of ways, but in modern applications they often utilise soft-core processors - where FPGA code is used to define a processor (for example following the RISC-V instruction set).
 
 \section{Problem Description, Assumptions and Requirements}
 

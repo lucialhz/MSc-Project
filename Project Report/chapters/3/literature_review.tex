@@ -126,7 +126,7 @@ Secure software execution (or control-flow security/integrity) has the goal of p
 
 The first solution \cite{Werner2016} raises the point that most research on fault-attacks has been aimed towards cryptographic functions which result in gaining knowledge of the secret key. This paper takes this further by considering the modification of games consoles to make them skip the function which checks the validity of loaded software. The paper focuses on securing against fault-attacks.
 
-The method mainly utilises control-flow integrity to solve the stated problem. The basic principle behind control-flow integrity is the understanding of the basic blocks of a making up a program. The blocks will flow into one another control-flow instructions. This flow can be described as the control-flow graph (CFG) and a correctly functioning program will abide by this graph. The signature of the program flow is created and compared against the expected value according to the CFG. The solution provides assistance to C programmers in that it automatically inserts signature updates, although programmers can also insert them manually for critical sections of the program. This functionality has been provided via the editing of LLVM compiler. If using assembly code the programmer must manually insert signature updates whenever branches, loops and function calls are encountered. The control flow signatures are calculated through a  recursive disassembling approach. Important principles introduced in this paper (along the same lines as CFG) are generalized path signature analysis (GPSA) and continuous-signature monitoring (CSM). This paper does require modifications to be made to Cortex-M3 architecture.
+The method mainly utilises control-flow integrity to solve the stated problem. The basic principle behind control-flow integrity is the understanding of the basic blocks of a making up a program. The blocks will flow into one another control-flow instructions. This flow can be described as the control-flow graph (CFG) and a correctly functioning program will abide by this graph. The signature of the program flow is created and compared against the expected value according to the CFG. The solution provides assistance to C programmers in that it automatically inserts signature updates, although programmers can also insert them manually for critical sections of the program. This functionality has been provided via the editing of LLVM compiler. If using assembly code the programmer must manually insert signature updates whenever branches, loops and function calls are encountered. The control flow signatures are calculated through a  recursive disassembling approach. In order to check the running  program's integrity a ``derived signature'' is calculated on the running code's path, this can then be compared to the corresponding derived signature of the intended route of the CFG. Important principles introduced in this paper (along the same lines as CFG) are generalized path signature analysis (GPSA) and continuous-signature monitoring (CSM). This paper does require modifications to be made to Cortex-M3 architecture.
 
 \ifnotesincluded
 \furtherwork{Should I directly address GPSA and CSM?} 
@@ -146,11 +146,7 @@ The method employed revolves around making use of hardware performance counters 
 \furtherwork{If the database is stored in RAM how is it updated when new FW is released?}.
 \fi
 
-The third paper \cite{Abera2016} approaches secure execution from a slightly different direction: remote attestation. It aims to provide remote attestation of an application's control flow path during operation. The paper excludes physical attacks and instead focusses on execution path attacks, they assume that the subject device features data execution prevention (DEP) and a secure trust anchor that provides an isolated measurement engine and can generate the fresh authenticated attestation report.
-
-\ifnotesincluded
-\furtherwork{Look up DEP}
-\fi
+The third paper \cite{Abera2016} approaches secure execution from a slightly different direction: remote attestation. It aims to provide remote attestation of an application's control flow path during operation. The paper excludes physical attacks and instead focusses on execution path attacks, they assume that the subject device features data execution prevention (DEP) such as read $\oplus$ write and a secure trust anchor that provides an isolated measurement engine and can generate the fresh authenticated attestation report.
 
 The method builds a hash of the path taken from node to node which is then reported to the verifier. Loops are dealt with in a novel manner to work around the issue posed due to the infinite hash available when the number of iterations of a loop is set dynamically.
 
@@ -170,9 +166,7 @@ The use of control flow checking for accidental program flow changes is consider
 Chapter 9 of \cite{AhoAlfredV.2014C:pt} contains a wealth of information on data-flow and will provide a good basis for understanding both the essence of data(control)-flow and how compilers use them for code optimisation. This chapter should be referenced in order to gain a meaningful understanding of control-flow.
 
 
-\subsection{PUFs}
-
-\furtherwork{what does PUF stand for?}
+\subsection{Physical Unclonable Functions (PUFs)}
 
 A huge amount of prior research has been undertaken into PUFs and their application towards security in embedded systems. One very good overview is the PhD thesis \cite{Maes2012}, which provides a thorough examination into most aspects of PUFs including the types, analysis of each type in terms of uniqueness and reproducibility and uses including entity-authentication and key generation.
 
@@ -180,4 +174,4 @@ Much of the literature (\cite{Lee2016}, \cite{Schaller2014}, \cite{Kleber2015}, 
 
 \section{Conclusion}
 
-In this literature review we have seen the reasons why the security of firmware of embedded devices is an important matter which needs to be addressed. We then saw reviews of existing solutions and introductions to primitives used. After an introduction to potential physical attacks we then provided an in depth review of solutions which enabled the binding of hardware and software and solutions which provide secure software. Finally we looked at two primitives which will be useful to this project.
+In this literature review we have seen the reasons why the security of firmware of embedded devices is an important matter which needs to be addressed. We then saw reviews of existing solutions and introductions to primitives used. After an introduction to potential physical attacks we then provided an in depth review of solutions which enabled the binding of hardware and software and solutions which provide secure software. Finally we looked at two primitives which were prominent in many of the solutions examined.
