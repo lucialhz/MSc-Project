@@ -2,24 +2,25 @@
 \newcommand*\rot[1]{\hbox to1em{\hss\rotatebox[origin=br]{-60}{#1}}}
 \centering
 \resizebox{\textwidth}{!}{
-\begin{tabular}{c c c c p{2cm} p{3cm}}
+\begin{tabular}{c c c c c p{2cm} p{3cm}}
 \toprule
-Scheme & \multicolumn{5}{c}{Requirements}\\
+Scheme & \multicolumn{6}{c}{Requirements}\\
 \midrule
  & \rot{Works with compiled binaries}
  & \rot{Works with external libraries}
+ & \rot{Can be used for binding}
  & \rot{Works with embedded systems}
  & \rot{Immediate identification}
  & \rot{Not reliant on TPM}\\
 \midrule
-C-FLAT \cite{Abera2016} & \CIRCLE & \CIRCLE & \CIRCLE \newline ARM CORTEX A & \Circle & \Circle\\
-LO-FAT \cite{Dessouky2017} & \CIRCLE & \CIRCLE & \CIRCLE & \Circle & \CIRCLE\\
-SEP-LEE \cite{Lee2019} & \Circle  & \Circle & \CIRCLE & \raggedright \CIRCLE On jump or return & \CIRCLE\\
-CCFI-Cache \cite{Danger2018} & \Circle  & \Circle & \CIRCLE & \raggedright \Circle End of BBL or number of executions reached & \CIRCLE\\
-HCFI \cite{Christoulakis2016} & \Circle  & \Circle & \CIRCLE & \CIRCLE & \CIRCLE\\
-HAFIX \cite{Davi2015} & \Circle  & \Circle & \CIRCLE & \CIRCLE & \CIRCLE\\
-SOFIA \cite{DeClercq2017b} & \Circle  & \Circle & \CIRCLE & \CIRCLE & \CIRCLE\\
-Sullivan \cite{Sullivan2016} & \Circle  & \CIRCLE & \CIRCLE & \CIRCLE & \CIRCLE\\
+C-FLAT \cite{Abera2016} & \CIRCLE & \CIRCLE & \Circle & \CIRCLE \newline ARM CORTEX A & \Circle & \Circle\\
+LO-FAT \cite{Dessouky2017} & \CIRCLE & \CIRCLE & \Circle & \CIRCLE & \Circle & \CIRCLE\\
+SEP-LEE \cite{Lee2019} & \Circle  & \Circle & \CIRCLE & \CIRCLE & \raggedright \CIRCLE On jump or return & \CIRCLE\\
+CCFI-Cache \cite{Danger2018} & \Circle  & \Circle & \Circle & \CIRCLE & \raggedright \Circle End of BBL or number of executions reached & \CIRCLE\\
+HCFI \cite{Christoulakis2016} & \Circle  & \Circle & \Circle & \CIRCLE & \CIRCLE & \CIRCLE\\
+HAFIX \cite{Davi2015} & \Circle  & \Circle & \Circle & \CIRCLE & \CIRCLE & \CIRCLE\\
+SOFIA \cite{DeClercq2017b} & \Circle  & \Circle & \CIRCLE & \CIRCLE & \CIRCLE & \CIRCLE\\
+Sullivan \cite{Sullivan2016} & \Circle  & \CIRCLE & \Circle & \CIRCLE & \CIRCLE & \CIRCLE\\
 \bottomrule
 \end{tabular}}
 \caption{Requirement Comparison of Control-flow Integrity and Control-flow Attestation}
