@@ -1,0 +1,20 @@
+\section{Practical implementation}
+
+C-FLAT required programs to not use \verb|LR| as a general purpose register. I would not really class this as working with existing binaries\slash as they need to be compiled with certain settings, e.g. \verb|-ffixed-lr| in GCC \footnote{\url{https://gcc.gnu.org/onlinedocs/gcc-4.6.1/gcc/Global-Reg-Vars.html}}
+
+During assessment of angr, utilising networkx utilities, we have found that only single edges are identified. For example ~\ref{lst:angr_result}
+
+\begin{lstlisting}[caption={Example of results from angr CFG analysis of fauxware in form of .edgelist output from networkx utilities},label={lst:angr_result}]
+<CFGNode rejected+0x16 0x400713[10]> <CFGNode 0x400570L[6]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196115, 'stmt_idx': 'default'}
+<CFGNode main+0xa0 0x4007bdL[10]> <CFGNode accepted 0x4006ed[14]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196285L, 'stmt_idx': 'default'}
+<CFGNode main+0xa0 0x4007bdL[10]> <CFGNode main+0xaa 0x4007c7L[2]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196285L, 'stmt_idx': 'default'}
+\end{lstlisting}
+
+The first three results of analysing \verb|fauxware| provided by angr as a test binary. 
+
+Using something such as angr is all well and good for single edges, however calculating complete paths is not possible. Is it worth trying the alternative or just stating that this is a requirement?
+
+Complete software solution, i.e. assertions to secure world OS? Such as open tee... 
+
+Return address monitoring - how do they instrument with shadow stacks?
+

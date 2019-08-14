@@ -1,0 +1,132 @@
+<CFGNode rejected+0x16 0x400713[10]> <CFGNode 0x400570L[6]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196115, 'stmt_idx': 'default'}
+<CFGNode main+0xa0 0x4007bdL[10]> <CFGNode accepted 0x4006ed[14]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196285L, 'stmt_idx': 'default'}
+<CFGNode main+0xa0 0x4007bdL[10]> <CFGNode main+0xaa 0x4007c7L[2]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196285L, 'stmt_idx': 'default'}
+<CFGNode __libc_csu_init+0x50 0x400830L[13]> <CFGNode __libc_csu_init+0x5d 0x40083dL[9]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196400L, 'stmt_idx': 'default'}
+<CFGNode __libc_csu_init+0x50 0x400830L[13]> <CFGNode UnresolvableTarget 0x1000078[0]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196409L, 'stmt_idx': 'default'}
+<CFGNode __do_global_dtors_aux+0x56 0x400626L[14]> <CFGNode _fini+0x9 0x4008c1[5]> {'jumpkind': 'Ijk_Ret', 'ins_addr': 4195891L, 'stmt_idx': 'default'}
+<CFGNode frame_dummy+0x18 0x400658L[8]> <CFGNode UnresolvableTarget 0x1000078[0]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195934L, 'stmt_idx': 'default'}
+<CFGNode 0x40050c[4]> <CFGNode 0x400510L[6]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195596, 'stmt_idx': 'default'}
+<CFGNode frame_dummy+0xe 0x40064eL[10]> <CFGNode frame_dummy+0x20 0x400660L[2]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195926L, 'stmt_idx': 13}
+<CFGNode frame_dummy+0xe 0x40064eL[10]> <CFGNode frame_dummy+0x18 0x400658L[8]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195926L, 'stmt_idx': 'default'}
+<CFGNode main+0x83 0x4007a0[19]> <CFGNode authenticate 0x400664[42]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196256, 'stmt_idx': 'default'}
+<CFGNode main+0x83 0x4007a0[19]> <CFGNode main+0x96 0x4007b3[10]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196256, 'stmt_idx': 'default'}
+<CFGNode __do_global_ctors_aux+0x16 0x400896L[16]> <CFGNode UnresolvableTarget 0x1000078[0]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196516L, 'stmt_idx': 'default'}
+<CFGNode __do_global_ctors_aux+0x16 0x400896L[16]> <CFGNode __do_global_ctors_aux+0x26 0x4008a6L[9]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196502L, 'stmt_idx': 'default'}
+<CFGNode 0x400550L[6]> <CFGNode strcmp 0x1000020L[0]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195664L, 'stmt_idx': 'default'}
+<CFGNode 0x400662L[2]> <CFGNode authenticate 0x400664[42]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195938L, 'stmt_idx': 'default'}
+<CFGNode 0x400546L[10]> <CFGNode  0x400500[12]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195654L, 'stmt_idx': 'default'}
+<CFGNode _init+0xe 0x4004ee[5]> <CFGNode __do_global_ctors_aux 0x400880[22]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4195566, 'stmt_idx': 'default'}
+<CFGNode _init+0xe 0x4004ee[5]> <CFGNode _init+0x13 0x4004f3[5]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4195566, 'stmt_idx': 'default'}
+<CFGNode 0x400560L[6]> <CFGNode open 0x1000028L[0]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195680L, 'stmt_idx': 'default'}
+<CFGNode 0x4005c3L[13]> <CFGNode __do_global_dtors_aux 0x4005d0[18]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195779L, 'stmt_idx': 'default'}
+<CFGNode 0x400556L[10]> <CFGNode  0x400500[12]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195670L, 'stmt_idx': 'default'}
+<CFGNode main+0x21 0x40073e[22]> <CFGNode 0x400530L[6]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196158, 'stmt_idx': 'default'}
+<CFGNode main+0x21 0x40073e[22]> <CFGNode main+0x37 0x400754[22]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196158, 'stmt_idx': 'default'}
+<CFGNode 0x400510L[6]> <CFGNode puts 0x1000000L[0]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195600L, 'stmt_idx': 'default'}
+<CFGNode _fini 0x4008b8[9]> <CFGNode __do_global_dtors_aux 0x4005d0[18]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196536, 'stmt_idx': 'default'}
+<CFGNode _fini 0x4008b8[9]> <CFGNode _fini+0x9 0x4008c1[5]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196536, 'stmt_idx': 'default'}
+<CFGNode _start 0x400580[41]> <CFGNode 0x400540L[6]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4195712, 'stmt_idx': 'default'}
+<CFGNode printf 0x1000008L[0]> <CFGNode rejected+0x16 0x400713[10]> {'jumpkind': 'Ijk_Ret', 'ins_addr': None, 'stmt_idx': 'default'}
+<CFGNode accepted 0x4006ed[14]> <CFGNode 0x400510L[6]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196077, 'stmt_idx': 'default'}
+<CFGNode accepted 0x4006ed[14]> <CFGNode accepted+0xe 0x4006fb[2]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196077, 'stmt_idx': 'default'}
+<CFGNode 0x400520L[6]> <CFGNode printf 0x1000008L[0]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195616L, 'stmt_idx': 'default'}
+<CFGNode __do_global_ctors_aux+0x2f 0x4008afL[7]> <CFGNode _init+0x13 0x4004f3[5]> {'jumpkind': 'Ijk_Ret', 'ins_addr': 4196533L, 'stmt_idx': 'default'}
+<CFGNode read 0x1000010L[0]> <CFGNode main+0x83 0x4007a0[19]> {'jumpkind': 'Ijk_Ret', 'ins_addr': None, 'stmt_idx': 'default'}
+<CFGNode read 0x1000010L[0]> <CFGNode main+0x4d 0x40076a[10]> {'jumpkind': 'Ijk_Ret', 'ins_addr': None, 'stmt_idx': 'default'}
+<CFGNode read 0x1000010L[0]> <CFGNode main+0x37 0x400754[22]> {'jumpkind': 'Ijk_Ret', 'ins_addr': None, 'stmt_idx': 'default'}
+<CFGNode read 0x1000010L[0]> <CFGNode authenticate+0x64 0x4006c8L[19]> {'jumpkind': 'Ijk_Ret', 'ins_addr': None, 'stmt_idx': 'default'}
+<CFGNode read 0x1000010L[0]> <CFGNode main+0x6d 0x40078a[22]> {'jumpkind': 'Ijk_Ret', 'ins_addr': None, 'stmt_idx': 'default'}
+<CFGNode __do_global_dtors_aux+0x12 0x4005e2L[32]> <CFGNode __do_global_dtors_aux+0x32 0x400602L[6]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195840L, 'stmt_idx': 20}
+<CFGNode __do_global_dtors_aux+0x12 0x4005e2L[32]> <CFGNode __do_global_dtors_aux+0x56 0x400626L[14]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195840L, 'stmt_idx': 'default'}
+<CFGNode _init+0x13 0x4004f3[5]> <CFGNode __libc_csu_init+0x45 0x400825[5]> {'jumpkind': 'Ijk_Ret', 'ins_addr': 4195575L, 'stmt_idx': 'default'}
+<CFGNode open 0x1000028L[0]> <CFGNode authenticate+0x4b 0x4006afL[25]> {'jumpkind': 'Ijk_Ret', 'ins_addr': None, 'stmt_idx': 'default'}
+<CFGNode call_gmon_start 0x4005ac[16]> <CFGNode call_gmon_start+0x10 0x4005bcL[2]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195770L, 'stmt_idx': 'default'}
+<CFGNode call_gmon_start 0x4005ac[16]> <CFGNode call_gmon_start+0x12 0x4005beL[5]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195770L, 'stmt_idx': 19}
+<CFGNode frame_dummy 0x400640[14]> <CFGNode frame_dummy+0x20 0x400660L[2]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195916L, 'stmt_idx': 21}
+<CFGNode frame_dummy 0x400640[14]> <CFGNode frame_dummy+0xe 0x40064eL[10]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195916L, 'stmt_idx': 'default'}
+<CFGNode 0x400536L[10]> <CFGNode  0x400500[12]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195638L, 'stmt_idx': 'default'}
+<CFGNode rejected 0x4006fd[22]> <CFGNode 0x400520L[6]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196093, 'stmt_idx': 'default'}
+<CFGNode rejected 0x4006fd[22]> <CFGNode rejected+0x16 0x400713[10]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196093, 'stmt_idx': 'default'}
+<CFGNode 0x400566L[10]> <CFGNode  0x400500[12]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195686L, 'stmt_idx': 'default'}
+<CFGNode authenticate+0x2a 0x40068e[4]> <CFGNode authenticate+0x2e 0x400692L[7]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195984L, 'stmt_idx': 17}
+<CFGNode authenticate+0x2a 0x40068e[4]> <CFGNode authenticate+0x35 0x400699L[22]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195984L, 'stmt_idx': 'default'}
+<CFGNode _init 0x4004e0[9]> <CFGNode _init+0x9 0x4004e9[5]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4195552, 'stmt_idx': 'default'}
+<CFGNode _init 0x4004e0[9]> <CFGNode call_gmon_start 0x4005ac[16]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4195552, 'stmt_idx': 'default'}
+<CFGNode main+0x57 0x400774[22]> <CFGNode 0x400530L[6]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196212, 'stmt_idx': 'default'}
+<CFGNode main+0x57 0x400774[22]> <CFGNode main+0x6d 0x40078a[22]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196212, 'stmt_idx': 'default'}
+<CFGNode puts 0x1000000L[0]> <CFGNode main+0x57 0x400774[22]> {'jumpkind': 'Ijk_Ret', 'ins_addr': None, 'stmt_idx': 'default'}
+<CFGNode puts 0x1000000L[0]> <CFGNode accepted+0xe 0x4006fb[2]> {'jumpkind': 'Ijk_Ret', 'ins_addr': None, 'stmt_idx': 'default'}
+<CFGNode puts 0x1000000L[0]> <CFGNode main+0x21 0x40073e[22]> {'jumpkind': 'Ijk_Ret', 'ins_addr': None, 'stmt_idx': 'default'}
+<CFGNode call_gmon_start+0x10 0x4005bcL[2]> <CFGNode UnresolvableTarget 0x1000078[0]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4195772L, 'stmt_idx': 'default'}
+<CFGNode call_gmon_start+0x10 0x4005bcL[2]> <CFGNode call_gmon_start+0x12 0x4005beL[5]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4195772L, 'stmt_idx': 'default'}
+<CFGNode main 0x40071d[33]> <CFGNode 0x400510L[6]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196125, 'stmt_idx': 'default'}
+<CFGNode main 0x40071d[33]> <CFGNode main+0x21 0x40073e[22]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196125, 'stmt_idx': 'default'}
+<CFGNode __do_global_dtors_aux+0x32 0x400602L[6]> <CFGNode __do_global_dtors_aux+0x38 0x400608L[18]> {'jumpkind': 'Ijk_Boring'}
+<CFGNode main+0x6d 0x40078a[22]> <CFGNode 0x400530L[6]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196234, 'stmt_idx': 'default'}
+<CFGNode main+0x6d 0x40078a[22]> <CFGNode main+0x83 0x4007a0[19]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196234, 'stmt_idx': 'default'}
+<CFGNode  0x400500[12]> <CFGNode UnresolvableTarget 0x1000078[0]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195590L, 'stmt_idx': 'default'}
+<CFGNode main+0xac 0x4007c9L[10]> <CFGNode rejected 0x4006fd[22]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196297L, 'stmt_idx': 'default'}
+<CFGNode 0x4005abL[1]> <CFGNode call_gmon_start 0x4005ac[16]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195755L, 'stmt_idx': 'default'}
+<CFGNode 0x400530L[6]> <CFGNode read 0x1000010L[0]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195632L, 'stmt_idx': 'default'}
+<CFGNode 0x400526L[10]> <CFGNode  0x400500[12]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195622L, 'stmt_idx': 'default'}
+<CFGNode __do_global_ctors_aux+0x20 0x4008a0L[6]> <CFGNode UnresolvableTarget 0x1000078[0]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196516L, 'stmt_idx': 'default'}
+<CFGNode __do_global_ctors_aux+0x20 0x4008a0L[6]> <CFGNode __do_global_ctors_aux+0x26 0x4008a6L[9]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196512L, 'stmt_idx': 'default'}
+<CFGNode 0x400634L[12]> <CFGNode frame_dummy 0x400640[14]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195892L, 'stmt_idx': 'default'}
+<CFGNode __do_global_dtors_aux+0x4a 0x40061aL[12]> <CFGNode __do_global_dtors_aux+0x38 0x400608L[18]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195876L, 'stmt_idx': 15}
+<CFGNode __do_global_dtors_aux+0x4a 0x40061aL[12]> <CFGNode __do_global_dtors_aux+0x56 0x400626L[14]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195876L, 'stmt_idx': 'default'}
+<CFGNode _init+0x9 0x4004e9[5]> <CFGNode frame_dummy 0x400640[14]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4195561, 'stmt_idx': 'default'}
+<CFGNode _init+0x9 0x4004e9[5]> <CFGNode _init+0xe 0x4004ee[5]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4195561, 'stmt_idx': 'default'}
+<CFGNode authenticate+0x7b 0x4006dfL[7]> <CFGNode authenticate+0x87 0x4006ebL[2]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4196063L, 'stmt_idx': 'default'}
+<CFGNode authenticate 0x400664[42]> <CFGNode 0x400550L[6]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4195940, 'stmt_idx': 'default'}
+<CFGNode authenticate 0x400664[42]> <CFGNode authenticate+0x2a 0x40068e[4]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4195940, 'stmt_idx': 'default'}
+<CFGNode __libc_start_main 0x1000018L[0]> <CFGNode main 0x40071d[33]> {'jumpkind': 'Ijk_Call', 'ins_addr': None, 'stmt_idx': None}
+<CFGNode __libc_start_main 0x1000018L[0]> <CFGNode __libc_csu_init 0x4007e0[69]> {'jumpkind': 'Ijk_Call', 'ins_addr': None, 'stmt_idx': None}
+<CFGNode __libc_start_main 0x1000018L[0]> <CFGNode __libc_csu_fini 0x400870[2]> {'jumpkind': 'Ijk_Call', 'ins_addr': None, 'stmt_idx': None}
+<CFGNode 0x4008b6L[2]> <CFGNode _fini 0x4008b8[9]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4196534L, 'stmt_idx': 'default'}
+<CFGNode authenticate+0x82 0x4006e6L[7]> <CFGNode main+0x96 0x4007b3[10]> {'jumpkind': 'Ijk_Ret', 'ins_addr': 4196076L, 'stmt_idx': 'default'}
+<CFGNode main+0x4d 0x40076a[10]> <CFGNode 0x400510L[6]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196202, 'stmt_idx': 'default'}
+<CFGNode main+0x4d 0x40076a[10]> <CFGNode main+0x57 0x400774[22]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196202, 'stmt_idx': 'default'}
+<CFGNode authenticate+0x77 0x4006dbL[4]> <CFGNode authenticate+0x7b 0x4006dfL[7]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4196061L, 'stmt_idx': 17}
+<CFGNode authenticate+0x77 0x4006dbL[4]> <CFGNode authenticate+0x82 0x4006e6L[7]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4196061L, 'stmt_idx': 'default'}
+<CFGNode __do_global_dtors_aux+0x5d 0x40062dL[7]> <CFGNode _fini+0x9 0x4008c1[5]> {'jumpkind': 'Ijk_Ret', 'ins_addr': 4195891L, 'stmt_idx': 'default'}
+<CFGNode frame_dummy+0x20 0x400660L[2]> <CFGNode _init+0xe 0x4004ee[5]> {'jumpkind': 'Ijk_Ret', 'ins_addr': 4195937L, 'stmt_idx': 'default'}
+<CFGNode 0x4007d5L[11]> <CFGNode __libc_csu_init 0x4007e0[69]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4196309L, 'stmt_idx': 'default'}
+<CFGNode __do_global_ctors_aux 0x400880[22]> <CFGNode __do_global_ctors_aux+0x2f 0x4008afL[7]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4196500L, 'stmt_idx': 32}
+<CFGNode __do_global_ctors_aux 0x400880[22]> <CFGNode __do_global_ctors_aux+0x16 0x400896L[16]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4196500L, 'stmt_idx': 'default'}
+<CFGNode 0x400576L[10]> <CFGNode  0x400500[12]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195702L, 'stmt_idx': 'default'}
+<CFGNode __libc_csu_init+0x5d 0x40083dL[9]> <CFGNode __libc_csu_init+0x50 0x400830L[13]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4196420L, 'stmt_idx': 'default'}
+<CFGNode __libc_csu_init+0x5d 0x40083dL[9]> <CFGNode __libc_csu_init+0x66 0x400846L[35]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4196420L, 'stmt_idx': 16}
+<CFGNode __do_global_ctors_aux+0x26 0x4008a6L[9]> <CFGNode __do_global_ctors_aux+0x20 0x4008a0L[6]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4196525L, 'stmt_idx': 'default'}
+<CFGNode __do_global_ctors_aux+0x26 0x4008a6L[9]> <CFGNode __do_global_ctors_aux+0x2f 0x4008afL[7]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4196525L, 'stmt_idx': 15}
+<CFGNode __libc_csu_init+0x45 0x400825[5]> <CFGNode __libc_csu_init+0x4a 0x40082aL[19]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4196392L, 'stmt_idx': 'default'}
+<CFGNode __libc_csu_init+0x45 0x400825[5]> <CFGNode __libc_csu_init+0x66 0x400846L[35]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4196392L, 'stmt_idx': 12}
+<CFGNode __libc_csu_init+0x4a 0x40082aL[19]> <CFGNode __libc_csu_init+0x5d 0x40083dL[9]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196394L, 'stmt_idx': 'default'}
+<CFGNode __libc_csu_init+0x4a 0x40082aL[19]> <CFGNode UnresolvableTarget 0x1000078[0]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196409L, 'stmt_idx': 'default'}
+<CFGNode 0x400872L[14]> <CFGNode __do_global_ctors_aux 0x400880[22]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4196466L, 'stmt_idx': 'default'}
+<CFGNode 0x400516L[10]> <CFGNode  0x400500[12]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195606L, 'stmt_idx': 'default'}
+<CFGNode __do_global_dtors_aux+0x38 0x400608L[18]> <CFGNode __do_global_dtors_aux+0x4a 0x40061aL[12]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4195842L, 'stmt_idx': 'default'}
+<CFGNode __do_global_dtors_aux+0x38 0x400608L[18]> <CFGNode UnresolvableTarget 0x1000078[0]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4195859L, 'stmt_idx': 'default'}
+<CFGNode 0x400869L[7]> <CFGNode __libc_csu_fini 0x400870[2]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4196457L, 'stmt_idx': 'default'}
+<CFGNode __do_global_dtors_aux 0x4005d0[18]> <CFGNode __do_global_dtors_aux+0x5d 0x40062dL[7]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195808L, 'stmt_idx': 'default'}
+<CFGNode __do_global_dtors_aux 0x4005d0[18]> <CFGNode __do_global_dtors_aux+0x12 0x4005e2L[32]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195808L, 'stmt_idx': 34}
+<CFGNode strcmp 0x1000020L[0]> <CFGNode authenticate+0x77 0x4006dbL[4]> {'jumpkind': 'Ijk_Ret', 'ins_addr': None, 'stmt_idx': 'default'}
+<CFGNode strcmp 0x1000020L[0]> <CFGNode authenticate+0x2a 0x40068e[4]> {'jumpkind': 'Ijk_Ret', 'ins_addr': None, 'stmt_idx': 'default'}
+<CFGNode 0x400540L[6]> <CFGNode __libc_start_main 0x1000018L[0]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195648L, 'stmt_idx': 'default'}
+<CFGNode authenticate+0x2e 0x400692L[7]> <CFGNode authenticate+0x87 0x4006ebL[2]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195986L, 'stmt_idx': 'default'}
+<CFGNode main+0x37 0x400754[22]> <CFGNode 0x400530L[6]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196180, 'stmt_idx': 'default'}
+<CFGNode main+0x37 0x400754[22]> <CFGNode main+0x4d 0x40076a[10]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196180, 'stmt_idx': 'default'}
+<CFGNode authenticate+0x4b 0x4006afL[25]> <CFGNode 0x400530L[6]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196015L, 'stmt_idx': 'default'}
+<CFGNode authenticate+0x4b 0x4006afL[25]> <CFGNode authenticate+0x64 0x4006c8L[19]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196015L, 'stmt_idx': 'default'}
+<CFGNode authenticate+0x87 0x4006ebL[2]> <CFGNode main+0x96 0x4007b3[10]> {'jumpkind': 'Ijk_Ret', 'ins_addr': 4196076L, 'stmt_idx': 'default'}
+<CFGNode 0x400570L[6]> <CFGNode exit 0x1000030L[0]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4195696L, 'stmt_idx': 'default'}
+<CFGNode main+0xaa 0x4007c7L[2]> <CFGNode main+0xb6 0x4007d3L[2]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4196295L, 'stmt_idx': 'default'}
+<CFGNode __libc_csu_init 0x4007e0[69]> <CFGNode __libc_csu_init+0x45 0x400825[5]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196320, 'stmt_idx': 'default'}
+<CFGNode __libc_csu_init 0x4007e0[69]> <CFGNode _init 0x4004e0[9]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196320, 'stmt_idx': 'default'}
+<CFGNode authenticate+0x64 0x4006c8L[19]> <CFGNode 0x400550L[6]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196040L, 'stmt_idx': 'default'}
+<CFGNode authenticate+0x64 0x4006c8L[19]> <CFGNode authenticate+0x77 0x4006dbL[4]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196040L, 'stmt_idx': 'default'}
+<CFGNode call_gmon_start+0x12 0x4005beL[5]> <CFGNode _init+0x9 0x4004e9[5]> {'jumpkind': 'Ijk_Ret', 'ins_addr': 4195778L, 'stmt_idx': 'default'}
+<CFGNode main+0x96 0x4007b3[10]> <CFGNode main+0xa0 0x4007bdL[10]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4196283L, 'stmt_idx': 'default'}
+<CFGNode main+0x96 0x4007b3[10]> <CFGNode main+0xac 0x4007c9L[10]> {'jumpkind': 'Ijk_Boring', 'ins_addr': 4196283L, 'stmt_idx': 30}
+<CFGNode authenticate+0x35 0x400699L[22]> <CFGNode 0x400560L[6]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4195993L, 'stmt_idx': 'default'}
+<CFGNode authenticate+0x35 0x400699L[22]> <CFGNode authenticate+0x4b 0x4006afL[25]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4195993L, 'stmt_idx': 'default'}
+<CFGNode accepted+0xe 0x4006fb[2]> <CFGNode main+0xaa 0x4007c7L[2]> {'jumpkind': 'Ijk_Ret', 'ins_addr': 4196092L, 'stmt_idx': 'default'}
