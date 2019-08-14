@@ -1,114 +1,3 @@
-\ifnotesincluded
-\begin{table}
-\footnotesize
-\newcommand*\rot[1]{\hbox to1em{\hss\rotatebox[origin=br]{-60}{#1}}}
-\newcommand*\feature[1]{\ifcase#1 -\or\LEFTcircle\or\CIRCLE\fi}
-\newcommand*\f[3]{\feature#1&\feature#2&\feature#3}
-\makeatletter
-\newcommand*\ex[9]{#1\tnote{#2}&#3&%
-    \f#4&\f#5&\f#6&\f#7&\f#8&\f#9&\expandafter\f\@firstofone
-}
-\makeatother
-\newcolumntype{G}{c@{}c@{}c}
-\begin{threeparttable}
-\caption{Table caption here}
-\label{tab:features}
-\begin{tabular}{@{}lc GG !{\kern1em} GGG !{\kern1em} GG@{}}
-\toprule
-Scheme &  & \multicolumn{6}{c}{Requirements} & \multicolumn{15}{c}{Properties}\\
-\midrule
-% rotated items
-&& \rot{Works with compiled binaries}
- & \rot{Works with external libraries}
- & \rot{Can be used for binding}
- %
- & \rot{Works with embedded systems}
- & \rot{Immediate identification}
- & \rot{Not reliant on TPM}
- %
- & \rot{Hardware-based}
- & \rot{Software-based}
- & \rot{Hardware modification required}
- & \rot{Source-code modification required}
- % 
- & \rot{Granularity}
- & \rot{Security provided by}
- %
- & \rot{CPU overhead}
- & \rot{FPGA area overhead}
- & \rot{Memory overhead}
- & \rot{Time overhead}
- %
- & \rot{Compatible architectures}
- & \rot{Action on identification}
- & \rot{Prevention or detection or attestation}
- & \rot{Uses CFG or another method}
- & \rot{Success rate}\\
-\midrule
-\ex{C-FLAT}{\dag*}{}							{000}{002} {222}{222}{222} {222}{222}\\
-\ex{LO-FAT}{\dag}{}							{111}{102} {222}{022}{022} {022}{222}\\
-\ex{CEP-LEE}{\dag*}{}							{111}{102} {222}{222}{020} {022}{222}\\
-\midrule
-\ex{CCFI-Cache}{\dag*}{}						{222}{212} {000}{002}{000} {022}{222}\\
-\ex{HCFI}{\dag*}{}							{222}{212} {000}{002}{000} {002}{202}\\
-\ex{Hafix}{\dag*}{}							{222}{212} {000}{012}{000} {022}{202}\\
-\ex{SAFIA}{\dag*}{}							{222}{212} {000}{020}{000} {022}{202}\\
-\ex{Sullivan}{\dag*}{}						{222}{212} {000}{020}{022} {022}{202}\\
-\bottomrule
-\end{tabular}
-\begin{tablenotes}
-\item \hfil$\feature2=\text{provides property}$; $\feature1=\text{partially provides property}$;
-$\text{\feature0}=\text{does not provide property}$;
-\item \hfil\textsuperscript{\dag}has academic publication;
-\textsuperscript{*}end-user tool available
-\end{tablenotes}    \end{threeparttable}
-\end{table}
-\fi
-
-\begin{table}
-\newcommand*\rot[1]{\hbox to1em{\hss\rotatebox[origin=br]{-60}{#1}}}
-\centering
-\resizebox{\textwidth}{!}{
-\begin{tabular}{c c c c p{2cm} p{3cm} c c c c p{3cm} p{3cm} p{3cm} p{3cm} c p{2cm} c c c c c c c}
-\toprule
-Scheme & \multicolumn{6}{c}{Requirements} & \multicolumn{15}{c}{Properties} \\
-\midrule
- & \rot{Works with compiled binaries}
- & \rot{Works with external libraries}
- & \rot{Can be used for binding}
- & \rot{Works with embedded systems}
- & \rot{Immediate identification}
- & \rot{Not reliant on TPM}
- & \rot{Hardware-based}
- & \rot{Software-based}
- & \rot{Hardware modification required}
- & \rot{Source-code modification required} 
- & \rot{Granularity}
- & \rot{Security provided by}
- & \rot{CPU overhead}
- & \rot{FPGA area overhead}
- & \rot{Memory overhead}
- & \rot{Time overhead}
- & \rot{Compatible architectures}
- & \rot{Action on identification}
- & \rot{Prevention or detection or attestation}
- & \rot{Uses CFG or another method}
- & \rot{Success rate}\\
-\midrule
-C-FLAT \cite{Abera2016} & \CIRCLE & \CIRCLE & \Circle & \CIRCLE \newline ARM CORTEX A & \Circle & \Circle & \CIRCLE & \CIRCLE & \Circle & Control flow instructions re-written to go via trampolines & Basic Block & TPM and Digital Signatures (for report) & - & - & - & 0.03 - 0.13\% & 32-bit RISC & - & Attestation & CFG & -\\
-LO-FAT \cite{Dessouky2017} & \CIRCLE & \CIRCLE & \Circle & \CIRCLE & \Circle & \CIRCLE & \CIRCLE & \Circle & \CIRCLE & \Circle & Basic Blocks & LO-FAT Memory is protected & 0 & 20\% & - & 0 & PULPINO RISC-V & - & Attestation & CFG & -\\
-SEP-LEE \cite{Lee2019} & \Circle  & \Circle & \CIRCLE & \CIRCLE & \CIRCLE On jump or return & \CIRCLE & \CIRCLE & \Circle Reassembly & \CIRCLE  & \CIRCLE  & Sequential or BBLs & PRINCE & - & - & 235\% (160 vs 68 operations) & 235\% (160 vs 68 operations) &  SEP (based on Picoblaze but reduced from 18 bit to 16 bit) & Kill switch & Prevention and detection & Sequential or BBL & -\\
-CCFI-Cache \cite{Danger2018} & \Circle  & \Circle & \Circle & \CIRCLE & \Circle End of BBL or number of executions reached & \CIRCLE & \CIRCLE & \LEFTcircle & \CIRCLE  & \CIRCLE  &  Sequential (Only number or hash of instructions) & Meta-data in ROM, Hardware Security for controller & - & 10\% & x2 + 9-30\% for nops & 2-63\% & PicoRV (Implementation on RISC-V ISA) & Interrupt & Detection & CFG + No of instructions + hash of instructions & Small \# of ROP \& JOP attacks will still work\\
-HCFI \cite{Christoulakis2016} & \Circle  & \Circle & \Circle & \CIRCLE & \CIRCLE & \CIRCLE & \CIRCLE & \Circle & \CIRCLE  & \CIRCLE  & BBLs & - & - & 2.5\% & - & 1-6\% & Leon3 / SPARC V8 & Interrupt & Detection & CFG and Shadow Stack & -\\
-HAFIX \cite{Davi2015} & \Circle  & \Circle & \Circle & \CIRCLE & \CIRCLE & \CIRCLE & \CIRCLE & \Circle & \CIRCLE  & \CIRCLE  & Backwards edge & - & - & 2-8\% & - & 2\% & Intel Siskiyou Peak, SPARC & - & Detection & CFG & 80\%\\
-SOFIA \cite{DeClercq2017b} & \Circle  & \Circle & \CIRCLE & \CIRCLE & \CIRCLE & \CIRCLE & \CIRCLE & \Circle & \CIRCLE  & \CIRCLE  & Sequential instructions or flows & Encrypt+MAC (RECTANGLE-80) & 13.7\% Cycle overhead, 84.6\% Clock speed reduction& 28.2\% & - & 110\% & Leon3 / SPARC V8 & Processor reset & Prevention and detection & Sequential and BBLs & -\\
-Sullivan \cite{Sullivan2016} & \Circle  & \CIRCLE & \Circle & \CIRCLE & \CIRCLE & \CIRCLE & \CIRCLE & \Circle & \CIRCLE  & \CIRCLE  & BBLs & Attacker cannot touch code & - & 1.78\% & - & 1.75\% & Leon3 / SPARC V8 & Termination of process & Detection & CFG & Dependant on CFG policy (assumed 100\%)\\
-\bottomrule
-\end{tabular}}
-\caption{Comparison of Control-flow Integrity and Control-flow Attestation schemes}
-\label{tab:solutionComparison}
-\end{table}
-
 \begin{table}
 \newcommand*\rot[1]{\hbox to1em{\hss\rotatebox[origin=br]{-60}{#1}}}
 \centering
@@ -125,52 +14,51 @@ Scheme & \multicolumn{5}{c}{Requirements}\\
 \midrule
 C-FLAT \cite{Abera2016} & \CIRCLE & \CIRCLE & \CIRCLE \newline ARM CORTEX A & \Circle & \Circle\\
 LO-FAT \cite{Dessouky2017} & \CIRCLE & \CIRCLE & \CIRCLE & \Circle & \CIRCLE\\
-SEP-LEE \cite{Lee2019} & \Circle  & \Circle & \CIRCLE & \CIRCLE On jump or return & \CIRCLE\\
-CCFI-Cache \cite{Danger2018} & \Circle  & \Circle & \CIRCLE & \Circle End of BBL or number of executions reached & \CIRCLE\\
+SEP-LEE \cite{Lee2019} & \Circle  & \Circle & \CIRCLE & \raggedright \CIRCLE On jump or return & \CIRCLE\\
+CCFI-Cache \cite{Danger2018} & \Circle  & \Circle & \CIRCLE & \raggedright \Circle End of BBL or number of executions reached & \CIRCLE\\
 HCFI \cite{Christoulakis2016} & \Circle  & \Circle & \CIRCLE & \CIRCLE & \CIRCLE\\
 HAFIX \cite{Davi2015} & \Circle  & \Circle & \CIRCLE & \CIRCLE & \CIRCLE\\
 SOFIA \cite{DeClercq2017b} & \Circle  & \Circle & \CIRCLE & \CIRCLE & \CIRCLE\\
 Sullivan \cite{Sullivan2016} & \Circle  & \CIRCLE & \CIRCLE & \CIRCLE & \CIRCLE\\
 \bottomrule
 \end{tabular}}
-\caption{Comparison of Control-flow Integrity and Control-flow Attestation schemes3}
-\label{tab:solutionComparison3}
+\caption{Requirement Comparison of Control-flow Integrity and Control-flow Attestation}
+\label{tab:solutionComparisonRequirements}
 \end{table}
 
 \begin{table}
 \newcommand*\rot[1]{\hbox to1em{\hss\rotatebox[origin=br]{-60}{#1}}}
 \centering
 \resizebox{\textwidth}{!}{
-\begin{tabular}{c c c c p{3cm} p{3cm} p{3cm} p{3cm}}
+\begin{tabular}{c c c p{3cm} p{3cm} p{3cm}}
 \toprule
-Scheme & \multicolumn{6}{c}{Properties} \\
+Scheme & \multicolumn{5}{c}{Properties} \\
 \midrule
  & \rot{Hardware-based}
  & \rot{Software-based}
- & \rot{Hardware modification required}
  & \rot{Source-code modification required} 
  & \rot{Granularity}
  & \rot{Security provided by}\\
 \midrule
-C-FLAT \cite{Abera2016} & \CIRCLE & \CIRCLE & \Circle & Control flow instructions re-written to go via trampolines & Basic Block & TPM and Digital Signatures (for report)\\
-LO-FAT \cite{Dessouky2017} & \CIRCLE & \Circle & \CIRCLE & \Circle & Basic Blocks & LO-FAT Memory is protected\\
-SEP-LEE \cite{Lee2019} & \CIRCLE & \Circle Reassembly & \CIRCLE  & \CIRCLE  & Sequential or BBLs & PRINCE\\
-CCFI-Cache \cite{Danger2018} & \CIRCLE & \LEFTcircle & \CIRCLE  & \CIRCLE  &  Sequential (Only number or hash of instructions) & Meta-data in ROM, Hardware Security for controller\\
-HCFI \cite{Christoulakis2016} & \CIRCLE & \Circle & \CIRCLE  & \CIRCLE  & BBLs & - \\
-HAFIX \cite{Davi2015} & \CIRCLE & \Circle & \CIRCLE  & \CIRCLE  & Backwards edge & - \\
-SOFIA \cite{DeClercq2017b} & \CIRCLE & \Circle & \CIRCLE  & \CIRCLE  & Sequential instructions or flows & Encrypt+MAC (RECTANGLE-80)\\
-Sullivan \cite{Sullivan2016} & \CIRCLE & \Circle & \CIRCLE  & \CIRCLE  & BBLs & Attacker cannot touch code\\
+C-FLAT \cite{Abera2016} & \CIRCLE & \CIRCLE & \raggedright Control flow instructions re-written to go via trampolines & Basic Block & \raggedright\arraybackslash TPM and Digital Signatures (for report)\\
+LO-FAT \cite{Dessouky2017} & \CIRCLE & \Circle & \Circle & Basic Blocks & LO-FAT Memory is protected\\
+SEP-LEE \cite{Lee2019} & \CIRCLE & \Circle Reassembly & \CIRCLE  & Sequential or BBLs & PRINCE\\
+CCFI-Cache \cite{Danger2018} & \CIRCLE & \LEFTcircle & \CIRCLE  & \raggedright Sequential (Only number or hash of instructions) & \raggedright\arraybackslash Meta-data in ROM, Hardware Security for controller\\
+HCFI \cite{Christoulakis2016} & \CIRCLE & \Circle & \CIRCLE  & BBLs & - \\
+HAFIX \cite{Davi2015} & \CIRCLE & \Circle & \CIRCLE  & Backwards edge & - \\
+SOFIA \cite{DeClercq2017b} & \CIRCLE & \Circle & \CIRCLE  & \raggedright Sequential instructions or flows & \raggedright\arraybackslash Encrypt+MAC (RECTANGLE-80)\\
+Sullivan \cite{Sullivan2016} & \CIRCLE & \Circle & \CIRCLE  & BBLs & \raggedright\arraybackslash Attacker cannot touch code\\
 \bottomrule
 \end{tabular}}
-\caption{Comparison of Control-flow Integrity and Control-flow Attestation schemes 4}
-\label{tab:solutionComparison4}
+\caption{Comparison of Control-flow Integrity and Control-flow Attestation schemes properties}
+\label{tab:solutionComparisonProperties1}
 \end{table}
 
 \begin{table}
 \newcommand*\rot[1]{\hbox to1em{\hss\rotatebox[origin=br]{-60}{#1}}}
 \centering
 \resizebox{\textwidth}{!}{
-\begin{tabular}{c c p{2cm} c c c c c c c}
+\begin{tabular}{c p{2cm} c p{2cm} p{2cm} p{3cm} p{2cm} p{2cm} p{3cm} p{2cm}}
 \toprule
 Scheme & \multicolumn{9}{c}{Properties} \\
 \midrule
@@ -186,14 +74,14 @@ Scheme & \multicolumn{9}{c}{Properties} \\
 \midrule
 C-FLAT \cite{Abera2016} & - & - & - & 0.03 - 0.13\% & 32-bit RISC & - & Attestation & CFG & -\\
 LO-FAT \cite{Dessouky2017} & 0 & 20\% & - & 0 & PULPINO RISC-V & - & Attestation & CFG & -\\
-SEP-LEE \cite{Lee2019} & - & - & 235\% (160 vs 68 operations) & 235\% (160 vs 68 operations) &  SEP (based on Picoblaze but reduced from 18 bit to 16 bit) & Kill switch & Prevention and detection & Sequential or BBL & -\\
-CCFI-Cache \cite{Danger2018} & - & 10\% & x2 + 9-30\% for nops & 2-63\% & PicoRV (Implementation on RISC-V ISA) & Interrupt & Detection & CFG + No of instructions + hash of instructions & Small \# of ROP \& JOP attacks will still work\\
-HCFI \cite{Christoulakis2016} & - & 2.5\% & - & 1-6\% & Leon3 / SPARC V8 & Interrupt & Detection & CFG and Shadow Stack & -\\
+SEP-LEE \cite{Lee2019} & - & - & \raggedright 235\% (160 vs 68 operations) & \raggedright 235\% (160 vs 68 operations) & SEP (based on Picoblaze but reduced from 18 bit to 16 bit) & Kill switch & \raggedright Prevention and detection & Sequential or BBL & -\\
+CCFI-Cache \cite{Danger2018} & - & 10\% & x2 + 9-30\% for nops & 2-63\% & \raggedright PicoRV (Implementation on RISC-V ISA) & Interrupt & Detection & \raggedright CFG + No of instructions + hash of instructions & \raggedright\arraybackslash Small number of ROP and JOP attacks will still work \\
+HCFI \cite{Christoulakis2016} & - & 2.5\% & - & 1-6\% & Leon3 / SPARC V8 & Interrupt & Detection & \raggedright CFG and Shadow Stack & -\\
 HAFIX \cite{Davi2015} & - & 2-8\% & - & 2\% & Intel Siskiyou Peak, SPARC & - & Detection & CFG & 80\%\\
-SOFIA \cite{DeClercq2017b} & 13.7\% Cycle overhead, 84.6\% Clock speed reduction& 28.2\% & - & 110\% & Leon3 / SPARC V8 & Processor reset & Prevention and detection & Sequential and BBLs & -\\
-Sullivan \cite{Sullivan2016} & - & 1.78\% & - & 1.75\% & Leon3 / SPARC V8 & Termination of process & Detection & CFG & Dependant on CFG policy (assumed 100\%)\\
+SOFIA \cite{DeClercq2017b} & 13.7\% \raggedright Cycle overhead, 84.6\% Clock speed reduction & 28.2\% & - & 110\% & Leon3 / SPARC V8 & Processor reset & \raggedright Prevention and detection & \raggedright Sequential and BBLs & -\\
+Sullivan \cite{Sullivan2016} & - & 1.78\% & - & 1.75\% & Leon3 / SPARC V8 & \raggedright Termination of process & Detection & CFG & \raggedright\arraybackslash Dependant on CFG policy (assumed 100\%)\\
 \bottomrule
 \end{tabular}}
-\caption{Comparison of Control-flow Integrity and Control-flow Attestation schemes 5}
-\label{tab:solutionComparison5}
+\caption{Comparison of Control-flow Integrity and Control-flow Attestation schemes properties}
+\label{tab:solutionComparisonProperties2}
 \end{table}
