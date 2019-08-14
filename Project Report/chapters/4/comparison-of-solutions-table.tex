@@ -1,8 +1,8 @@
 \begin{table}
 \newcommand*\rot[1]{\hbox to1em{\hss\rotatebox[origin=br]{-60}{#1}}}
 \centering
-\resizebox{\textwidth}{!}{
-\begin{tabular}{c c c c c p{2cm} p{3cm}}
+\scalebox{0.6}{
+\begin{tabular}{l c c c p{3cm} p{8cm} p{3cm}}
 \toprule
 Scheme & \multicolumn{6}{c}{Requirements}\\
 \midrule
@@ -13,10 +13,10 @@ Scheme & \multicolumn{6}{c}{Requirements}\\
  & \rot{Immediate identification}
  & \rot{Not reliant on TPM}\\
 \midrule
-C-FLAT \cite{Abera2016} & \CIRCLE & \CIRCLE & \Circle & \CIRCLE \newline ARM CORTEX A & \Circle & \Circle\\
+C-FLAT \cite{Abera2016} & \CIRCLE & \CIRCLE & \Circle & \CIRCLE \raggedright \ ARM Cortex A & \Circle & \Circle\\
 LO-FAT \cite{Dessouky2017} & \CIRCLE & \CIRCLE & \Circle & \CIRCLE & \Circle & \CIRCLE\\
-SEP-LEE \cite{Lee2019} & \Circle  & \Circle & \CIRCLE & \CIRCLE & \raggedright \CIRCLE On jump or return & \CIRCLE\\
-CCFI-Cache \cite{Danger2018} & \Circle  & \Circle & \Circle & \CIRCLE & \raggedright \Circle End of BBL or number of executions reached & \CIRCLE\\
+SEP-LEE \cite{Lee2019} & \Circle  & \Circle & \CIRCLE & \CIRCLE & \raggedright \CIRCLE \ On jump or return & \CIRCLE\\
+CCFI-Cache \cite{Danger2018} & \Circle  & \Circle & \Circle & \CIRCLE & \raggedright \Circle \ End of BBL or number of executions reached & \CIRCLE\\
 HCFI \cite{Christoulakis2016} & \Circle  & \Circle & \Circle & \CIRCLE & \CIRCLE & \CIRCLE\\
 HAFIX \cite{Davi2015} & \Circle  & \Circle & \Circle & \CIRCLE & \CIRCLE & \CIRCLE\\
 SOFIA \cite{DeClercq2017b} & \Circle  & \Circle & \CIRCLE & \CIRCLE & \CIRCLE & \CIRCLE\\
@@ -30,8 +30,8 @@ Sullivan \cite{Sullivan2016} & \Circle  & \CIRCLE & \Circle & \CIRCLE & \CIRCLE 
 \begin{table}
 \newcommand*\rot[1]{\hbox to1em{\hss\rotatebox[origin=br]{-60}{#1}}}
 \centering
-\resizebox{\textwidth}{!}{
-\begin{tabular}{c c c p{3cm} p{3cm} p{3cm}}
+\scalebox{0.6}{
+\begin{tabular}{l c p{3cm} p{5cm} p{5cm} p{5cm}}
 \toprule
 Scheme & \multicolumn{5}{c}{Properties} \\
 \midrule
@@ -43,12 +43,12 @@ Scheme & \multicolumn{5}{c}{Properties} \\
 \midrule
 C-FLAT \cite{Abera2016} & \CIRCLE & \CIRCLE & \raggedright Control flow instructions re-written to go via trampolines & Basic Block & \raggedright\arraybackslash TPM and Digital Signatures (for report)\\
 LO-FAT \cite{Dessouky2017} & \CIRCLE & \Circle & \Circle & Basic Blocks & LO-FAT Memory is protected\\
-SEP-LEE \cite{Lee2019} & \CIRCLE & \Circle Reassembly & \CIRCLE  & Sequential or BBLs & PRINCE\\
+SEP-LEE \cite{Lee2019} & \CIRCLE & \Circle \ Reassembly & \CIRCLE  & Sequential or BBLs & PRINCE\\
 CCFI-Cache \cite{Danger2018} & \CIRCLE & \LEFTcircle & \CIRCLE  & \raggedright Sequential (Only number or hash of instructions) & \raggedright\arraybackslash Meta-data in ROM, Hardware Security for controller\\
-HCFI \cite{Christoulakis2016} & \CIRCLE & \Circle & \CIRCLE  & BBLs & - \\
-HAFIX \cite{Davi2015} & \CIRCLE & \Circle & \CIRCLE  & Backwards edge & - \\
+HCFI \cite{Christoulakis2016} & \CIRCLE & \Circle & \CIRCLE & BBLs & - \\
+HAFIX \cite{Davi2015} & \CIRCLE & \Circle & \CIRCLE & Backwards edge & - \\
 SOFIA \cite{DeClercq2017b} & \CIRCLE & \Circle & \CIRCLE  & \raggedright Sequential instructions or flows & \raggedright\arraybackslash Encrypt+MAC (RECTANGLE-80)\\
-Sullivan \cite{Sullivan2016} & \CIRCLE & \Circle & \CIRCLE  & BBLs & \raggedright\arraybackslash Attacker cannot touch code\\
+Sullivan \cite{Sullivan2016} & \CIRCLE & \Circle & \CIRCLE & BBLs & \raggedright\arraybackslash Attacker cannot touch code\\
 \bottomrule
 \end{tabular}}
 \caption{Comparison of Control-flow Integrity and Control-flow Attestation schemes properties}
@@ -58,8 +58,8 @@ Sullivan \cite{Sullivan2016} & \CIRCLE & \Circle & \CIRCLE  & BBLs & \raggedrigh
 \begin{table}
 \newcommand*\rot[1]{\hbox to1em{\hss\rotatebox[origin=br]{-60}{#1}}}
 \centering
-\resizebox{\textwidth}{!}{
-\begin{tabular}{c p{2cm} c p{2cm} p{2cm} p{3cm} p{2cm} p{2cm} p{3cm} p{2cm}}
+\scalebox{0.6}{
+\begin{tabular}{l p{2cm} c p{2cm} p{2cm} p{3cm} p{2cm} p{2cm} p{3cm} p{2cm}}
 \toprule
 Scheme & \multicolumn{9}{c}{Properties} \\
 \midrule
