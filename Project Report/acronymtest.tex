@@ -1,0 +1,29 @@
+\documentclass[12pt]{article}
+
+% standard incantations
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+
+% clickable links in the PDF
+\usepackage[colorlinks]{hyperref}
+
+% acronyms
+\usepackage{acronym} 
+
+\title{Automatic Acronym List in \LaTeX}
+\author{LianTze Lim}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\input{acro_list}
+
+\section{Example}
+
+The \texttt{acronym} package automatically generates a list of acronyms. It's great for keeping track of your domain-knowledge and \ac{TLA}. In this example we've put the acronym definitions in a separate \verb|acro_list.tex| file, which you can edit via the project menu.
+
+
+\end{document}

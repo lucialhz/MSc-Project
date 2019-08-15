@@ -10,6 +10,7 @@
 \usepackage{wasysym}
 \usepackage[ddmmyyyy]{datetime}
 \usepackage{listings}
+\usepackage{acronym}
 \graphicspath{{images/}}
 \usepackage{xcolor}
 \newcommand\furtherwork[1]{\textcolor{red}{#1}}
@@ -52,7 +53,6 @@ sorting=none
  
 \addbibresource{bibs/project.bib}
 
-
 \newif\iflitreview
 %\litreviewtrue 
 \litreviewfalse
@@ -89,6 +89,8 @@ Thanks everyone!
 \lstlistoflistings
 \listoffigures
 \listoftables
+
+\input{acro_list}
 
 \iflitreview
 
