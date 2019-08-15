@@ -2,7 +2,7 @@
 Control flow is how instructions within software applications transition from one to another. Applications can be logically broken down into basic blocks (BBLs) through which the executing application traverses. The tracing of these transitions forms the control flow taken.
 
 \subsection{Basic Blocks}
-The principle of basic blocks creates a useful way of breaking down the instructions of an application into manageable chunks containing sequences of instructions. A basic block is a set of instructions which sequentially run from beginning to end. For example take the pseudo-code in ~\ref{lst:basic_code}.
+The principle of basic blocks creates a useful way of breaking down the instructions of an application into manageable chunks containing sequences of instructions. A basic block is a set of instructions which sequentially run from beginning to end. For example take the pseudo-code in listing~\ref{lst:basic_code}.
 
 \begin{lstlisting}[language={[Sharp]C},caption={An example of code which can be broken down into basic blocks},label={lst:basic_code}]
 void GreaterThanPlusOne(int firstNum, int secondNum)
@@ -24,19 +24,19 @@ The instructions from \verb|string message;| (line 3) up to and including \verb|
 
 So in this example the sequence of instructions can flow from the first basic block to either the second or the third basic block. An unauthorised flow would be from basic block 2 to basic block 3 as there is no way that under normal operation both of these sequences of instructions would execution after one another.
 
-Other examples of programming control flow statements which could form basic blocks are switch cases, loops, break statements and functions, as the these allow the diversion of instruction execution depending on the current running circumstances (e.g. variable state).
+Other examples of programming control flow statements which could form basic blocks are switch cases, loops, break statements and functions, as the these control the diversion of instruction execution depending on the current running circumstances (e.g. variable state).
 
 \begin{figure}
   \includegraphics[scale=1]{cfg.png}
-  \caption{The control-flow graph for code above ~\ref{lst:basic_code}}
+  \caption{The control-flow graph for code in listing~\ref{lst:basic_code}}
   \label{fig:basicCFG}
 \end{figure}
 
 \subsection{Control-flow graphs}
-Control-flow graphs (CFGs) are the graphical representation of the series of valid transitions between basic blocks within an application, see \ref{fig:basicCFG} for a CFG of ~\ref{lst:basic_code}. It is conceivable that a CFG can become enormous as the size of an application grows 
+Control-flow graphs (CFGs) are the graphical representation of the series of valid transitions between basic blocks within an application, see figure~\ref{fig:basicCFG} for a CFG of listing~\ref{lst:basic_code}. It is conceivable that a CFG can become enormous as the size of an application grows, as the number of different valid paths along the graph will rapidly increase.
 \ifnotesincluded
 \furtherwork{(need to find reference for this)}
-\fi. Valid control flow is where the flow which follows a CFG for a given application, for example using the graph for the code described above BBL 1 $\rightarrow$ BBL 2 and BBL 1 $\rightarrow$ BBL 3 are both valid flows, however BBL 1 $\rightarrow$ BBL 2 $\rightarrow$ BBL 3 is invalid. To create BBL 1 $\rightarrow$ BBL 2 $\rightarrow$ BBL 3 an attacker could change the value of \verb|secondVum| to one which is greater than or equal to \verb|firstNum| once the first \verb|if| statement has been passed. 
+\fi. Valid control flow is where the flow which follows a CFG for a given application, for example using the graph (figure~\ref{fig:basicCFG}) for the code outlined in listing~\ref{lst:basic_code} BBL 1 $\rightarrow$ BBL 2 and BBL 1 $\rightarrow$ BBL 3 are both valid flows, however BBL 1 $\rightarrow$ BBL 2 $\rightarrow$ BBL 3 is invalid. To create BBL 1 $\rightarrow$ BBL 2 $\rightarrow$ BBL 3 an attacker could change the value of \verb|secondNum| to one which is greater than or equal to \verb|firstNum| once the first \verb|if| statement has been passed. 
 
 \subsection{Types of branches}
 In order to understand control-flow it is important to understand the difference between the various branch types: direct, indirect, unintended and function returns.
