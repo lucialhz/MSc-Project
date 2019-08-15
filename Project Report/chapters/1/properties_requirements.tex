@@ -1,24 +1,24 @@
 \subsection{Introduction}\label{projectRequirements}
 
-In this section we will define the requirements which we will aim to meet with the solution produced as a result of this project. These have been built up using the literature for CFI and attestation methods as well as the the requirements identified from the attack model.
+In this section we will define the requirements which we will aim to meet with the solution produced as a result of this project. These have been built up using the literature for CFI and attestation methods as well as the requirements identified from the attack model.
 
 \subsection{Practical Requirements}
 
 \begin{enumerate}
-	\item Works with compiled binaries: where the original source code does not need adjusting to be compatible with the solution.
-	\item Works with external libraries: similar to compatibility with compiled binaries but with the added constraint of no access to the external library source code. 
-	\item Works with embedded systems: a crucial element as the solution is aimed at solving the problem for embedded devices.
-	\item Granularity: the solution should (at a minimum) be able to keep track of transition between basic blocks (including direct branches).
+	\item Compatible with compiled binaries: where the original source code does not need adjusting to be compatible with the solution.
+	\item Compatible with external libraries: similar to compatibility with compiled binaries but with the added constraint of no access to the external library source code. 
+	\item Compatible with embedded systems: a crucial element as the solution is aimed at solving the problem for embedded devices.
+	\item Granularity: the solution should (at a minimum) be able to keep track of transitions between basic blocks (including direct branches).
 \end{enumerate}
 
 \subsection{Security Requirements}
  
-\begin{itemize}
+\begin{enumerate}
 	\item \textbf{An attacker must be detected if they change the sequential order of instructions.} Re-ordering instructions can be used to bypass cryptographic protections (similar to ECB vulnerabilities) to achieve the attackers goals.
 	\item \textbf{An attacker must be detected if they change the execution order of basic blocks.} Re-ordering BBLs can be used to execute code in a manner which violates the control-flow graph.
 	\item \textbf{An attacker must be detected if they skip instructions} Skipping instructions can be used to bypass checks.
 	\item \textbf{An attacker must be detected if they subvert control flow to existing code (e.g. return-to-libc)} Subverting control-flow to external existing code could enable an attacker to perform functions not permitted through normal usage of the application.
-\end{itemize}
+\end{enumerate}
 
 \subsection{Attacker Assumptions}
-We assume that attacker may have direct access to memory but not internal registers, they cannot break cryptographic protections and that cryptographic keys can be safely stored.
+We assume that attacker may have direct access to memory but not internal registers, they cannot break cryptographic protections and that cryptographic keys can be safely stored. This level of attacker has been referred to as the Dolev-Yao attacker model \cite{Dolev1981} by \cite{Lee2019}.

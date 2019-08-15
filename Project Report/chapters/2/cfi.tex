@@ -2,7 +2,7 @@
 A Control-Flow Integrity (CFI) security policy is one which states that software execution must follow a path of a Control-Flow Graph (CFG). CFI can be provided in a number of ways including signature modelling, shadow stacks and through the enforcement of basic block transitions along a CFG.
 
 \subsection{Control Flow Graphs}
-Abadi et al. \cite{Abadi2005} introduced CFI as a method to protect the secure execution of software, using static analysis of an application binary to create a Control Flow Graph (CFG). Only control flow transfers within the CFG are permitted.
+Abadi et al. \cite{Abadi2005} introduced CFI as a method to protect the secure execution of software, using static analysis of an application binary to create a Control Flow Graph (CFG). Only control flow transfers which follow the CFG are permitted.
 
 Clerq and Verbauwhede \cite{DeClercq2017} posed CFGs as part of a solution for tracking instructions causing control flow transfers, however Lee et al. \cite{Lee2019} note that they do not focus on sequential transitions. They argue that the method used in \cite{DeClercq2017} (where forward edges are described as control flow transfers caused by jumps and calls, and backward edges are described as those caused by returns) is disadvantageous as by considering all jumps and calls equally there is a loss in distinction between jumps to register-determined and instruction-determined locations. They state that when implementing a scheme, instruction-dependant transitions are simpler to process than instruction-independent transitions. SEP \cite{Lee2019} and SOFIA \cite{DeClercq2017b} go one step further to provide integrity protection for each individual instruction.
 
