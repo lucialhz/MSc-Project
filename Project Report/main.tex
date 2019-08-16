@@ -11,6 +11,7 @@
 \usepackage[ddmmyyyy]{datetime}
 \usepackage{listings}
 \usepackage{acronym}
+\usepackage{enumerate}
 \graphicspath{{images/}}
 \usepackage{xcolor}
 \newcommand\furtherwork[1]{\textcolor{red}{#1}}
@@ -110,23 +111,24 @@ Thanks everyone!
 \input{chapters/1/properties_requirements}
 \input{chapters/1/project_structure}
 
-\chapter{Control Flow Integrity} \label{chapterCFI}
+\chapter{Embedded Systems and Control Flow Integrity} \label{chapterCFI}
+\input{chapters/2/high_level}
 \input{chapters/2/cfi}
 
-\chapter{Associated background} \label{chapterBackground}
+\chapter{Literature Review} \label{chapterBackground}
 \input{chapters/3/literature_review}
-\input{chapters/3/high_level}
-\input{chapters/3/arm_trustzone}
 
 \chapter{Comparison of Solutions} \label{chapterComparison}
 \input{chapters/4/comparison-of-solutions}
 \input{chapters/4/comparison-of-solutions-table}
+\input{chapters/4/static_attestation}
 
 \chapter{Proposed Solution} \label{chapterTheoreticalSolution}
 \input{chapters/5/building-cfg}
 \input{chapters/5/control-flow-tracing}
 \input{chapters/5/what-is-stored}
 \input{chapters/5/provisioning}
+\input{chapters/5/arm_trustzone}
 
 \chapter{Security Analysis} \label{chapterSecurityAnalysis}
 \input{chapters/7/security_analysis}

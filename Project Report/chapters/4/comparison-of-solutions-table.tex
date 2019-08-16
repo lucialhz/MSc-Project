@@ -1,17 +1,20 @@
 \begin{table}
-\newcommand*\rot[1]{\hbox to1em{\hss\rotatebox[origin=br]{-60}{#1}}}
-\centering
+\centering{
 \scalebox{0.6}{
+\begin{threeparttable}
+\caption{Requirement Comparison of Control-flow Integrity and Control-flow Attestation}
+\label{tab:solutionComparisonRequirements}
+\newcommand*\rot[1]{\hbox to1em{\hss\rotatebox[origin=br]{-60}{#1}}}
 \begin{tabular}{l c c c p{3cm} p{8cm} p{3cm}}
 \toprule
 Scheme & \multicolumn{6}{c}{Requirements}\\
 \midrule
- & \rot{Works with compiled binaries}
- & \rot{Works with external libraries}
- & \rot{Can be used for binding}
- & \rot{Works with embedded systems}
- & \rot{Immediate identification}
- & \rot{Not reliant on TPM}\\
+ & \rot{(1) Works with compiled binaries}
+ & \rot{(2) Works with external libraries}
+ & \rot{(3) Can be used for binding}
+ & \rot{(4) Works with embedded systems}
+ & \rot{(5) Immediate identification}
+ & \rot{(6) Not reliant on TPM}\\
 \midrule
 C-FLAT \cite{Abera2016} & \CIRCLE & \CIRCLE & \Circle & \CIRCLE \raggedright \ ARM Cortex A & \Circle & \Circle\\
 LO-FAT \cite{Dessouky2017} & \CIRCLE & \CIRCLE & \Circle & \CIRCLE & \Circle & \CIRCLE\\
@@ -22,24 +25,30 @@ HAFIX \cite{Davi2015} & \Circle  & \Circle & \Circle & \CIRCLE & \CIRCLE & \CIRC
 SOFIA \cite{DeClercq2017b} & \Circle  & \Circle & \CIRCLE & \CIRCLE & \CIRCLE & \CIRCLE\\
 Sullivan \cite{Sullivan2016} & \Circle  & \CIRCLE & \Circle & \CIRCLE & \CIRCLE & \CIRCLE\\
 \bottomrule
-\end{tabular}}
-\caption{Requirement Comparison of Control-flow Integrity and Control-flow Attestation}
-\label{tab:solutionComparisonRequirements}
+\end{tabular}
+\begin{tablenotes}
+	\item \CIRCLE ~= meets requirement; \LEFTcircle ~= partially meets requirement; \Circle ~= does not meet ; - = not enough information
+\end{tablenotes}
+\end{threeparttable}
+}}
 \end{table}
 
 \begin{table}
 \newcommand*\rot[1]{\hbox to1em{\hss\rotatebox[origin=br]{-60}{#1}}}
 \centering
 \scalebox{0.6}{
+\begin{threeparttable}
+\caption{Comparison of Control-flow Integrity and Control-flow Attestation schemes properties}
+\label{tab:solutionComparisonProperties1}
 \begin{tabular}{l c p{3cm} p{5cm} p{5cm} p{5cm}}
 \toprule
-Scheme & \multicolumn{5}{c}{Properties} \\
+Scheme & \multicolumn{5}{c}{Properties 1-5} \\
 \midrule
- & \rot{Hardware-based}
- & \rot{Software-based}
- & \rot{Source-code modification required} 
- & \rot{Granularity}
- & \rot{Security provided by}\\
+ & \rot{(1) Hardware-based}
+ & \rot{(2) Software-based}
+ & \rot{(3) Source-code modification required} 
+ & \rot{(4) Granularity}
+ & \rot{(5) Security provided by}\\
 \midrule
 C-FLAT \cite{Abera2016} & \CIRCLE & \CIRCLE & \raggedright Control flow instructions re-written to go via trampolines & Basic Block & \raggedright\arraybackslash TPM and Digital Signatures (for report)\\
 LO-FAT \cite{Dessouky2017} & \CIRCLE & \Circle & \Circle & Basic Blocks & LO-FAT Memory is protected\\
@@ -50,28 +59,33 @@ HAFIX \cite{Davi2015} & \CIRCLE & \Circle & \CIRCLE & Backwards edge & - \\
 SOFIA \cite{DeClercq2017b} & \CIRCLE & \Circle & \CIRCLE  & \raggedright Sequential instructions or flows & \raggedright\arraybackslash Encrypt+MAC (RECTANGLE-80)\\
 Sullivan \cite{Sullivan2016} & \CIRCLE & \Circle & \CIRCLE & BBLs & \raggedright\arraybackslash Attacker cannot touch code\\
 \bottomrule
-\end{tabular}}
-\caption{Comparison of Control-flow Integrity and Control-flow Attestation schemes properties}
-\label{tab:solutionComparisonProperties1}
+\end{tabular}
+\begin{tablenotes}
+	\item \CIRCLE ~= has property; \LEFTcircle ~= partially has property; \Circle ~= does not have property; - = not enough information 
+\end{tablenotes}
+\end{threeparttable}}
 \end{table}
 
 \begin{table}
 \newcommand*\rot[1]{\hbox to1em{\hss\rotatebox[origin=br]{-60}{#1}}}
 \centering
 \scalebox{0.6}{
+\begin{threeparttable}
+\caption{Comparison of Control-flow Integrity and Control-flow Attestation schemes properties}
+\label{tab:solutionComparisonProperties2}
 \begin{tabular}{l p{2cm} c p{2cm} p{2cm} p{3cm} p{2cm} p{2cm} p{3cm} p{2cm}}
 \toprule
-Scheme & \multicolumn{9}{c}{Properties} \\
+Scheme & \multicolumn{9}{c}{Properties 6-14} \\
 \midrule
- & \rot{CPU overhead}
- & \rot{FPGA area overhead}
- & \rot{Memory overhead}
- & \rot{Time overhead}
- & \rot{Compatible architectures}
- & \rot{Action on identification}
- & \rot{Prevention or detection or attestation}
- & \rot{Uses CFG or another method}
- & \rot{Success rate}\\
+ & \rot{(6) CPU overhead}
+ & \rot{(7) FPGA area overhead}
+ & \rot{(8) Memory overhead}
+ & \rot{(9) Time overhead}
+ & \rot{(10) Compatible architectures}
+ & \rot{(11) Action on identification}
+ & \rot{(12) Prevention or detection or attestation}
+ & \rot{(13) Uses CFG or another method}
+ & \rot{(14) Success rate}\\
 \midrule
 C-FLAT \cite{Abera2016} & - & - & - & 0.03 - 0.13\% & 32-bit RISC & - & Attestation & CFG & -\\
 LO-FAT \cite{Dessouky2017} & 0 & 20\% & - & 0 & PULPINO RISC-V & - & Attestation & CFG & -\\
@@ -82,7 +96,9 @@ HAFIX \cite{Davi2015} & - & 2-8\% & - & 2\% & Intel Siskiyou Peak, SPARC & - & D
 SOFIA \cite{DeClercq2017b} & 13.7\% \raggedright Cycle overhead, 84.6\% Clock speed reduction & 28.2\% & - & 110\% & Leon3 / SPARC V8 & Processor reset & \raggedright Prevention and detection & \raggedright Sequential and BBLs & -\\
 Sullivan \cite{Sullivan2016} & - & 1.78\% & - & 1.75\% & Leon3 / SPARC V8 & \raggedright Termination of process & Detection & CFG & \raggedright\arraybackslash Dependant on CFG policy (assumed 100\%)\\
 \bottomrule
-\end{tabular}}
-\caption{Comparison of Control-flow Integrity and Control-flow Attestation schemes properties}
-\label{tab:solutionComparisonProperties2}
+\end{tabular}
+\begin{tablenotes}
+	\item \CIRCLE ~= has property; \LEFTcircle ~= partially has property; \Circle ~= does not have property; - = not enough information 
+\end{tablenotes}
+\end{threeparttable}}
 \end{table}
