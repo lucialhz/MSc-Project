@@ -57,7 +57,7 @@ CCFI-Cache \cite{Danger2018} & \CIRCLE & \LEFTcircle & \CIRCLE  & \raggedright S
 HCFI \cite{Christoulakis2016} & \CIRCLE & \Circle & \CIRCLE & BBLs & - \\
 HAFIX \cite{Davi2015} & \CIRCLE & \Circle & \CIRCLE & Backwards edge & - \\
 SOFIA \cite{DeClercq2017b} & \CIRCLE & \Circle & \CIRCLE  & \raggedright Sequential instructions or flows & \raggedright\arraybackslash Encrypt+MAC (RECTANGLE-80)\\
-Sullivan \cite{Sullivan2016} & \CIRCLE & \Circle & \CIRCLE & BBLs & \raggedright\arraybackslash Attacker cannot touch code\\
+Sullivan \cite{Sullivan2016} & \CIRCLE & \Circle & \CIRCLE & BBLs & \raggedright\arraybackslash Attacker cannot modify code\\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -88,7 +88,7 @@ Scheme & \multicolumn{9}{c}{Properties 6-14} \\
  & \rot{(14) Success rate}\\
 \midrule
 C-FLAT \cite{Abera2016} & - & - & - & 0.03 - 0.13\% & 32-bit RISC & - & Attestation & CFG & -\\
-LO-FAT \cite{Dessouky2017} & 0 & 20\% & - & 0 & PULPINO RISC-V & - & Attestation & CFG & -\\
+LO-FAT \cite{Dessouky2017} & 0\% & 20\% & - & 0\% & PULPINO RISC-V & - & Attestation & CFG & -\\
 SEP-LEE \cite{Lee2019} & - & - & \raggedright 235\% (160 vs 68 operations) & \raggedright 235\% (160 vs 68 operations) & SEP (based on Picoblaze but reduced from 18 bit to 16 bit) & Kill switch & \raggedright Prevention and detection & Sequential or BBL & -\\
 CCFI-Cache \cite{Danger2018} & - & 10\% & x2 + 9-30\% for nops & 2-63\% & \raggedright PicoRV (Implementation on RISC-V ISA) & Interrupt & Detection & \raggedright CFG + No of instructions + hash of instructions & \raggedright\arraybackslash Small number of ROP and JOP attacks will still work \\
 HCFI \cite{Christoulakis2016} & - & 2.5\% & - & 1-6\% & Leon3 / SPARC V8 & Interrupt & Detection & \raggedright CFG and Shadow Stack & -\\
