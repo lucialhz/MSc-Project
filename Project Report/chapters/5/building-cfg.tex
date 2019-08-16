@@ -2,8 +2,7 @@
 
 \subsection{The problem behind building CFGs}
 
-C-FLAT \cite{Abera2016} notes that efficiently computing a generic program's CFG, and accompanying exploration of all possible execution paths is an open problem. However it is also noted that static embedded application software is typically far simpler and therefore possible to reasonably compute a CFG for, although the proof for this still remains to be seen.
-
+C-FLAT \cite{Abera2016} notes that efficiently computing a generic program's CFG, and accompanying exploration of all possible execution paths is an open problem. However it is also noted that static embedded application software is typically far simpler and it is therefore possible to reasonably compute a CFG.
 \subsection{Existing tools}
 
 \subsubsection{LLVM}
@@ -22,14 +21,23 @@ Vulcan \cite{Edwards2001} is used by \cite{Davi2012} and the seminal work \cite{
 
 \subsubsection{Jakstab}
 
-Jakstab \cite{Kinder2008},\cite{Kinder2010} can also be used to create a dot file containing the CFG of x86 executables, so this may need features adding in order to support embedded systems, it was successfully used in \cite{Nguyen2013} to construct CFGs. The last development activity on this was 31st March 2017. The tool's author has been trying to improve on this where they aim for the CFG to be under approximated \cite{Kinder2012} rather than over approximated (which can lead to vulnerabilities in resultant implementations).
+Jakstab \cite{Kinder2008},\cite{Kinder2010} can also be used to create a dot file containing the CFG of x86 executables, so may need enhancement to support instruction set architectures (ISAs) commonly used in embedded systems such as ARMv8-M or RISC-V. It was successfully used in \cite{Nguyen2013} to construct CFGs for x86 Complex Instruction Set Computer (CISC) instructions. The last development activity on this was 31st March 2017. The tool's author has been trying to improve on the tool with the aim of creating under-approximated CFGs rather than over-approximated ones (which can lead to vulnerabilities in resultant implementations) \cite{Kinder2012}.
 
 \subsubsection{Others}
 
-In C-FLAT \cite{Abera2016} the authors create their own analysis tool to achieve their branch-based requirements rather than create CFGs. They also use Capstone disassembly engine \footnote{\url{http://www.capstone-engine.org/}} however this is more for use as dissasembling code rather than CFG building.
+In C-FLAT \cite{Abera2016} the authors create their own analysis tool to achieve their branch-based requirements rather than create entire CFG models. They also use Capstone disassembly engine \footnote{\url{http://www.capstone-engine.org/}} however this is more for use dissasembling code rather than CFG building.
 
-LiteHAX \cite{Dessouky2018} uses the `angr' \footnote{\url{http://angr.io/}} \cite{Shoshitaishvili2016} framework to generate the CFG outputting a networkx DiGraph. This could be good one as it is still under active development. The output of this process would need to be compatible with the dynamic attestation. angr offers two types of computation methods - CFGFast (a static CFG) and CFGEmulated (a dynamic CFG). LiteHax is worth another read as it seems to be quite thorough.
+LiteHAX \cite{Dessouky2018} uses the `angr' \footnote{\url{http://angr.io/}} \cite{Shoshitaishvili2016} framework to generate the CFG outputting a networkx \cite{Hagberg2008} DiGraph. This project is still under active development. The output of this process would need to be compatible with the dynamic attestation. angr offers two types of computation methods - CFGFast (a static CFG) and CFGEmulated (a dynamic CFG).
+During assessment of angr, utilising networkx utilities, we have found that only single edges are identified. For example ~\ref{lst:angr_result}
+
+\begin{lstlisting}[caption={Example of results from angr CFG analysis of fauxware in form of .edgelist output from networkx utilities},label={lst:angr_result}]
+<CFGNode rejected+0x16 0x400713[10]> <CFGNode 0x400570L[6]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196115, 'stmt_idx': 'default'}
+<CFGNode main+0xa0 0x4007bdL[10]> <CFGNode accepted 0x4006ed[14]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196285L, 'stmt_idx': 'default'}
+<CFGNode main+0xa0 0x4007bdL[10]> <CFGNode main+0xaa 0x4007c7L[2]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196285L, 'stmt_idx': 'default'}
+\end{lstlisting}
 
 IDA Pro is a popular tool for reverse-engineering which is able to create CFGs, however due to its high licence cost we have been unable to evaluate its suitability. The high cost also prohibits its utilisation as part of the tool chain.
+
+The recently released (March 2019) Ghidra \footnote{\url{https://ghidra-sre.org}} leverages CFGs to assist in carry out its core function as a reverse-engineering tool, and while we have not found a method of extracting the CFGs created, this may be possible in the future as development is ongoing.
 
 Control-flow analysis techniques used by \cite{Abadi2005} are described in \cite{AhoAlfredV.2014C:pt},\cite{Atkinson},\cite{Wagner2002} which run at compile time. A list of tools used by the solution proposed in \cite{Abadi2005} are described in further detail in \cite{Edwards2001}(Vulcan), \cite{AhoAlfredV.2014C:pt},\cite{Feng2003} \cite{Gopalakrishna2005},\cite{Wagner2002}.

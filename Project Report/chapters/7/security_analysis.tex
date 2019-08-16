@@ -9,3 +9,5 @@ The solution presented fits with the security requirements in the following ways
 \end{enumerate}
 
 Obvious vulnerabilities in the solution are the breach of the `secure world' where the measurement engine is manipulated to create `good' attestation files, deletion of files and resulting loss of audit capabilities (a backup method would somewhat alleviate this problem) and cloning of audit files. Cloning of audit files represents a significant problem due to the fact that this is an offline process, so a method will need to be used to ensure freshness of files, for example a tamper-proof date-time stamp.
+
+Granularity to an instruction level can only be provided by a hardware solution which intercepts each instruction.
