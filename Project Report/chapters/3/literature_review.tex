@@ -162,29 +162,29 @@ The fourth paper \cite{Arora2006} lists various attacks, ranging from buffer ove
 \subsubsection{SMART: Secure and Minimal Architecture for (Establishing a Dynamic) Root of Trust}
 SMART \cite{For} provides a simple method of attesting the state of a user application through slight hardware alterations. As an input from the verifier it takes a nonce, start memory address and end memory address (as well as additional parameters for an optional start position of user application). The prover replies with a SHA-1 HMAC of the requested code space.
 
-Important properties required by SMART are:
+Important capabilities required by SMART are:
 \begin{itemize}
-	\item Secure key storage - this has not been directly addressed here however options are presented such as the key being hard-coded at production time (and never changed again) or by implementing a secure means of modifying by an authorized party, but not reading (as in the key can only be read by SMART). The second option was deferred to being future work.
-	\item Secure key access - only SMART code on ROM can access the key. This is provided by registers only allowing access to the key while the program counter is located within SMART application space.
-	\item It is not possible to enter or exit SMART instructions other than in the beginning or end. E.g. if the PC is outside of SMART its previous location must also be outside of SMART (or the last instruction), and if the PC is inside SMART its previous location must be at the start or also within SMART.
+	\item Secure HMAC key storage - this has not been directly addressed here however options are presented such as the key being hard-coded at production time (and never changed again) or by implementing a secure means of modifying by an authorized party, but not reading (as in the key can only be read by SMART). The second option was deferred to being future work.
+	\item Secure HMAC key access - only SMART code on ROM can access the HMAC key. This is provided by registers only allowing access to the HMAC key while the program counter is located within SMART application space.
+	\item It is not possible to enter or exit SMART instructions other than in the beginning or end. For example, if the program counter (\verb|pc|) is outside of SMART its previous location must also be outside of SMART (or the last instruction), and if the \verb|pc| is inside SMART its previous location must be at the start or also within SMART.
 	\item Smart code is not editable, it is stored on ROM.
 \end{itemize}
 
-SMART was implemented on low-end MCUs such as MSP430 or AVR. After implementation it was realised that only the memory access controller needed to be modified, therefor making the solution possibly compatible with “black box” processors such as low-end ARM cores.
+SMART was implemented on low-end microcontroller units (MCU)s such as MSP430 or AVR. After implementation it was realised that only the memory access controller needed to be modified, therefor making the solution possibly compatible with “black box” processors such as low-end ARM cores.
 
-To critique the method - it uses SHA1 which is now outdated. It also could succumb to cold-boot attacks but states that due to the typical MCU design where the processor and memory are a single package meaning that memory could not be accessed directly.
+To critique the method - it uses SHA1 which is now outdated. It also could succumb to cold-boot attacks but the authors state that due to the typical MCU design where the processor and memory are a single package meaning that memory could not be accessed directly.
 
 \subsubsection{VIPER: Verifying the Integrity of PERipherals’ Firmware}
 
-VIPER \cite{Li2011} is a software only solution designed to provide attestation for peripherals’ firmware, where a the host CPU queries peripherals. It uses combinations of checksums, hashes and time-frame based checks to ensure peripheral firmware is correct.
+VIPER \cite{Li2011} is a software only solution designed to provide attestation for peripherals’ firmware, where the host CPU queries peripherals. It uses combinations of checksums, hashes and time-frame based checks to ensure peripheral firmware is correct.
 
 \subsubsection{Pioneer: Verifying Code Integrity and Enforcing Untampered Code Execution on Legacy Systems}
 
-Pioneer \cite{Seshadri2007} is another software-only solution which works in a similar way to VIPER but is designed to attesting legacy systems. A checksum is calculated throughout the execution of the verifying (testing mechanism) code, the resulting execution time is compared to an expected execution time known to the verifier. This proves that the testing mechanism is correct. The testing mechanism then builds a hash of the target code.
+Pioneer \cite{Seshadri2007} is a software-only solution which works in a similar way to VIPER but is designed to attesting legacy systems. A checksum is calculated throughout the execution of the verifying (testing mechanism) code, the resulting execution time is compared to an expected execution time known to the verifier. This proves that the testing mechanism is correct. The testing mechanism then builds a hash of the target code.
 
 \subsubsection{SWATT: SoftWare-based ATTestation for Embedded Devices}
 
-SWATT \cite{Seshadri2004} is another software-based solution which uses a random number generator to generate random memory addresses which are attested - this means an attacker cannot predict which regions they need to leave intact. They also use time measurement to ensure an attacker is not manipulating the results. This author questions whether that time-based checking is a reliable component, especially when attestation is taking place remotely ,e.g. over a network.
+SWATT \cite{Seshadri2004} is a software-based solution which uses a random number generator to generate random memory addresses which are attested - this means an attacker cannot predict which regions they need to leave intact. They also use time measurement to ensure an attacker is not manipulating the results. This author questions whether that time-based checking is a reliable component, especially when attestation is taking place remotely, for example, over a network.
 \ifnotesincluded
 \furtherwork{Do I care?} 
 \fi
