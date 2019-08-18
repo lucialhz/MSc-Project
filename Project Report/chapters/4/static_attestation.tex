@@ -25,15 +25,21 @@ The paper \cite{Li2011} also provides an excellent description of the principles
 
 \subsubsection{Pioneer: Verifying Code Integrity and Enforcing Untampered Code Execution on Legacy Systems}
 
-Pioneer \cite{Seshadri2007} is a software-only solution which works in a similar way to VIPER but is designed to attesting legacy systems. A checksum is calculated throughout the execution of the verifying (testing mechanism) code, the resulting execution time is compared to an expected execution time known to the verifier. This proves that the testing mechanism is correct. The testing mechanism then builds a hash of the target code. 
+Pioneer \cite{Seshadri2007} is a software-only solution which works in a similar way to VIPER but is designed to attest remote legacy systems. A checksum is calculated throughout the execution of the verifying (testing mechanism) code, the resulting execution time is compared to an expected execution time known to the verifier. This proves that the testing mechanism is correct. The testing mechanism then builds a hash of the target code. 
+
+This solution makes some major assumptions in order to ensure security, some of these are easily attainable such as the verifier knowing the exact hardware configuration of the prover and platform having only a single CPU. Other assumptions seem to be less feasible such as the adversary not being able to generate a System Management Interrupt (SMI) on the prover, or assuming that the prover can only communicate with the attester during the attestation process (therefore preventing proxy attacks) through the use of a direct network connection or dedicated network configuration.
+
+The paper provides a solid description of the design of the checksum and verification mechanisms, including design decisions based around stack layouts on the target architectures and how the \verb|pc| can be utilised.
 
 \subsubsection{SWATT: SoftWare-based ATTestation for Embedded Devices}
 
-SWATT \cite{Seshadri2004} is a software-based solution which uses a random number generator to generate random memory addresses which are attested - this means an attacker cannot predict which regions they need to leave intact. They also use time measurement to ensure an attacker is not manipulating the results. This author questions whether that time-based checking is a reliable component, especially when attestation is taking place remotely, for example, over a network.
-\ifnotesincluded
-\furtherwork{Do I care?} 
-\fi
-This paper also references solutions which use secure coprocessors which are used during system initialisation to bootstrap trust, examples of these are TCG (Trusted Computing Group, formerly known as TCPA) and Next-Generation Secure Computing Base (NGSCB, formerly Palladium) which may be of interest at a later point as we will be able to see if they produce a useful output after startup has occurred.
+SWATT \cite{Seshadri2004} is a software-based solution which uses a random number generator (for example RC4 for 8-bit architectures, Helix for 32-bit architectures \cite{Ferguson2003}, or using bits from the output of a multi-word T-function for 16 and 32-bit architectures \cite{Klimov2004}) to generate random memory addresses which are attested - this means an attacker cannot predict which regions they need to leave intact. It is notable that the verification function is not the target of a separate checksum, but as the entire contents of memory are covered by the check it will be checked, just not to the same granularity as other solutions such as VIPER \cite{Li2011} or Pioneer \cite{Seshadri2007}. Like other static attestation methods, SWATT also uses time measurement to ensure an attacker is not manipulating the results. This author questions whether that time-based checking is a reliable component, especially when attestation is taking place remotely, for example, over a network.
+This paper also references solutions which use secure coprocessors which are used during system initialisation to bootstrap trust, examples of these are TCG (Trusted Computing Group, formerly known as TCPA) and Next-Generation Secure Computing Base (NGSCB, formerly Palladium) which may be of interest at a later point as we will be able to see if they produce a useful output after start-up has occurred.
+
+This paper notes that ``without secure hardware, a (potentially) compromised device cannot be trusted to verify itself correctly'' and therefore an external verifier is required. It also states that the solution described in \cite{Kennell2003} requires the use of a virtual memory subsystem and therefore will not work with many embedded systems as they have no support for virtual memory.
+
+This solution requires that an attacker will not increase the size of memory on the prover device. 
+
 
 \subsubsection{Software-Based Remote Code Attestation in Wireless Sensor Network}
 
@@ -58,3 +64,7 @@ To provide attestation one usually requires a nonce and an area of memory to att
 It seems that a large amount of the focus of the software-only mechanisms focus on proving the integrity of the verification software, which is a legitimate concern. Secure operating conditions or self attestation should  be able to provide for this.
 
 A key learning from the solutions and the attack described is the importance of attesting all parts of memory.
+
+Proxy attacks should not be a problem for self attestation if attestation is only performed through internal APIs.
+
+One major assumption presumed by all is that CPU clockspeed cannot be increased, or that CPU has not been changed. They all also use optimised algorithms for computing checksums in order to make it easier to detect additional time added by attackers' attempts to circumvent the procedure.
