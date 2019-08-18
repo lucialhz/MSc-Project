@@ -2,31 +2,33 @@
 
 In this section we will define embedded systems, their uses, understand their key properties or criteria and describe some common implementations.
 
-
 \subsection{A Definition of Embedded Systems}
 
-Embedded systems are small-form, low power computer systems. A useful way of defining them is to compare an embedded system with a PC \cite{BergerArnold2002Esd:}:
+Embedded systems are small-form, low power computer systems. A useful way of defining them is to compare an embedded system with a PC \cite{BergerArnold2002Esd:}. To asses them from this angle, embedded systems are:
 \begin{itemize}
-\item Dedicated to specific task (PCs are generic computing platforms) where a change of task will usually require redesigning an entire system.
+\item Dedicated to specific task (PCs are generic computing platforms) where a change of task will usually require redesigning the entire system.
 \item Supported by a wide array of processors and processor architectures.
 \item Usually cost sensitive.
-\item Real-time constraints - if it has an OS it will be RTOS. It should be noted that with the introduction of IoT devices this has become less of a constraint, with standard Linux distributions such as Ubuntu becoming more prominent.
+\end{itemize}
+They also have:
+\begin{itemize}
+\item Real-time constraints - embedded devices may not have an operating system, but if they do it will most likely be real-time operating system (RTOS). It should be noted that with the introduction of IoT devices this has become less of a constraint, with standard Linux distributions such as Ubuntu becoming more prominent.
 \item Implications of software failure far more serious than desktop systems (due to their usage).
-\item Often have power constrains.
-\item Often operate in extreme conditions.
+\item Electrical power constrains - they may be battery powered, powered other Ethernet or arranged in a bus network sharing a single power supply.
+\item The ability to operate in extreme conditions.
 \item Far fewer system resources.
-\item Software is often stored in ROM.
-\item Require specialized tools and efficient design methods.
-\item Often have dedicated debugging circuitry.
+\item Storage of software in ROM.
+\item The need for specialized tools and efficient design methods.
+\item Dedicated debugging circuitry.
 \end{itemize}
 
 \subsection{Uses of Embedded Systems}\label{usesEmbeddedSystems}
 
-Embedded systems are ideal for applications where the computer systems has one role - for example in traffic lights, where the flow of traffic needs to be monitored and the timing of the light sequence needs to be controlled. The low power consumption of embedded systems makes them ideal for use in medical devices (which can only have small batteries) such as insulin injection pumps, or as part of a collection of sensors which are served by a low power bus, for example automotive systems.
+Embedded systems are ideal for applications where the computer system has a single role - for example in traffic lights, where the flow of traffic needs to be monitored and the timing of the light sequence needs to be controlled. The low power consumption of embedded systems makes them ideal for use in personal medical devices (which can only have small batteries) such as insulin injection pumps, or as part of a collection of sensors which are served by a low-voltage bus, for example automotive systems.
 
 The small-form (and corresponding low-weight) means they are a good candidate for use in aeronautics, such as sensor controllers on aircraft or flight computers in missiles.
 
-Consumer IoT also makes use of embedded systems, exploiting their low-cost, footprint and power consumption to add smart functions to what have historically been simple devices such as kettles or fridges.
+Consumer IoT also makes use of embedded systems, exploiting their low cost, power consumption and small footprint to add smart functions to what have historically been simple devices such as kettles or fridges.
 
 \subsection{Common Implementations of Embedded Systems}\label{implementationsEmbeddedSystems}
 A large number of manufacturers have an interest in embedded systems. A big player is ARM with their Cortex-M Series of CPUs, one example of these being used is in the Pebble smartwatch\footnote{\url{https://www.ifixit.com/Teardown/Pebble+Teardown/13319##s45416}}.
