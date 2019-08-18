@@ -187,7 +187,7 @@ month = {apr},
 number = {3},
 pages = {200--210},
 title = {{ElectroMagnetic Analysis (EMA): Measures and Counter-measures for Smart Cards}},
-url = {http://dl.acm.org/citation.cfm?doid=3323876.3284361 http://link.springer.com/10.1007/3-540-45418-7{\_}17},
+url = {http://link.springer.com/10.1007/3-540-45418-7{\_}17},
 volume = {18},
 year = {2001}
 }
@@ -622,6 +622,16 @@ title = {{Secure Execution Via Program Shepherding}},
 url = {http://www.usenix.org/events/sec02/full{\_}papers/kiriansky/kiriansky{\_}html/{\%}5Cnhttp://static.usenix.org/events/sec02/full{\_}papers/kiriansky/kiriansky{\_}html/{\%}5Cnhttp://dl.acm.org/citation.cfm?id=647253.720293},
 year = {2002}
 }
+@article{Kommerling1999,
+abstract = {We describe techniques for extracting protected software and data from smartcard processors. This includes manual microprobing, laser cutting, fo- cused ion-beam manipulation, glitch attacks, and power analysis. Many of these methods have already been used to compromise widely-fielded conditional- access systems, and current smartcards offer little protection against them. We give examples of low- cost protection concepts thatmake such attacks con- siderably more difficult.},
+author = {K{\"{o}}mmerling, Oliver and Kuhn, Markus G},
+file = {:D$\backslash$:/Downloads/sc99-tamper.pdf:pdf},
+isbn = {1880446340},
+journal = {USENIX Workshop on Smartcard Technology},
+pages = {9--20},
+title = {{Design Principles for Tamper-Resistant Smartcard Processors}},
+year = {1999}
+}
 @article{Al-Wosabi2015,
 abstract = {Embedded systems (ES) become available anywhere and anytime as an established part of our daily routine. Developers of these systems face significant challenges in code and information security. Whereas, software tampering is one of these challenges, code integrity detection is one of the main approaches used to defeat it. Checking code integrity achieves tamper proofing by method of identification of unauthorized alteration to recognize any tampered code is executed or tampered data are used. Our research objective is to propose an applicable framework for tampering detection in ES and this paper introduces the exploratory outcomes so far.},
 author = {Al-Wosabi, Abdo Ali Abdullah and Shukur, Zarina and Ibrahim, Muhammad Azwan},
@@ -778,13 +788,13 @@ title = {{The untapped potential of trusted execution environments on mobile dev
 volume = {12},
 year = {2014}
 }
-@article{Anderson1996,
+@article{Anderson1996bad,
 author = {Anderson, R. and Kuhn, M.},
 file = {:D$\backslash$:/Downloads/57508cf35d8762e152eb3d4f0e872ae79ba6.pdf:pdf},
 isbn = {1880446839},
 pages = {1--11},
 title = {{Tamper Resistance — a Cautionary Note}},
-url = {http://www.cl.cam.ac.uk/{~}rja14/Papers/tamper.pdf},
+url = {http://www.cl.cam.ac.uk/{~}rja14/Papers/tamper.pdf https://dl.acm.org/citation.cfm?id=1267168},
 year = {1996}
 }
 @article{Gopalakrishna2005,
@@ -1048,16 +1058,6 @@ url = {http://portal.acm.org/citation.cfm?id=73015},
 volume = {42},
 year = {1995}
 }
-@article{Kommerling1999,
-abstract = {We describe techniques for extracting protected software and data from smartcard processors. This includes manual microprobing, laser cutting, fo- cused ion-beam manipulation, glitch attacks, and power analysis. Many of these methods have already been used to compromise widely-fielded conditional- access systems, and current smartcards offer little protection against them. We give examples of low- cost protection concepts thatmake such attacks con- siderably more difficult.},
-author = {K{\"{o}}mmerling, Oliver and Kuhn, Markus G},
-file = {:D$\backslash$:/Downloads/sc99-tamper.pdf:pdf},
-isbn = {1880446340},
-journal = {USENIX Workshop on Smartcard Technology},
-pages = {9--20},
-title = {{Design Principles for Tamper-Resistant Smartcard Processors}},
-year = {1999}
-}
 @article{Asokan2015,
 abstract = {Today, large numbers of smart interconnected devices provide safety and security critical services for energy grids, industrial control systems, gas and oil search robots, home/office automation, transportation, and critical infrastructure. These devices often operate in swarms -- large, dynamic, and self-organizing networks. Software integrity verification of device swarms is necessary to ensure their correct and safe operation as well as to protect them against attacks. However, current device attestation schemes assume a single prover device and do not scale to swarms. We present SEDA, the first attestation scheme for device swarms. We introduce a formal security model for swarm attestation and show security of our approach in this model. We demonstrate two proof-of-concept implementations based on two recent (remote) attestation architectures for embedded systems, including an Intel research platform. We assess performance of SEDA based on these implementations and simulations of large swarms. SEDA can efficiently attest swarms with dynamic and static topologies common in automotive, avionic, industrial control and critical infrastructures settings.},
 author = {Asokan, N and Brasser, Ferdinand and Ibrahim, Ahmad and Sadeghi, Ahmad-Reza and Schunter, Matthias and Tsudik, Gene and Wachsmann, Christian},
@@ -1151,7 +1151,7 @@ journal = {Proceedings of SSTIC},
 title = {{PICON: Control Flow Integrity on LLVM IR}},
 year = {2015}
 }
-@incollection{Blomer2010,
+@incollection{Blomer2010old,
 abstract = {In this paper we describe several,fault attacks on the Advanced Encryption Standard (AES). First, using optical/eddy current fault induction attacks as recently publicly presented by Skorobogatov, Anderson and Quisquater, Samyde SA,QS, we-present an implementation independent fault attack on AES. This attack is able to determine the complete 128-bit secret key of a sealed tamper-proof smart-card by generating 128 faulty cipher texts. Second, we present several implementation-dependent fault attacks on AES. These attacks rely on the observation that due to the AES's known timing analysis vulnerability (as pointed out by Koeune and Quisquater KQ), any implementation of the AES must ensure a data independent timing behavior for the so called AES's xtime operation. We present fault attacks on AES based on various timing analysis resistant implementations of the xtime-operation. Our strongest attack in this direction uses a very liberal fault model and requires only 256 faulty encryptions to determine a 128-bit key.},
 author = {Bl{\"{o}}mer, Johannes and Seifert, Jean-Pierre},
 doi = {10.1007/978-3-540-45126-6_12},
@@ -1207,7 +1207,7 @@ pages = {1--6},
 title = {{Invited - Things, trouble, trust}},
 year = {2016}
 }
-@incollection{Street,
+@incollection{Streetold,
 author = {Anderson, Ross and Kuhn, Markus},
 doi = {10.1007/BFb0028165},
 file = {:D$\backslash$:/Downloads/Anderson-Kuhn1998{\_}Chapter{\_}LowCostAttacksOnTamperResistan.pdf:pdf},
@@ -1224,7 +1224,7 @@ title = {{TrustVisor : Efficient TCB Reduction and Attestation TrustVisor : Effi
 volume = {2009},
 year = {2009}
 }
-@article{Gandolfi2007,
+@incollection{Gandolfi2007Old,
 abstract = {Although the possibility of attacking smart-cards by analyzing their electromagnetic power radiation repeatedly appears in research papers, all accessible references evade the essence of reporting conclusive experiments where actual cryptographic algorithms such as des or rsa were successfully attacked. This work describes electromagnetic experiments conducted on three different cmos chips, featuring different hardware protections and executing a des, an alleged COMP128 and an RSA. In all cases the complete key material was successfully retrieved.},
 author = {Gandolfi, Karine and Mourtel, Christophe and Olivier, Francis},
 doi = {10.1007/3-540-44709-1_21},
@@ -1232,7 +1232,8 @@ file = {:D$\backslash$:/Downloads/Gandolfi2001{\_}Chapter{\_}ElectromagneticAnal
 keywords = {dema,dpa,electromagnetic analysis,sema,side channel leakage,smart cards,spa},
 pages = {251--261},
 title = {{Electromagnetic Analysis: Concrete Results}},
-year = {2007}
+url = {http://link.springer.com/10.1007/3-540-44709-1{\_}21},
+year = {2001}
 }
 @article{Wagner2002,
 abstract = {One of the primary challenges in intrusion detection is modelling$\backslash$ntypical application behavior so that we can recognize attacks by$\backslash$ntheir atypical effects without raising too many false alarms. We$\backslash$nshow how static analysis may be used to automatically derive a model$\backslash$nof application behavior. The result is a host-based intrusion detection$\backslash$nsystem with three advantages: a high degree of automation, protection$\backslash$nagainst a broad class of attacks based on corrupted code, and the$\backslash$nelimination of false alarms. We report on our experience with a prototype$\backslash$nimplementation of this technique},
@@ -1369,14 +1370,16 @@ title = {{Exploitation Techniques and Defenses for Data-Oriented Attacks}},
 url = {http://arxiv.org/abs/1902.08359},
 year = {2019}
 }
-@article{Skorobogatov2007,
+@incollection{Skorobogatov2007old,
 abstract = {We describe a new class of attacks on secure microcontrollers and smartcards. Illumination of a target transistor causes it to conduct, thereby inducing a transient fault. Such attacks are practical; they do not even require expensive laser equipment. We have carried them out using a flashgun bought second-hand from a camera store for {\$}30 and with an {\$}8 laser pointer. As an illustration of the power of this attack, we developed techniques to set or reset any individual bit of SRAM in a microcontroller. Unless suitable countermeasures are taken, optical probing may also be used to induce errors in cryptographic computations or protocols, and to disrupt the processor's control flow. It thus provides a powerful extension of existing glitching and fault analysis techniques. This vulnerability may pose a big problem for the industry, similar to those resulting from probing attacks in the mid-1990s and power analysis attacks in the late 1990s. We have therefore developed a technology to block these attacks.We use self-timed dual-rail circuit design techniques whereby a logical 1 or 0 is not encoded by a high or low voltage on a single line, but by (HL) or (LH) on a pair of lines. The combination (HH) signals an alarm, which will typically reset the processor. Circuits can be designed so that single- transistor failures do not lead to security failure. This technology may also make power analysis attacks very much harder too.},
 author = {Skorobogatov, Sergei P. and Anderson, Ross J.},
 doi = {10.1007/3-540-36400-5_2},
 file = {:D$\backslash$:/Downloads/Skorobogatov-Anderson2003{\_}Chapter{\_}OpticalFaultInductionAttacks.pdf:pdf},
+isbn = {978-3-540-36400-9},
 pages = {2--12},
 title = {{Optical Fault Induction Attacks}},
-year = {2007}
+url = {http://link.springer.com/10.1007/3-540-36400-5{\_}2},
+year = {2003}
 }
 @article{Naccache2007,
 abstract = {This paper introduces a method for tracking different copies of functionally equivalent algorithms containing identification$\backslash$nmarks known to the attacker. Unlike all previous solutions, the new technique does not rely on any marking assumption and$\backslash$nleads to a situation where each copy is either traceable or so severely damaged that it becomes impossible to store in polynomial$\backslash$nspace or run in polynomial time.$\backslash$n$\backslash$nAlthough RSA-related, the construction is particularly applicable to confidential block-ciphers such as SkipJack, RC4, GOST$\backslash$n2814789, GSM A5, COMP128, TIA CAVE or other proprietary executables distributed to potentially distrusted users.},
@@ -1846,7 +1849,7 @@ keywords = {fault attacks,glitch attacks,side-channel attacks},
 number = {2},
 pages = {370--382},
 title = {{The Sorcerer ' s Apprenctice ' s Guide to Fault Attacks}},
-url = {http://ieeexplore.ieee.org/abstract/document/1580506/{\%}0Ahttp://www.hbarel.com/media/blogs/hagai-on-security/Sorcerers{\_}Apprentice{\_}Guide.pdf},
+url = {http://ieeexplore.ieee.org/abstract/document/1580506/},
 volume = {94},
 year = {2006}
 }
@@ -2124,6 +2127,65 @@ title = {{Control-flow integrity}},
 url = {http://portal.acm.org/citation.cfm?doid=1102120.1102165},
 year = {2005}
 }
+@inproceedings{Anderson1996,
+address = {Berkeley, CA, USA},
+author = {Anderson, Ross and Kuhn, Markus},
+booktitle = {Proceedings of the 2Nd Conference on Proceedings of the Second USENIX Workshop on Electronic Commerce - Volume 2},
+pages = {1},
+publisher = {USENIX Association},
+series = {WOEC'96},
+title = {{Tamper Resistance: A Cautionary Note}},
+url = {http://dl.acm.org/citation.cfm?id=1267167.1267168},
+year = {1996}
+}
+@inproceedings{Gandolfi2007,
+abstract = {Although the possibility of attacking smart-cards by analyzing their electromagnetic power radiation repeatedly appears in research papers, all accessible references evade the essence of reporting conclusive experiments where actual cryptographic algorithms such as des or rsa were successfully attacked.},
+address = {Berlin, Heidelberg},
+author = {Gandolfi, Karine and Mourtel, Christophe and Olivier, Francis},
+booktitle = {Cryptographic Hardware and Embedded Systems --- CHES 2001},
+editor = {Ko{\c{c}}, {\c{C}}etin K and Naccache, David and Paar, Christof},
+isbn = {978-3-540-44709-2},
+pages = {251--261},
+publisher = {Springer Berlin Heidelberg},
+title = {{Electromagnetic Analysis: Concrete Results}},
+year = {2001}
+}
+@inproceedings{Skorobogatov2007,
+abstract = {We describe a new class of attacks on secure microcontrollers and smartcards. Illumination of a target transistor causes it to conduct, thereby inducing a transient fault. Such attacks are practical; they do not even require expensive laser equipment. We have carried them out using a flashgun bought second-hand from a camera store for {\$}30 and with an {\$}8 laser pointer. As an illustration of the power of this attack, we developed techniques to set or reset any individual bit of SRAM in a microcontroller. Unless suitable countermeasures are taken, optical probing may also be used to induce errors in cryptographic computations or protocols, and to disrupt the processor's control flow. It thus provides a powerful extension of existing glitching and fault analysis techniques. This vulnerability may pose a big problem for the industry, similar to those resulting from probing attacks in the mid-1990s and power analysis attacks in the late 1990s.},
+address = {Berlin, Heidelberg},
+author = {Skorobogatov, Sergei P and Anderson, Ross J},
+booktitle = {Cryptographic Hardware and Embedded Systems - CHES 2002},
+editor = {Kaliski, Burton S and Ko{\c{c}}, {\c{c}}etin K and Paar, Christof},
+isbn = {978-3-540-36400-9},
+pages = {2--12},
+publisher = {Springer Berlin Heidelberg},
+title = {{Optical Fault Induction Attacks}},
+year = {2003}
+}
+@inproceedings{Blomer2010,
+abstract = {In this paper we describe several fault attacks on the Advanced Encryption Standard (AES). First, using optical/eddy current fault induction attacks as recently publicly presented by Skorobogatov, Anderson and Quisquater, Samyde [SA, QS], we present an implementation independent fault attack on AES. This attack is able to determine the complete 128-bit secret key of a sealed tamper-proof smartcard by generating 128 faulty cipher texts. Second, we present several implementation-dependent fault attacks on AES. These attacks rely on the observation that due to the AES's known timing analysis vulnerability (as pointed out by Koeune and Quisquater [KQ]), any implementation of the AES must ensure a data independent timing behavior for the so called AES's xtime operation. We present fault attacks on AES based on various timing analysis resistant implementations of the xtime-operation. Our strongest attack in this direction uses a very liberal fault model and requires only 256 faulty encryptions to determine a 128-bit key.},
+address = {Berlin, Heidelberg},
+author = {Bl{\"{o}}mer, Johannes and Seifert, Jean-Pierre},
+booktitle = {Financial Cryptography},
+editor = {Wright, Rebecca N},
+isbn = {978-3-540-45126-6},
+pages = {162--181},
+publisher = {Springer Berlin Heidelberg},
+title = {{Fault Based Cryptanalysis of the Advanced Encryption Standard (AES)}},
+year = {2003}
+}
+@inproceedings{Street,
+abstract = {There has been considerable recent interest in the level of tamper resistance that can be provided by low cost devices such as smart-cards. It is known that such devices can be reverse engineered using chip testing equipment, but a state of the art semiconductor laboratory costs millions of dollars. In this paper, we describe a number of attacks that can be mounted by opponents with much shallower pockets.},
+address = {Berlin, Heidelberg},
+author = {Anderson, Ross and Kuhn, Markus},
+booktitle = {Security Protocols},
+editor = {Christianson, Bruce and Crispo, Bruno and Lomas, Mark and Roe, Michael},
+isbn = {978-3-540-69688-9},
+pages = {125--136},
+publisher = {Springer Berlin Heidelberg},
+title = {{Low cost attacks on tamper resistant devices}},
+year = {1998}
+}
 @inproceedings{Abera2016,
 abstract = {Remote attestation is a crucial security service particularly relevant to increasingly popular IoT (and other embedded) devices. It allows a trusted party (verifier) to learn the state of a remote, and potentially malware-infected, device (prover). Most existing approaches are static in nature and only check whether benign software is initially loaded on the prover. However, they are vulnerable to run-time attacks that hijack the application's control or data flow, e.g., via return-oriented programming or data-oriented exploits. As a concrete step towards more comprehensive run-time remote attestation, we present the design and implementation of Control- FLow ATtestation (C-FLAT) that enables remote attestation of an application's control-flow path, without requiring the source code. We describe a full prototype implementation of C-FLAT on Raspberry Pi using its ARM TrustZone hardware security extensions. We evaluate C-FLAT's performance using a real-world embedded (cyber-physical) application, and demonstrate its efficacy against control-flow hijacking attacks.},
 address = {New York, New York, USA},
@@ -2267,18 +2329,22 @@ title = {{CFI CaRE: Hardware-Supported Call and, Return Enforcement for Commerci
 volume = {10453 LNCS},
 year = {2017}
 }
-@article{Dessouky2017,
+@inproceedings{Dessouky2017,
 abstract = {Attacks targeting software on embedded systems are becoming increasingly prevalent. Remote attestation is a mechanism that allows establishing trust in embedded devices. However, existing attestation schemes are either static and cannot detect control-flow attacks, or require instrumentation of software incurring high performance overheads. To overcome these limitations, we present LO-FAT, the first practical hardware-based approach to control-flow attestation. By leveraging existing processor hardware features and commonly-used IP blocks, our approach enables efficient control-flow attestation without requiring software instrumentation. We show that our proof-of-concept implementation based on a RISC-V SoC incurs no processor stalls and requires reasonable area overhead.},
+address = {New York, New York, USA},
 archivePrefix = {arXiv},
 arxivId = {1706.03754},
 author = {Dessouky, Ghada and Zeitouni, Shaza and Nyman, Thomas and Paverd, Andrew and Davi, Lucas and Koeberl, Patrick and Asokan, N. and Sadeghi, Ahmad-Reza},
+booktitle = {Proceedings of the 54th Annual Design Automation Conference 2017 on - DAC '17},
 doi = {10.1145/3061639.3062276},
 eprint = {1706.03754},
 file = {:D$\backslash$:/Downloads/1706.03754.pdf:pdf},
 isbn = {9781450349277},
 issn = {0738100X},
-title = {{LO-FAT: Low-Overhead Control Flow ATtestation in Hardware}},
-url = {http://arxiv.org/abs/1706.03754{\%}0Ahttp://dx.doi.org/10.1145/3061639.3062276},
+pages = {1--6},
+publisher = {ACM Press},
+title = {{LO-FAT}},
+url = {http://dl.acm.org/citation.cfm?doid=3061639.3062276},
 year = {2017}
 }
 @article{Nguyen2013,
