@@ -17,13 +17,17 @@
 \newcommand\furtherwork[1]{\textcolor{red}{#1}}
 
 \usepackage{hyperref}
+\usepackage{csquotes}
 
 \DeclareUnicodeCharacter{2217}{*}
-
+\usepackage[british]{babel}
 \usepackage[
 backend=biber,
 style=ieee,
-sorting=none
+sorting=none,
+urldate=long,
+doi=false,
+isbn=false
 ]{biblatex}
  
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -53,6 +57,26 @@ sorting=none
 \lstset{style=mystyle} 
  
 \addbibresource{bibs/project.bib}
+\DeclareSourcemap{ % Used when .bib/Bibliography is compiled, not when document is
+    \maps{
+        \map{ % Replaces '{\_}', '{_}' or '\_' with just '_'
+            \step[fieldsource=url,
+                  match=\regexp{\{\\\_\}|\{\_\}|\\\_},
+                  replace=\regexp{\_}]
+        }
+        \map{ % Replaces '{'$\sim$'}', '$\sim$' or '{~}' with just '~'
+            \step[fieldsource=url,
+                  match=\regexp{\{\$\\sim\$\}|\{\~\}|\$\\sim\$},
+                  replace=\regexp{\~}]
+        }
+        \map{ % Replaces '{\$}'
+            \step[fieldsource=url,
+                  match=\regexp{\{\\\x{26}\}},
+                  replace=\regexp{\x{26}}]
+        }
+    }
+}
+
 
 \newif\iflitreview
 %\litreviewtrue 
