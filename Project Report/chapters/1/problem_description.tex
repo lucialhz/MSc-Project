@@ -22,7 +22,7 @@ Where processes are put in place to detect a violation of control-flow integrity
 Where a third party (verifier) receives a report, which could only have come from the device (prover), stating either that the control-flow integrity has not been violated or describing the taken control-flow (therefore allowing the verifier to compare against the CFG to be sure that control-flow integrity has been maintained). Example methods include:
 \begin{itemize}
 	\item Basic-block IDs are hashed to create a hash chain representation of the control-flow path taken.
-	\item Instructions are intercepted by secondary hardware monitor to take flow measurements, comparing to the valid instructions as described by the CFG.
+	\item Instructions are intercepted by secondary hardware monitor to take flow measurements, comparing these to the valid instructions as described by the CFG.
 \end{itemize}
 
 \subsubsection{Data-flow integrity}
@@ -30,7 +30,7 @@ Where a third party (verifier) receives a report, which could only have come fro
 Data flow integrity \cite{Castro2006} is a measure used to ensure that data only flows in the correct direction from authorised callers. This can be used to ensure only the correct caller has changed an important variable - for example one which a decision is based on (e.g. inside an \verb|if| statement), this can also be used to protect the stack.
 In  \cite{Castro2006} the solution maintains a table for each piece of data accessed with the address of last accessor. If the last accessor is not within the legal list a security failure exists and an exception is thrown.
 
-Dynamic taint analysis \cite{Davi2009} is another method used to detect and prevent control-data and non-control-data attacks by labelling data as untrusted and tracking that data to make sure it is not used to determine program execution. With dynamic taint analysis there is no need for source code however it does yield false positives, has a high overhead and requires additional hardware support as noted by \cite{Castro2006}.
+Dynamic taint analysis \cite{Davi2009} is another method used to detect and prevent control-data and non-control-data attacks by labelling data as untrusted and tracking that data to make sure it is not used to determine program execution. With dynamic taint analysis there is no need for source code, however it does yield false positives, has a high overhead and requires additional hardware support as noted by Castro et al. \cite{Castro2006}.
 
 \subsection{Auditing control-flow}
 CFI prevention and detection has proven to lead to a slight computational overhead \cite{DeClercq2017}, while attestation requires an always-on connection. What if we can store the control flow of an application on a hard disk, which can be retrieved later? This could be useful to prove to a third party that a disputed result of a computation is correct (or at least the steps taken during the computation was correct), or providing a record of the control-flow which has been taken during the execution of a  vitally important operation.

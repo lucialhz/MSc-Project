@@ -15,9 +15,9 @@ Semi-invasive attacks  require the surface of chip to be exposed, however the se
 
 \subsubsection{Fault Injection}
 
-Variations in supply voltage \cite{Anderson1996},\cite{Blomer2010} may cause processors to misinterpret or skip instructions, this is applicable to control-flow as the misinterpreting or skipping of instructions are attacks used to subvert the control-flow of applications.
-Variations in external clock \cite{Anderson1996},\cite{Street},\cite{Kommerling1999} can cause data to be misread (i.e. data is attempted to be read before memory has time to latch-out correct value). This can lead to missing of instructions, which can be an attack vector if software is written in an insecure manner such as aborting an operation if an \verb|if| check is successful.
-Extremes of temperature \cite{Boneh},\cite{Govindavajhala2003} can cause unpredictable effects in microprocessor. Two examples of effects obtained \cite{Bar-el2006} are random modification of RAM cells due to overheating and read write temperature thresholds in most non-volatile memory (NVM) not coinciding. In this case if the temperature is set to a level where write ops work but read do not a number of attacks can be mounted. Laser light \cite{Habing1965} can be used where light arriving on a metal surface induces a current, which if intense enough could induce a fault in a circuit. White light \cite{Anderson1996} has been proposed as alternative to laser-based attacks  \cite{Skorobogatov2007}, however as it is not directional it is challenging to focus on a particular areas of a microprocessor and therefore provide a targeted attack. Electromagnetic flux \cite{Samyde2003} has been used to change values in RAM, where strong eddy currents can affect microprocessors although this has only been observed in insecure microprocessors.
+Variations in supply voltage may cause processors to misinterpret or skip instructions \cite{Anderson1996},\cite{Blomer2010}, this is applicable to control-flow as the misinterpreting or skipping of instructions are attacks used to subvert the control-flow of applications.
+Variations in external clock can cause data to be misread \cite{Anderson1996},\cite{Street},\cite{Kommerling1999} (i.e. data is attempted to be read before memory has time to latch-out correct value). This can lead to the missing of instructions, which can be an attack vector if software is written in an insecure manner (such as aborting an operation if an \verb|if| check is successful).
+Extremes of temperature can cause unpredictable effects in a microprocessor \cite{Boneh},\cite{Govindavajhala2003}. Two examples of these effects are random modification of RAM cells due to overheating and read write temperature thresholds in most non-volatile memory (NVM) not coinciding \cite{Bar-el2006}. In this case if the temperature is set to a level where write ops work but read do not a number of attacks can be mounted. Laser light can be used where light arriving on a metal surface induces a current, which if intense enough could induce a fault in a circuit \cite{Habing1965}. White light has been proposed as alternative to laser-based attacks \cite{Anderson1996},\cite{Skorobogatov2007}, however as it is not directional it is challenging to focus on a particular areas of a microprocessor and therefore provide a targeted attack. Electromagnetic flux has been used to change values in RAM, where strong eddy currents can affect microprocessors although this has only been observed in insecure microprocessors \cite{Samyde2003}.
 
 \begin{lstlisting}[language={[Sharp]C},caption={An example of code which is vulnerable to skipping of instructions},label={lst:instructionSkip}]
 int CheckNumberOfAttempts(int attemptCount, int attemptLimit)
@@ -29,7 +29,7 @@ int CheckNumberOfAttempts(int attemptCount, int attemptLimit)
 }
 \end{lstlisting}
 
-The effects of fault injection include resetting data where data is forced to a blank state, data randomisation where data can be changed to a new random value and modifying of opcodes where instructions executed on chip's CPU are changes\cite{Anderson1996} which often has the same effect as previous examples but additionally allows for the removal of functions and breaking of loops. 
+The effects of fault injection include resetting data where data is forced to a blank state, data randomisation where data can be changed to a new random value and modifying of opcodes where instructions executed on a chip's CPU are changed which often has the same effect as previous examples but additionally allows for the removal of functions and breaking of loops \cite{Anderson1996}. 
 \ifnotesincluded
 \furtherwork{Countermeasures given in \cite{Bar-el2006}}
 \fi
@@ -39,9 +39,9 @@ Non-invasive attacks can be used to derive information without modification of h
 
 \section{Software attacks}
 
-Attacks on software represent a likely threat to the security of embedded systems as they can be carried out remotely or simply stumbled upon (fuzzed). Once an exploit is discovered it is highly repeatable and can be crafted into a number of different attack methods. Embedded systems can be more vulnerable than other computer systems due to the language used to write applications - C. As C provides the developer with memory operations it also presents the attacker with an opportunity to exploit any bugs in the code, usually manipulating memory.
+Attacks on software represent a likely threat to the security of embedded systems as they can be carried out remotely or simply stumbled upon (fuzzed). Once an exploit is discovered it is highly repeatable and can be crafted into a number of different attack methods. Embedded systems can be more vulnerable than other computer systems due to the language used to write applications - C. As C provides the developer with memory operations but, as a result, also presents the attacker with an opportunity to exploit any bugs in the code, usually by manipulating memory.
 
-\subsection{Commons software attacks methods}
+\subsection{Common software attacks methods}
 
 The aim of a \textbf{buffer overflow attack} is to manipulate control-flow information stored on the stack and heap of a program in order to achieve further objectives, examples of such information could be return addresses or other variables on which the basis of decisions are made (e.g. \verb|if| statements).
 
@@ -49,12 +49,12 @@ When performing an \textbf{injected code attack}, control flow is diverted to ex
 
 Existing code such as system functions or sequences of code which, when combined, have unintended consequences can be be the target of a deviated control-flow. This is known as a \textbf{code re-use attack}. See also return oriented programming and return-to-libc attacks.
 
-
-An attacker can string together (ordinarily benign) existing code sequences to form gadgets, which can result in malicious program actions. This attack is referred to as \textbf{return-oriented programming (ROP)}. This is done through changing the return addresses on the stack to point to each snippet of the code sequence.
+An attacker can string together (ordinarily benign) existing code sequences to form gadgets, which can result in malicious program actions. This attack is referred to as \textbf{return-oriented programming (ROP)}. This is done through changing the return addresses on the stack to point at each snippet of the code sequence.
 
 An attacker replaces the return address on the stack to one which contains subroutines which already exist in memory (\textbf{return-to-libc}) such as functions which allow the execution of shell commands. \verb|libc| refers to the C standard library.
 
-\textbf{Pointer subterfuge} is where the value of a pointer is modified by an attacker, there are various methods of achieving this and various points of attack. The simplest example is overrunning a buffer which is next to data in memory which is later assigned to a pointer.
+\textbf{Pointer subterfuge} is where the value of a pointer is modified by an attacker, there are various methods of achieving this and various points of attack. The simplest example is overrunning a buffer which is next to data in memory which is later assigned to a pointer as shown in listing \ref{lst:pointerSubterfuge} \cite{Wang2016a}.
+
 \begin{lstlisting}[language={C},caption={An example of code which is vulnerable to pointer subterfuge \cite{Wang2016a}},label={lst:pointerSubterfuge}]
 int main(){
   int *ptr = ...;
