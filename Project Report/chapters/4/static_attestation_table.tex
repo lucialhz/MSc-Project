@@ -1,0 +1,31 @@
+\begin{table}
+\centering{
+\scalebox{0.6}{
+\begin{threeparttable}
+\caption{Comparison of Static Attestation Solutions}
+\label{tab:staticAttestationComparisonRequirements}
+\newcommand*\rot[1]{\hbox to1em{\hss\rotatebox[origin=br]{-60}{#1}}}
+\begin{tabular}{l c c c p{3cm} p{8cm} p{3cm}}
+\toprule
+Scheme & \multicolumn{6}{c}{Properties}\\
+\midrule
+ & \rot{(1) Hardware-based}
+ & \rot{(2) Software-based}
+ & \rot{(3) Successfully implemented}
+ & \rot{(4) Testing results}
+ & \rot{(5) Instruction set architecture}
+ & \rot{(6) Architecture-independent}\\
+\midrule
+SMART \cite{For} & \CIRCLE & \CIRCLE & \LEFTcircle ~On ASIC & \CIRCLE & \raggedright  16-bit von Neumann (MSP430), RISC 8-bit Harvard (AVR) & \CIRCLE \\
+VIPER \cite{Li2011} & \Circle & \CIRCLE & \CIRCLE & \CIRCLE \raggedright ~with CPU executing in tight loop with interrupts disabled & x86 & \CIRCLE\\
+Pioneer \cite{Seshadri2007} & \Circle  & \CIRCLE & \CIRCLE & \LEFTcircle \raggedright ~fails if rootkit can uninstall itself prior to attestation &  x86  & \CIRCLE\\
+SWATT \cite{Seshadri2004} & \Circle  & \CIRCLE & \CIRCLE & \CIRCLE & \raggedright RISC - 8-bit Harvard Architecture & \CIRCLE \raggedright \arraybackslash Can be extended to 16 and 32-bit architectures\\
+AbuHmed \cite{AbuHmed2009} & \Circle  & \CIRCLE & \LEFTcircle ~Simulated & \CIRCLE & \raggedright RISC - 8-bit Harvard Architecture & -\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+	\item \CIRCLE ~= has property; \LEFTcircle ~= partially has property requirement; \Circle ~= does not have property; - = not enough information
+\end{tablenotes}
+\end{threeparttable}
+}}
+\end{table}
