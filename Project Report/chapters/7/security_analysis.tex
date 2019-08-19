@@ -10,4 +10,12 @@ The solution presented fits with the security requirements in the following ways
 
 Obvious vulnerabilities in the solution are the breach of the `secure world' where the measurement engine is manipulated to create `good' attestation files, deletion of files and resulting loss of audit capabilities (a backup method would somewhat alleviate this problem) and cloning of audit files. Cloning of audit files represents a significant problem due to the fact that this is an offline process, so a method will need to be used to ensure freshness of files, for example a tamper-proof date-time stamp.
 
+Proxy-based attacks (as described in \cite{Seshadri2007} and \cite{Li2011}) as well as replay or cloning attacks are a threat to a simple implementation of the solution. The inclusion of an anti-tamper real time clock for use in signing the audit records (in a similar fashion to their use in smart metering) would mitigate against this vulnerability.
+
+Key management has been an open problem in the field of embedded systems, where the use of a TPM is not a given. The secure storage of a cryptographic key is vital for providing audit capabilities, as the signing of or applying a MAC to an audit record is vital from proving its origin.
+
 Granularity to an instruction level can only be provided by a hardware solution which intercepts each instruction.
+
+\subsubsection{Hardware Implementation}
+Using a hardware solution it would be possible to address further criteria which the software-based solution was unable to address, much like the improvements LO-FAT\cite{Dessouky2017} made on C-FLAT \cite{Abera2016}. By moving monitoring and auditing capabilities to additional hardware such as a co-processor, or dedicated circuitry it would be possible to remove the majority of the overhead introduced when monitoring control-flow. Dedicated hardware with the ability to intercept instructions as they flow through the processing pipeline would enable monitoring of control-flow to a deeper granularity, where individual instructions of a basic block could be tracked in the form of a hash and number of instructions present within the basic block, this would be provided in a similar fashion as CCFI-Cache \cite{Danger2018}.
+
