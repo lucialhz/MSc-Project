@@ -1,5 +1,21 @@
-\documentclass[10pt]{report}
+\documentclass[
+11pt, % The default document font size, options: 10pt, 11pt, 12pt
+twoside, %oneside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
+english, % ngerman for German
+onehalfspacing, % Single line spacing, alternatives: onehalfspacing or doublespacing
+%draft, % Uncomment to enable draft mode (no pictures, no links, overfull hboxes indicated)
+nolistspacing, % If the document is onehalfspacing or doublespacing, uncomment this to set spacing in lists to single
+liststotoc, % Uncomment to add the list of figures/tables/etc to the table of contents
+%toctotoc, % Uncomment to add the main table of contents to the table of contents
+parskip, % Uncomment to add space between paragraphs
+%nohyperref, % Uncomment to not load the hyperref package
+headsepline, % Uncomment to get a line under the header
+%chapterinoneline, % Uncomment to place the chapter title next to the number on one line
+%consistentlayout, % Uncomment to change the layout of the declaration, abstract and acknowledgements pages to match the default layout
+]{MastersDoctoralThesis} % The class file specifying the document structure
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{array}
@@ -17,7 +33,7 @@
 \newcommand\furtherwork[1]{\textcolor{red}{#1}}
 
 \usepackage{hyperref}
-\usepackage{csquotes}
+\usepackage[autostyle=true]{csquotes}
 
 \DeclareUnicodeCharacter{2217}{*}
 \usepackage[british]{babel}
@@ -77,6 +93,23 @@ isbn=false
     }
 }
 
+\geometry{
+	paper=a4paper, % Change to letterpaper for US letter
+	inner=2.0cm, % Inner margin
+	outer=2.0cm, % Outer margin
+	bindingoffset=.5cm, % Binding offset
+	top=1.5cm, % Top margin
+	bottom=1.5cm, % Bottom margin
+	%showframe % Uncomment to show how the type block is set on the page
+}
+
+\thesistitle{Towards Auditing of Control Flow Integrity}
+\author{Luke \textsc{Atherton}}
+
+\AtBeginDocument{
+\hypersetup{pdftitle=\ttitle} % Set the PDF's title to your title
+\hypersetup{pdfauthor=\authorname} % Set the PDF's author to your name
+}
 
 \newif\iflitreview
 %\litreviewtrue 
@@ -87,6 +120,9 @@ isbn=false
 %\notesincludedfalse 
 
 \begin{document}
+
+\frontmatter
+\pagestyle{plain}
 
 \input{chapters/title_page}
 
@@ -115,7 +151,6 @@ Thanks everyone!
 \listoffigures
 \listoftables
 
-\chapter*{List of acronyms}
 \input{acro_list}
 
 \iflitreview
@@ -127,6 +162,9 @@ Thanks everyone!
 \chapter{Appendix Title}
 \input{chapters/appendix}
 \else
+
+\mainmatter
+\pagestyle{thesis}
 
 \chapter{Introduction}
 \input{chapters/1/introduction}
