@@ -132,14 +132,6 @@ isbn=false
 
 \fi
 \ifnotesincluded
-\chapter*{Executive Summary}
-\input{chapters/abstract}
-
-\chapter*{Dedication}
-This is my dedication
-
-\chapter*{Declaration}
-This is my declaration
 
 \chapter*{Acknowledgements}
 Thanks everyone!
@@ -152,6 +144,10 @@ Thanks everyone!
 \listoftables
 
 \input{acro_list}
+
+\chapter*{Executive Summary}
+\addchaptertocentry{Executive Summary}
+\input{chapters/abstract}
 
 \iflitreview
 
@@ -178,7 +174,7 @@ Thanks everyone!
 \input{chapters/2/high_level}
 \input{chapters/2/cfi}
 
-\chapter{Literature Review} \label{chapterBackground}
+\chapter{Background Literature Review} \label{chapterBackground}
 \input{chapters/3/literature_review}
 
 \chapter{Comparison of Solutions} \label{chapterComparison}
@@ -197,13 +193,9 @@ Thanks everyone!
 \chapter{Security Analysis} \label{chapterSecurityAnalysis}
 \input{chapters/7/security_analysis}
 
-
 \fi
 
-
 \ifnotesincluded
-\chapter{Practical Implementation} \label{chapterPracticalImplementation}
-\input{chapters/6/practical_implementation}
 \chapter{Conclusion} \label{chapterConclusion}
 \input{chapters/8/conclusion}
 \fi
