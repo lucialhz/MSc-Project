@@ -22,7 +22,7 @@ void GreaterThanPlusOne(int firstNum, int secondNum)
 
 The instructions from \verb|string message;| (line 3) up to and including \verb|if (firstNum > secondNum)| (line 5), \textit{basic block 1}, will execute sequentially (barring an exception being thrown). This is a basic block. The contents within the first \verb|if| (line 5) and also the second \verb|if| (line 9) parenthesis are also basic blocks, \textit{basic blocks 2 and 3} respectively.
 
-So in the code described at listing~\ref{lst:basic_code} example the sequence of instructions can flow from the first basic block to either the second or the third. An unauthorised flow would be from basic block 2 to basic block 3 as there is no way that under normal operation both of these sequences of instructions would execute after one another.
+So in the code described at listing~\ref{lst:basic_code}, the sequence of instructions can flow from the first basic block to either the second or the third. An unauthorised flow would be from basic block 2 to basic block 3 as there is no way that under normal operation both of these sequences of instructions would execute after one another.
 
 Other examples of programming control flow statements which could form basic blocks are switch cases, loops, break statements and functions, as the these control the diversion of instruction execution depending on the current running circumstances (e.g. variable state).
 

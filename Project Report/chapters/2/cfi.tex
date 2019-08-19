@@ -20,28 +20,28 @@ Generating a CFG from static analysis is troublesome, and often an over-approxim
 
 \subsection{Hardware-based CFI}
 
-Hardware-based CFI is provided by the addition of dedicated hardware which is either included in the execution pipeline or intercepts the instruction flow from memory to the processor. We provide a survey of leading solutions in \ref{comparisonOfCFISolutions}.
+Hardware-based CFI is provided by the addition of dedicated hardware which is either included in the execution pipeline or intercepts the instruction flow from memory to the processor. We provide a survey of prominent hardware-based CFI solutions in \ref{comparisonOfCFISolutions}.
 
 \subsection{Software-based CFI}
 
-Software-based CFI was first introduced \cite{Abadi2005}, which has been the foundation for further research surveyed in \cite{Burow}, which provides a detailed insight into the technical properties of a number of software-based CFI solutions.
+Software-based CFI was first introduced in the seminal paper by Adabi et al. \cite{Abadi2005}. This has been the foundation for further research surveyed by Burow et al. \cite{Burow}, which provides a detailed insight into the technical properties of a number of software-based CFI solutions.
 
 \subsection{Alternatives to Basic Block CFG-based CFI}
 
 \subsubsection{Signature modelling}
-Here if a series of executed instructions do not follow the trace of the program’s CFG the control-flow integrity has been lost. Yang et al. \cite{Yang2013} describe this method as implemented in software. They also performed a thorough analysis of various existing solutions. The methodology of signature modelling was implemented in hardware in the paper written by Werner et al \cite{Werner2016}.
+Here, if a series of executed instructions do not follow the trace of the program's CFG the control-flow integrity has been lost. Yang et al. \cite{Yang2013} describe this method through their implementation in software. They also performed a thorough analysis of various existing solutions. The methodology of signature modelling was successfully implemented using a hardware-based method in the work carried out by Werner et al \cite{Werner2016}.
 
-A problem with signature modelling is that the number of unique sequences of instructions (and their accompanying signatures) accumulate very quickly, requiring more storage if they are to be compared against. This is a particular problem when considering embedded systems due to their inherent limitation on resources. Another problem is the necessity to compute signatures in real-time, which would require additional processing and thereof an increase in processing overhead. Although, as we have seen in other methods \cite{Davi2015} \cite{Lee2019}, decryption is a common method of ensuring CFI, so perhaps this is not an unreasonable expectation.
+A problem with signature modelling is that the number of unique sequences of instructions (and their accompanying signatures) accumulate very quickly, requiring more storage if they are to be used as a comparison. This is a particular problem when considering embedded systems due to their inherent limitation of storage capacity. Another difficulty is the necessity to compute signatures in real-time, which would require additional processing and therefore an increase in processing overhead. Although, as we have seen in other methods \cite{Davi2015},\cite{Lee2019}, decryption is a common method of ensuring CFI, so perhaps this is not an unreasonable expectation.
 
 \subsubsection{Verification on transition}
 
 
 \subsubsection{Shadow Stacks}
-Some \cite{Christoulakis2016} have argued that ensuring CFI without the use of shadow stacks (SSs), also know as shadow call stacks (SCSs) is an impossible task and that``the use of a shadow stack is mandatory for any practical CFI deployment''. A shadow stack consists separate stack, stored in memory (protected or unprotected, depending on the solution), which contains just the return addresses. This solves the problem of ROP, especially when working with commonly called functions or system functions as the implementation of the shadow stack ensures the calling function also has to be the return function (at least until \verb|longjmp| is used, which adds a further complication). There are some flaws with shadow stacks which include:
+Some have argued that ensuring CFI without the use of shadow stacks (SSs) \cite{Christoulakis2016}, also known as shadow call stacks (SCSs) is an impossible task and that``the use of a shadow stack is mandatory for any practical CFI deployment''. A shadow stack consists separate stack, stored in memory (protected or unprotected, depending on the solution), which contains just the return addresses. This solves the problem of ROP, especially when working with commonly called functions or system functions, as the implementation of the shadow stack ensures the calling function also has to be the return function (at least until \verb|longjmp| is used, which adds a further complication). There are some flaws with shadow stacks which include:
 \begin{itemize}
-	\item Storage of shadow stacks can be cumbersome - especially if they are to be secure (as they would have to be if memory access is an assumed capability of an attacker).
+	\item Storage of shadow stacks can be cumbersome - especially if they are to be secure (which they would have to be if memory access is an assumed capability of an attacker).
 	\item Maintaining a shadow stack in multi-threaded systems will be troublesome - searching through the SS for a process ID will add additional time overhead to any processing.
-	\item Recursive functions can add multiple entries of the same return address to the SS, this is an unnecessary addition so is reduced down to a single bit flag (or counter) by some solutions \cite{Christoulakis2016}. This can raise the problem of manipulating the number of recursions by an attacker, however it is argued by some that this is a very limited attack.
+	\item Recursive functions can add multiple entries of the same return address to the SS, and this is an unnecessary addition so is reduced down to a single bit flag (or counter) by some solutions \cite{Christoulakis2016}. This can raise the problem of manipulating the number of recursions by an attacker, however it is argued by some that this is a very limited attack.
 \ifnotesincluded
 \furtherwork{Ref for number of iterations not being bad?}
 \fi
