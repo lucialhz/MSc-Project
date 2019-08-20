@@ -41,7 +41,7 @@ Control-flow graphs (CFGs) are the graphical representation of the series of val
 \fi. Valid control flow is where the flow which follows a CFG for a given application. Using figure \ref{fig:basicCFG} as an example for the code in listing \ref{lst:basic_code}, BBL 1 $\rightarrow$ BBL 2 and BBL 1 $\rightarrow$ BBL 3 are both valid flows, however BBL 1 $\rightarrow$ BBL 2 $\rightarrow$ BBL 3 is invalid. To create BBL 1 $\rightarrow$ BBL 2 $\rightarrow$ BBL 3 an attacker could change the value of \verb|secondNum| to one which is greater than or equal to \verb|firstNum| once the first \verb|if| statement has been passed. 
 
 \subsection{Types of branches}
-In order to understand control-flow it is important to understand the difference between the various branch types: direct, indirect, unintended and function returns.
+Basic blocks transitions are triggered by branches, so in order to understand control-flow it is important to understand the difference between the various branch types: direct, indirect, unintended and function returns.
 
 \subsubsection{Direct}
 A direct branch is one where the next instruction address is hard coded with the \verb|jump| instruction. This means the execution will flow to a pre-defined location.
