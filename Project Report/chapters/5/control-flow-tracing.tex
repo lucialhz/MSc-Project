@@ -20,7 +20,7 @@ The solution would implement a dedicated method in the secure world where a save
 
 BLAKE-2 \footnote{\url{https://blake2.net}} has been suggested as a lightweight hash function, however this is only one such potential candidate.
 
-\subsubsection{Challenges of CFG tracking}
+\subsubsection*{Challenges of CFG tracking}
 
 Loops are a considerable issue when it comes to tracking control flow, as the number of possible paths could be overwhelming, especially if the loops contain branch instructions or function calls.
 
@@ -28,14 +28,14 @@ To overcome the problems presented by loops, C-FLAT \cite{Abera2016} begins with
 
 Return call matching is used where call and return edges are indexed during static analysis, so only valid routes are authorised. Break statements need to be dealt with in a special manner as they are an additional place where a loop can exit. Section 4.2 of C-FLAT \cite{Abera2016} describes this in detail.
 
-\subsubsection{Instrumentation}
+\subsubsection*{Instrumentation}
 
 Branches are identified, with direct jump addresses stored in a branch table then replaced with the address of the trampoline assembly code which, when executing, triggers the measurement engine to be add the source address and destination address to the hash chain before redirecting the program counter to the corresponding entry on the branch table.
 
-\subsubsection{Trampolines}
+\subsubsection*{Trampolines}
 
 A trampoline enables redirecting execution to a single piece of simple and secure code without needing to add too many instructions during instrumentation. A trampoline can carry out a number of functions but in C-FLAT \cite{Abera2016} it manages the return address register as well as the register holding the destination address in indirect branches. 
 
-\subsubsection{Hardware-assisted}
+\subsubsection*{Hardware-assisted}
 
 A co-processor designed specifically for the purpose of providing audit of control-flow would offload the heavy lifting and therefore have a negligible impact on normal operation. Examples of designs which could be tailored to provide auditing are provided in \cite{DeClercq2017}. A hardware-assisted solution could keep track of instructions executed (in the form of a hash), to add further granularity.

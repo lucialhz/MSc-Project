@@ -6,7 +6,7 @@ C-FLAT \cite{Abera2016} notes that efficiently computing a generic program's CFG
 
 \subsection{Existing tools}
 
-\subsubsection{LLVM}
+\subsubsection*{LLVM}
 
 LLVM provides various methods of building CFGs which could be of use, for example:
 
@@ -16,15 +16,15 @@ LLVM provides various methods of building CFGs which could be of use, for exampl
 
 Building CFGs in LLVM is not simple and is not a main feature of LLVM. The dot format is widely used in representing CFGs and further research is required to find whether it can be made to be compatible with control-flow tracing.
 
-\subsubsection{Vulcan}
+\subsubsection*{Vulcan}
 
 Vulcan \cite{Edwards2001} is used by \cite{Davi2012} and the seminal work \cite{Abadi2005}. Though it has since been taken out of production by Microsoft and is currently unavailable.
 
-\subsubsection{Jakstab}
+\subsubsection*{Jakstab}
 
 Jakstab \cite{Kinder2008},\cite{Kinder2010} can also be used to create a dot file containing the CFG of x86 executables, so may need enhancement to support instruction set architectures (ISAs) commonly used in embedded systems such as ARMv8-M or RISC-V. It was successfully used in \cite{Nguyen2013} to construct CFGs for x86 Complex Instruction Set Computer (CISC) instructions. The last development activity on this was 31st March 2017. The tool's author has been trying to improve on the tool with the aim of creating under-approximated CFGs rather than over-approximated ones (which can lead to vulnerabilities in resultant implementations) \cite{Kinder2012}.
 
-\subsubsection{Others}
+\subsubsection*{Others}
 
 In C-FLAT \cite{Abera2016} the authors create their own analysis tool to achieve their branch-based requirements rather than create entire CFG models. They also use Capstone disassembly engine \footnote{\url{http://www.capstone-engine.org/}} however this is more for use dissasembling code rather than CFG building.
 

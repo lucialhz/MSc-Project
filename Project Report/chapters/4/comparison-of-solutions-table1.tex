@@ -1,0 +1,34 @@
+\begin{table}
+\centering{
+\scalebox{0.6}{
+\begin{threeparttable}
+\caption{Requirement Comparison of Control-flow Integrity and Control-flow Attestation}
+\label{tab:solutionComparisonRequirements}
+\newcommand*\rot[1]{\hbox to1em{\hss\rotatebox[origin=br]{-60}{#1}}}
+\begin{tabular}{l c c c p{3cm} p{8cm} p{3cm}}
+\toprule
+Scheme & \multicolumn{6}{c}{Requirements}\\
+\midrule
+ & \rot{(1) Works with compiled binaries}
+ & \rot{(2) Works with external libraries}
+ & \rot{(3) Can be used for binding}
+ & \rot{(4) Works with embedded systems}
+ & \rot{(5) Immediate identification}
+ & \rot{(6) Not reliant on TPM}\\
+\midrule
+C-FLAT \cite{Abera2016} & \CIRCLE & \CIRCLE & \Circle & \CIRCLE \raggedright \ ARM Cortex A & \Circle & \Circle\\
+LO-FAT \cite{Dessouky2017} & \CIRCLE & \CIRCLE & \Circle & \CIRCLE & \Circle & \CIRCLE\\
+SEP-LEE \cite{Lee2019} & \Circle  & \Circle & \CIRCLE & \CIRCLE & \raggedright \CIRCLE \ On jump or return & \CIRCLE\\
+CCFI-Cache \cite{Danger2018} & \Circle  & \Circle & \Circle & \CIRCLE & \raggedright \Circle \ End of BBL or number of executions reached & \CIRCLE\\
+HCFI \cite{Christoulakis2016} & \Circle  & \Circle & \Circle & \CIRCLE & \CIRCLE & \CIRCLE\\
+HAFIX \cite{Davi2015} & \Circle  & \Circle & \Circle & \CIRCLE & \CIRCLE & \CIRCLE\\
+SOFIA \cite{DeClercq2017b} & \Circle  & \Circle & \CIRCLE & \CIRCLE & \CIRCLE & \CIRCLE\\
+Sullivan \cite{Sullivan2016} & \Circle  & \CIRCLE & \Circle & \CIRCLE & \CIRCLE & \CIRCLE\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+	\item \CIRCLE ~= meets requirement; \LEFTcircle ~= partially meets requirement; \Circle ~= does not meet ; - = not enough information
+\end{tablenotes}
+\end{threeparttable}
+}}
+\end{table}

@@ -16,6 +16,6 @@ Key management has been an open problem in the field of embedded systems, where 
 
 Granularity to an instruction level can only be provided by a hardware solution which intercepts each instruction.
 
-\subsubsection{Hardware Implementation}
+\subsection{Hardware Implementation}
 Using a hardware solution it would be possible to address further criteria which the software-based solution was unable to address, much like the improvements LO-FAT\cite{Dessouky2017} made on C-FLAT \cite{Abera2016}. By moving monitoring and auditing capabilities to additional hardware such as a co-processor, or dedicated circuitry it would be possible to remove the majority of the overhead introduced when monitoring control-flow. Dedicated hardware with the ability to intercept instructions as they flow through the processing pipeline would enable monitoring of control-flow to a deeper granularity, where individual instructions of a basic block could be tracked in the form of a hash and number of instructions present within the basic block, this would be provided in a similar fashion as CCFI-Cache \cite{Danger2018}.
 

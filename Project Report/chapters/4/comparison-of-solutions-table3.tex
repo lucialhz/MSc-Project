@@ -1,0 +1,36 @@
+\begin{table}
+\newcommand*\rot[1]{\hbox to1em{\hss\rotatebox[origin=br]{-60}{#1}}}
+\centering
+\scalebox{0.6}{
+\begin{threeparttable}
+\caption{Comparison of Control-flow Integrity and Control-flow Attestation schemes properties 6-14}
+\label{tab:solutionComparisonProperties2}
+\begin{tabular}{l p{2cm} c p{2cm} p{2cm} p{3cm} p{2cm} p{2cm} p{3cm} p{2cm}}
+\toprule
+Scheme & \multicolumn{9}{c}{Properties 6-14} \\
+\midrule
+ & \rot{(6) CPU overhead}
+ & \rot{(7) FPGA area overhead}
+ & \rot{(8) Memory overhead}
+ & \rot{(9) Time overhead}
+ & \rot{(10) Compatible architectures}
+ & \rot{(11) Action on identification}
+ & \rot{(12) Prevention or detection or attestation}
+ & \rot{(13) Uses CFG or another method}
+ & \rot{(14) Success rate}\\
+\midrule
+C-FLAT \cite{Abera2016} & - & - & - & 0.03 - 0.13\% & 32-bit RISC & - & Attestation & CFG & -\\
+LO-FAT \cite{Dessouky2017} & 0\% & 20\% & - & 0\% & PULPINO RISC-V & - & Attestation & CFG & -\\
+SEP-LEE \cite{Lee2019} & - & - & \raggedright 235\% (160 vs 68 operations) & \raggedright 235\% (160 vs 68 operations) & SEP (based on Picoblaze but reduced from 18 bit to 16 bit) & Kill switch & \raggedright Prevention and detection & Sequential or BBL & -\\
+CCFI-Cache \cite{Danger2018} & - & 10\% & x2 + 9-30\% for nops & 2-63\% & \raggedright PicoRV (Implementation on RISC-V ISA) & Interrupt & Detection & \raggedright CFG + No of instructions + hash of instructions & \raggedright\arraybackslash Small number of ROP and JOP attacks will still work \\
+HCFI \cite{Christoulakis2016} & - & 2.5\% & - & 1-6\% & Leon3\slash SPARC V8 & Interrupt & Detection & \raggedright CFG and Shadow Stack & -\\
+HAFIX \cite{Davi2015} & - & 2-8\% & - & 2\% & Intel Siskiyou Peak, SPARC & - & Detection & CFG & 80\%\\
+SOFIA \cite{DeClercq2017b} & 13.7\% \raggedright Cycle overhead, 84.6\% Clock speed reduction & 28.2\% & - & 110\% & Leon3\slash SPARC V8 & Processor reset & \raggedright Prevention and detection & \raggedright Sequential and BBLs & -\\
+Sullivan \cite{Sullivan2016} & - & 1.78\% & - & 1.75\% & Leon3\slash SPARC V8 & \raggedright Termination of process & Detection & CFG & \raggedright\arraybackslash Dependant on CFG policy (assumed 100\%)\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+	\item \CIRCLE ~= has property; \LEFTcircle ~= partially has property; \Circle ~= does not have property; - = not enough information 
+\end{tablenotes}
+\end{threeparttable}}
+\end{table}

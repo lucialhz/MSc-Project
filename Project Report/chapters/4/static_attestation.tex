@@ -1,6 +1,6 @@
 \subsection{Attestation of code integrity} \label{staticAttestationSolutions}
 
-\subsubsection{SMART: Secure and Minimal Architecture for (Establishing a Dynamic) Root of Trust}
+\subsubsection*{SMART: Secure and Minimal Architecture for (Establishing a Dynamic) Root of Trust}
 SMART provides a simple method of attesting the state of a user application through slight hardware alterations \cite{For}. As an input from the verifier it takes a nonce, start memory address and end memory address (as well as additional parameters for an optional start position of user application). The prover replies with a SHA-1 HMAC of the requested code space.
 
 Important capabilities required by SMART are:
@@ -11,11 +11,11 @@ Important capabilities required by SMART are:
 	\item Smart code is not editable as it is stored on ROM.
 \end{itemize}
 
-SMART was implemented on low-end microcontroller units (MCUs) such as MSP430 or AVR. After implementation it was realised that only the memory access controller needed to be modified, therefore making the solution potentially compatible with “black box” processors such as low-end ARM cores.
+SMART was implemented on low-end microcontroller units (MCUs) such as MSP430 or AVR. After implementation it was realised that only the memory access controller needed to be modified, therefore making the solution potentially compatible with ``black box'' processors such as low-end ARM cores.
 
 A criticism of the method would be that it uses SHA1 which is now outdated. It may also succumb to cold-boot attacks however the authors state that due to the typical MCU design (where the processor and memory are a single package) memory could not be accessed directly so therefore is not vulnerable to this attack.
 
-\subsubsection{VIPER: Verifying the Integrity of PERipherals’ Firmware}
+\subsubsection*{VIPER: Verifying the Integrity of PERipherals' Firmware}
 
 VIPER is a software only solution designed to provide attestation for peripherals' firmware, where the host CPU queries peripherals \cite{Li2011}. It uses combinations of checksums, hashes and time-frame based checks to ensure peripheral firmware is correct. The method consists of two parties: the verifier (host CPU) and the prover (peripheral). The verifier will have access to a ``checksum simulator'' which contains copies of correct firmware for each peripheral and is able to generate random numbers. The checksum simulator is first invoked, generating challenges (nonces) and the expected correct response from the prover by simulating the verification procedure on the correct peripheral firmware. This process is used to gain confidence that the verification\slash hash code is correct on the peripheral. The verifier then starts the process with the peripheral, requesting that the peripheral resets itself to a known-good state. Then the verifier starts a timer and sends the challenges, the peripheral then calculates the checksum over its checksum and hashing code before returning the result to the verifier. Finally the peripheral will compute the hash over the full contents of its memory, which is then sent to the verifier program for validation.
 
@@ -23,7 +23,7 @@ A significant proportion of this solution is focused on how latency needs to be 
 
 The paper \cite{Li2011} also provides an excellent description of the principles of designing a checksum function for the prover. These principles include using all available registers as part of the checksum calculation, the checksum should follow a pseudo-random pattern when reading from memory (preventing predictability for any attacker) and that the program counter (\verb|pc|) should be included in the calculation (if accessible). 
 
-\subsubsection{Pioneer: Verifying Code Integrity and Enforcing Untampered Code Execution on Legacy Systems}
+\subsubsection*{Pioneer: Verifying Code Integrity and Enforcing Untampered Code Execution on Legacy Systems}
 
 Pioneer is a software-only solution which works in a similar way to VIPER but is designed to attest remote legacy systems \cite{Seshadri2007}. A checksum is calculated throughout the execution of the verifying (testing mechanism) code, the resulting execution time is compared to an expected execution time known to the verifier. This proves that the testing mechanism is correct. The testing mechanism then builds a hash of the target code. 
 
@@ -31,7 +31,7 @@ This solution makes some major assumptions in order to ensure security. Some of 
 
 The paper provides a solid description of the design of the checksum and verification mechanisms, including design decisions based around stack layouts on the target architectures and how the \verb|pc| can be utilised.
 
-\subsubsection{SWATT: SoftWare-based ATTestation for Embedded Devices}
+\subsubsection*{SWATT: SoftWare-based ATTestation for Embedded Devices}
 
 SWATT is a software-based solution which uses a random number generator (for example RC4 for 8-bit architectures, Helix for 32-bit architectures \cite{Ferguson2003}, or using bits from the output of a multi-word T-function for 16 and 32-bit architectures \cite{Klimov2004}) to generate random memory addresses which are attested \cite{Seshadri2004}. This means an attacker cannot predict which regions they need to leave intact. It is notable that the verification function is not the target of a separate checksum, but as the entire contents of memory are covered by the check it will be checked, just not to the same granularity as other solutions such as VIPER \cite{Li2011} or Pioneer \cite{Seshadri2007}. Like other static attestation methods, SWATT also uses time measurement to ensure an attacker is not manipulating the results. We question whether time-based checking is a reliable component, especially when attestation is taking place remotely, for example, over a network.
 This paper also references solutions which use secure coprocessors which are used during system initialisation to bootstrap trust. Examples of these are TCG (Trusted Computing Group, formerly known as TCPA) and Next-Generation Secure Computing Base (NGSCB, formerly Palladium) which may be of interest at a later point as we will be able to see if they produce a useful output after start-up has occurred.
@@ -41,19 +41,19 @@ This paper notes that ``without secure hardware, a (potentially) compromised dev
 This solution requires that an attacker will not increase the size of memory on the prover device. 
 
 
-\subsubsection{Software-Based Remote Code Attestation in Wireless Sensor Network}
+\subsubsection*{Software-Based Remote Code Attestation in Wireless Sensor Network}
 
 AbuHMed at al. \cite{AbuHmed2009} present a software-based solution which focuses on filling empty memory with predictable contents either prior to deployment or post-deployment in an attempt to prevent an attacker from utilizing free space for malicious instructions. An example method of filling empty memory is using generated ciphertext, utilising a key shared with the verifier as the seed. The verification of the memory is then performed in a similar pseudo-random manner as SWATT \cite{Seshadri2004}, but upgrading the pseudo-random number generating algorithm to RC5 (with the possibility of further upgrade to MISTY1, Rijndael or Skipjack). As the solution is not based around the timing of algorithms the authors find that it will be most useful in scenarios where multiple hops are required. They state that, through the use of pseudo-random memory traversal, proxy-based attacks are not possible. The use of predetermined noise to fill empty memory aids in this, however we observe that if a good device and its memory can be cloned, the original device could be vulnerable to a proxy-based attack.
 
 \subsection{Dynamic attestation of code integrity} \label{dynamicAttestationSolutions}
 
-\subsubsection{Remote Attestation to Dynamic System Properties: Towards Providing Complete System Integrity Evidence}
+\subsubsection*{Remote Attestation to Dynamic System Properties: Towards Providing Complete System Integrity Evidence}
 
 Kil et al. \cite{Kil2009} aim to solve a different problem of attestation - that of dynamic attestation. It uses various different components to measure run-time statistics such as data invariants. They state that they aim for full coverage of the source code rather than all execution paths, the problem of achieving coverage is described as the equivalent to solving the halting problem. By being heavily interwoven with the Linux kernel they track all system calls. It heavily relies on the TPM to do the heavy lifting of signing attestation reports and isolating records of violations. This solution utilises a Merkel hash tree for use in authenticating input files for the proc file.
 
 \subsection{Attacks on software-based static attestation} \label{attestationSolutionsAttacks}
 
-\subsubsection{On the Difficulty of Software-Based Attestation of Embedded Devices}
+\subsubsection*{On the Difficulty of Software-Based Attestation of Embedded Devices}
 
 This paper \cite{Castelluccia2009} finds that software-based attestation is a problematic solution. They attack SWATT \cite{Seshadri2004} by adding a hook into the attestation code which swaps out malicious code to data memory, and as a result they recommend covering all memory in attestation processes (which they note would not be easy in embedded systems). They find that the time overhead relied upon by SWATT \cite{Seshadri2004} is imprecise and that their attacks fit within the tolerance. The paper also attacks solutions which fill empty memory with noise, as they found they could compress legitimate applications to make room for malicious ones.
 

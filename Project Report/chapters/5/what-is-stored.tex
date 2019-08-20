@@ -4,14 +4,14 @@
 
 When implemented on an OS, the save will query the running processes from the OS and add them to the control-flow manifest. Query process IDs will be a different process between operating systems, so we will evaluate which OS will potentially be used prior to finalising the process. While there has been some work done in regards to enabling CFG to work with operating systems it will need investigating prior to any further planning.
 
-\subsubsection{Variables}
+\subsubsection*{Variables}
 
 The solution will implement a function where the software can assert (send data to secure world) variables currently in use, either when saving or as an additional instruction through the solution's API. External data or internal data will be tracked using asserts.
 
-\subsubsection{Previous hash}
+\subsubsection*{Previous hash}
 
 A hash chain will be built to prove the control-flow was tied to the previous control flow and the static attestation report.
 
-\subsubsection{Security}
+\subsubsection*{Security}
 
 The resulting audit files will either be signed or have an HMAC created for them, they will be encrypted depending on requirements. A chain of files may be built up by including hashes of the previous file in each audit file, with the first also containing the initial attestation report.

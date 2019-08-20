@@ -12,7 +12,7 @@ One example of an invasive attack is probing bus lines between blocks on a chip 
 
 Semi-invasive attacks  require the surface of chip to be exposed, however the security is compromised without directly modifying the chip. Examples of semi-invasive attacks include observing electro-magnetic eminations using a suitable probe \cite{Gandolfi2007},\cite{Quisquater2001}, injecting faults using laser \cite{Bar-el2006} or white light \cite{Skorobogatov2007}. Numerous more have been discussed in literature \cite{Skorobogatov2005}.
 
-\subsubsection{Fault Injection}
+\subsubsection*{Fault Injection}
 
 Variations in supply voltage may cause processors to misinterpret or skip instructions \cite{Anderson1996},\cite{Blomer2010}, this is applicable to control-flow as the misinterpreting or skipping of instructions are attacks used to subvert the control-flow of applications.
 Variations in external clock can cause data to be misread \cite{Anderson1996},\cite{Street},\cite{Kommerling1999} (i.e. data is attempted to be read before memory has time to latch-out correct value). This can lead to the missing of instructions, which can be an attack vector if software is written in an insecure manner (such as aborting an operation if an \verb|if| check is successful).
