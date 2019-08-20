@@ -1,6 +1,10 @@
-\subsection{Introduction}\label{projectRequirements}
+\section{Project Objectives} \label{projectRequirements}
 
-In this section we will define the requirements which we will aim to meet with the solution produced as a result of this project. These have been built up using the literature for CFI and attestation methods as well as the requirements identified from the attack model.
+The objectives of this project are to investigate and implement a solution for audit of the control flow of applications.
+
+The solution will statically attest the application before including this in the result in dynamic results of the control-flow monitoring. It will store this result and a signature / MAC on the long-term storage of the device.
+
+In this section we will define the requirements which we will aim to meet with the solution proposed as a result of this project. These have been built up using the literature for CFI and attestation methods as well as the requirements identified from the attack model.
 
 \subsection{Practical Requirements}
 
@@ -20,5 +24,5 @@ In this section we will define the requirements which we will aim to meet with t
 	\item \textbf{An attacker must be detected if they subvert control flow to existing code (e.g. return-to-libc)} Subverting control-flow to external existing code could enable an attacker to perform functions not permitted through normal usage of the application.
 \end{enumerate}
 
-\subsection{Attacker Assumptions}
+\subsection{Attacker Model}
 We assume that attacker may have direct access to memory but not internal registers, they cannot break cryptographic protections and that cryptographic keys can be safely stored. This level of attacker has been referred to as the Dolev-Yao attacker model \cite{Dolev1981} by \cite{Lee2019}.
