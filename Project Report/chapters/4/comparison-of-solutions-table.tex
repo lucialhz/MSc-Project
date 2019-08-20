@@ -50,7 +50,7 @@ Scheme & \multicolumn{5}{c}{Properties 1-5} \\
  & \rot{(4) Granularity}
  & \rot{(5) Security provided by}\\
 \midrule
-C-FLAT \cite{Abera2016} & \CIRCLE & \CIRCLE & \raggedright Control flow instructions re-written to go via trampolines & Basic Block & \raggedright\arraybackslash TPM and Digital Signatures (for report)\\
+C-FLAT \cite{Abera2016} & \LEFTcircle \raggedright Star  & \CIRCLE & \raggedright Control flow instructions re-written to go via trampolines & Basic Block & \raggedright\arraybackslash TPM and Digital Signatures (for report)\\
 LO-FAT \cite{Dessouky2017} & \CIRCLE & \Circle & \Circle & Basic Blocks & LO-FAT Memory is protected\\
 SEP-LEE \cite{Lee2019} & \CIRCLE & \Circle \ Reassembly & \CIRCLE  & Sequential or BBLs & PRINCE\\
 CCFI-Cache \cite{Danger2018} & \CIRCLE & \LEFTcircle & \CIRCLE  & \raggedright Sequential (Only number or hash of instructions) & \raggedright\arraybackslash Meta-data in ROM, Hardware Security for controller\\
@@ -61,7 +61,7 @@ Sullivan \cite{Sullivan2016} & \CIRCLE & \Circle & \CIRCLE & BBLs & \raggedright
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
-	\item \CIRCLE ~= has property; \LEFTcircle ~= partially has property; \Circle ~= does not have property; - = not enough information 
+	\item \CIRCLE ~= has property; \LEFTcircle ~= partially has property; \Circle ~= does not have property; - = not enough information; star = makes use of hardware features not present in all embedded systems.
 \end{tablenotes}
 \end{threeparttable}}
 \end{table}
