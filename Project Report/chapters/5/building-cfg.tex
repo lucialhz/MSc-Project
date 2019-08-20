@@ -28,7 +28,7 @@ Jakstab \cite{Kinder2008},\cite{Kinder2010} can also be used to create a dot fil
 
 In C-FLAT \cite{Abera2016} the authors create their own analysis tool to achieve their branch-based requirements rather than create entire CFG models. They also use Capstone disassembly engine \footnote{\url{http://www.capstone-engine.org/}} however this is more for use dissasembling code rather than CFG building.
 
-LiteHAX \cite{Dessouky2018} uses the `angr' \footnote{\url{http://angr.io/}} \cite{Shoshitaishvili2016} framework to generate the CFG outputting a networkx \cite{Hagberg2008} DiGraph. This project is still under active development. The output of this process would need to be compatible with the dynamic attestation. angr offers two types of computation methods - CFGFast (a static CFG) and CFGEmulated (a dynamic CFG).
+LiteHAX \cite{Dessouky2018} uses the `angr' \cite{Shoshitaishvili2016} framework to generate the CFG outputting a networkx \cite{Hagberg2008} DiGraph. This project is still under active development. The output of this process would need to be compatible with the dynamic attestation. angr offers two types of computation methods - CFGFast (a static CFG) and CFGEmulated (a dynamic CFG).
 During assessment of angr, utilising networkx utilities, we have found that only single edges are identified. For example ~\ref{lst:angr_result}
 
 \begin{lstlisting}[caption={Example of results from angr CFG analysis of fauxware in form of .edgelist output from networkx utilities},label={lst:angr_result}]
