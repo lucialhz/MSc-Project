@@ -1,10 +1,10 @@
 \section{Building CFGs}
 
-\subsubsection*{The problem behind generating CFGs}
+\subsubsection*{The Problem Behind Generating CFGs}
 
 Control-flow graphs (CFGs) are the cornerstone of control-flow integrity, and while several solutions already examined (for example, SEP \cite{Lee2019}, HAFIX \cite{Davi2015} and HCFI \cite{Danger2018}) do not require their construction, a CFG will be required when we consider audit as it provides a static reference point. Efficiently computing a generic program's CFG, and accompanying exploration of all possible execution paths is an open problem \cite{Abera2016}. However applications for embedded systems tend to be far smaller than those operating on a general purpose computer, this means it is foreseeable that generation of a CFG for embedded systems applications should be possible.
 
-\subsection{Tools for generating CFGs}
+\subsection{Tools For Generating CFGs}
 
 A number of tools have been used in CFI solutions already examined. These tools usually have a different primary function such as compilation or reverse-engineering, but offer CFG generation as a bi-product of the process required to provide their primary function. The following is a selection of tools already used by other CFI solutions.
 

@@ -1,6 +1,6 @@
 This chapter analyses and summarises contributing and related academic work applicable to this project. In the first section we will discuss works which describe the problems to be addressed and existing solutions to said problems, this section also includes a subsection on FPGA security which makes for useful reading as many embedded systems are FPGA-based. The second section contains a brief review of other physical attacks not addressed in the first section. We then undertake a deeper analysis of a handful of existing solutions, some of which directly address binding of software and hardware and some of which focus on the related subject of secure software execution. The fourth section provides a brief introduction into some of the founding principles used in many of the solutions already described and should be useful knowledge to have with respect to this project.
 
-\section{Subject-matter Surveys}\label{subjectMatterSurveys}
+\section{Subject-Matter Surveys}\label{subjectMatterSurveys}
 
 Many surveys on solutions which increase security for firmware/software in embedded systems have been completed. One such survey \cite{Shepherd2016} focusses on existing mature solutions, while others \cite{Bryant2004}, \cite{Collberg2002} and \cite{Theissing2013} provide a look at broader principles. All of these surveys also paint a picture of the attacks and threats which embedded systems face. Other surveys exist on the technologies described in this project, one such survey is \cite{Drimer2008} which focuses on FPGA security.
 
@@ -35,7 +35,7 @@ The paper also describes a series of steps to take when using anti-tamper techno
 
 A similar survey \cite{Collberg2002} covers three types of attacks: reverse engineering, software piracy and tampering, which it describes as ``malicious host attacks''. To defend against such attacks the paper states three corresponding defences: code obfuscation (as well as anti-disassembly and anti-debugging measures), watermarking and tamper-proofing. The authors note that they could not find a wealth of information on tamper-proofing at the time of writing (2002) but they do draw an interesting parallel with the anti-tamper mechanisms used in computer viruses.  
 
-\subsection{Defence against fault injection}\label{faultInjectionDefenceSurveys}
+\subsection{Defence Against Fault Injection}\label{faultInjectionDefenceSurveys}
 
 A series of high-coverage tests for security protections against fault injection attacks were run and described in \cite{Theissing2013}. It describes 17 different countermeasures, including: countermeasures protecting the data layer, combinations of data protection methods, countermeasures protecting control flow layer, combinations of control flow protection methods and combinations of data and control flow protection. To test these methods the authors produced a high number of simulated fault injections on a simulator of an ARM-Cortex-M3 processor running a benchmark application representing a bank card.
 
@@ -88,7 +88,7 @@ The fifth method described in \cite{Gora2010} is developed to protect against IP
 
 An honourable mention should be made for \cite{Simpson2006} which was published in 2006 and led the way in using PUFs to secure software and also clearly describes the enrolment process with defined message exchanges.
 
-\subsection{Secure execution}\label{secureExecutionSolutions}
+\subsection{Secure Execution}\label{secureExecutionSolutions}
 
 Secure software execution (or control-flow security/integrity) has the goal of preventing the desired results of attacks against program control flow, which aim to use physical attacks to make the execution of running programs jump to blocks which should not be running at that particular time (e.g. an administration function).
 
@@ -110,7 +110,7 @@ The fourth paper \cite{Arora2006} lists various attacks, ranging from buffer ove
 
 \section{Primitives}
 
-\subsection{Control-flow Graphs}
+\subsection{Control-Flow Graphs}
 
 The use of control flow checking for accidental program flow changes is considered in \cite{Goloubeva2003}, and explains the basic principle well. It describes basic blocks, control-flow between blocks, how these make up program graphs and finally how these graphs can be used to indicate control-flow error. The paper presents two existing error detection methods but finds faults in both so presents a novel solution addressing the previous solutions' shortcomings.
 

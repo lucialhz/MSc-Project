@@ -1,5 +1,5 @@
 \UseRawInputEncoding
-\section{Attacks on hardware} \label{hardwareAttacks}
+\section{Attacks on Hardware} \label{hardwareAttacks}
 
 Attacks on hardware are amongst the hardest attacks to mitigate against, as having direct access to memory or even cache memory can enable an attacker to bypass many protections (for example software-based protections). Hardware attacks can be used to capture the leaking of cryptographic keys, which presents a problem, particularly for attestation where a typical attestation report is signed using a signing key or when a symmetric key is used for encrypting or applying a MAC to the attestation report. The basis for this section stems from \cite{MayesKeithE2008SCTS} where attacks on hardware which are applicable to embedded systems are well explored.
 
@@ -33,11 +33,11 @@ The effects of fault injection include resetting data where data is forced to a 
 \subsection{Non-Invasive Attacks}
 Non-invasive attacks can be used to derive information without modification of hardware through information that leaks during computation of a given command, or attempting to inject faults in manners other than light. Examples include monitoring power consumption \cite{Maurer1999},\cite{MangardStefan2007Paa:} and injecting faults by glitching the power supply \cite{Anderson1996},\cite{Bar-el2006}.
 
-\section{Software attacks}
+\section{Software Attacks}
 
 Attacks on software represent a likely threat to the security of embedded systems as they can be carried out remotely or simply stumbled upon (fuzzed). Once an exploit is discovered it is highly repeatable and can be crafted into a number attack methods. Embedded systems can be more vulnerable than other computer systems due to the language used to write applications - C. As C provides the developer with memory operations but, as a result, also presents the attacker with an opportunity to exploit any bugs in the code, usually by manipulating memory.
 
-\subsection{Common software attacks methods}
+\subsection{Common Software Attack Methods}
 
 The aim of a \textbf{buffer overflow attack} is to manipulate control-flow information stored on the stack and heap of a program in order to achieve further objectives, examples of such information could be return addresses or other variables on which the basis of decisions are made (e.g. \verb|if| statements).
 

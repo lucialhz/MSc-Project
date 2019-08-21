@@ -1,4 +1,4 @@
-\section{Control-flow Integrity}
+\section{Control-Flow Integrity}
 
 Control-flow integrity (CFI) was introduced in the introduction to this project. As it is a key part of this project we shall provide an in-depth discussion of its important principles. CFI is described as a security policy which states that software execution must follow a path of a Control-Flow Graph (CFG). CFI can be provided in a number of ways including signature modelling, shadow stacks and through the enforcement of basic block transitions along a CFG.
 
@@ -13,11 +13,11 @@ Clerq and Verbauwhede \cite{DeClercq2017} posed CFGs as part of a solution for t
 
 Generating a CFG from static analysis is troublesome, and often an over-approximation is used which is not fully precise \cite{Carlini2015},\cite{Kinder2012}, the survey \cite{Burow} assists the understanding of CFG generation methods by classifying the precision of generated CFGs using different static analysis techniques.
 
-\subsection{Hardware-based CFI}
+\subsection{Hardware-Based CFI}
 
 Hardware-based CFI is provided by the addition of dedicated hardware which is either included in the execution pipeline or intercepts the instruction flow from memory to the processor. We provide a survey of prominent hardware-based CFI solutions in \ref{comparisonOfCFISolutions}.
 
-\subsection{Software-based CFI}
+\subsection{Software-Based CFI}
 
 Software-based CFI was first introduced in the seminal paper by Abadi et al. \cite{Abadi2005}. This has been the foundation for further research surveyed by Burow et al. \cite{Burow}, which provides a detailed insight into the technical properties of a number of software-based CFI solutions.
 
@@ -25,11 +25,11 @@ Due to the nature of software-based CFI, it is not a reliable protection against
 
 Software-based CFI will not be discussed in further detail in this project due to its susceptibility to hardware-attacks, however the engineering and algorithms presented by software-based solutions should be taken into account when researching CFI methods.
 
-\subsection{Alternatives to Basic Block CFG-based CFI}
+\subsection{Alternatives to Basic Block CFG-Based CFI}
 
 While basic blocks and CFGs are an elegant approach to ensuring CFI, there has been considerable research undertaken on alternative methods also providing CFI.
 
-\subsubsection*{Signature modelling}
+\subsubsection*{Signature Modelling}
 CFI through signature modelling states that if a series of executed instructions do not follow the trace of the program's CFG the control-flow integrity has been lost. Yang et al. \cite{Yang2013} describe this method through their implementation in software. They also performed a thorough analysis of various existing solutions. The methodology of signature modelling was successfully implemented using a hardware-based method in the work carried out by Werner et al. \cite{Werner2016}.
 
 A problem with signature modelling is that the number of unique sequences of instructions (and their accompanying signatures) accumulate very quickly, requiring more storage if they are to be used as a comparison. This is a particular problem when considering embedded systems due to their inherent limitation of storage capacity. Another difficulty is the necessity to compute signatures in real-time, which would require additional processing and therefore an increase in processing overhead. Although, as we have seen in other methods \cite{Davi2015},\cite{Lee2019}, decryption is a common method of ensuring CFI, so perhaps this is not an unreasonable expectation.

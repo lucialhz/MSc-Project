@@ -25,14 +25,14 @@ Where a third party (verifier) receives a report, which could only have come fro
 	\item Instructions are intercepted by secondary hardware monitor to take flow measurements, comparing these to the valid instructions as described by the CFG.
 \end{itemize}
 
-\subsubsection*{Data-flow integrity}
+\subsubsection*{Data-Flow Integrity}
 
 Data flow integrity \cite{Castro2006} is a measure used to ensure that data only flows in the correct direction from authorised callers. This can be used to ensure only the correct caller has changed an important variable - for example one which a decision is based on (e.g. inside an \verb|if| statement), this can also be used to protect the stack.
 In  \cite{Castro2006} the solution maintains a table for each piece of data accessed with the address of last accessor. If the last accessor is not within the legal list a security failure exists and an exception is thrown.
 
 Dynamic taint analysis \cite{Davi2009} is another method used to detect and prevent control-data and non-control-data attacks by labelling data as untrusted and tracking that data to make sure it is not used to determine program execution. With dynamic taint analysis there is no need for source code, however it does yield false positives, has a high overhead and requires additional hardware support as noted by Castro et al. \cite{Castro2006}.
 
-\subsection{Auditing control-flow}
+\subsection{Auditing Control-Flow}
 CFI prevention and detection has proven to lead to a slight computational overhead \cite{DeClercq2017} and a large storage overhead (if the CFG were to be stored locally), while attestation requires an always-on connection. What if we can store the control flow of an application on a hard disk, which can be retrieved later? This could be useful to prove to a third party that a disputed result of a computation is correct (or at least the steps taken during the computation was correct), or providing a record of the control-flow which has been taken during the execution of a  vitally important operation.
 
 Keeping audit records of control-flow could also be useful for spot-checking inaccessible devices which have no internet connection, such as industrial control systems (ICS) components or medical devices which can only be communicated with during medical check-ups.

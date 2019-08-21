@@ -2,7 +2,7 @@
 
 The tracing and monitoring of control-flow is perhaps the most important element of any CFI solution, as all control-flow change events need to be captured in order to ensure CFI. One method of capturing control-flow is through software, where functions are written and APIs provided which intercept control-flow events. Another method is to add dedicated hardware into the processor pipeline, where it intercepts each instruction (when the instruction is retrieved from memory prior to execution).
 
-\subsection{Granularity of monitoring}\label{implementationGranularity}
+\subsection{Granularity of Monitoring}\label{implementationGranularity}
 
 If a software-only method were to be used, recording of every executed instruction is infeasible as the overhead added would be too large (if no additional hardware is included), as each instruction processed would require a corresponding context switch and further processing. If each instruction is hashed in real time the computational overhead would increase or if each instruction is recorded in storage prior to processing the memory\slash storage\slash IO capacity would see a significant overhead increase. The use of basic blocks allows us to deal with multiple instructions at a time, and therefore reduce the potential overhead dramatically.
 
@@ -15,7 +15,7 @@ CFG granularity can be broken down into three levels \cite{Abera2016}:
 
 To achieve the best coverage for the proposed solution, level 3 (Basic Blocks ending in any branch instruction) would be the optimum granularity to aim for. We have taken inspiration from C-FLAT\cite{Abera2016} when considering the design for the proposed solution, as it most closely aligns with the objectives of this project.
 
-\subsection{Representing the execution path}
+\subsection{Representing the Execution Path}
 
 We can build up a hash of the flow by taking the ID (or memory address) of the source node and hashing that with the previous hash. At the start ($ID_1$) the previous hash would be replaced with zero, a nonce or a hash created as part of the static attestation process. The resulting chain would appear as: 
 $H_1 = H(ID_1,0)$ (or $H_1 = H(ID_1,nonce)$), $H_2 = H(ID_2,H_1)$ \ldots $H_n = H(ID_n,H_{n-1})$.
