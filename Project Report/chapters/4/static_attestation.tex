@@ -1,4 +1,22 @@
-\subsection{Attestation of code integrity} \label{staticAttestationSolutions}
+\section{Comparison of solutions providing Static Attestation} \label{staticAttestationSolutions}
+
+\subsection{Established Criteria}
+
+We will compare each solution described in \ref{staticAttestationSolutions} using a set of defined properties. These properties are built using those described in \ref{comparisonOfCFISolutions} as a template and refined to suite the solutions for static attestation presented. The result of this comparison will be used to help define the static attestation phase of the proposed solution, and may also provide inspiration for the overall proposed solution.
+
+\subsubsection*{Properties}
+The properties which will be used for comparison are:
+\begin{enumerate}[label=(\arabic*),noitemsep]
+	\item Hardware-based: modification of hardware or additional hardware is required for the solution.			\item Software-based: the solution is created through the use of additional software.
+	\item Successfully implemented: is the solution has been sucessfully implemented, this gives an indication on the legitimacy of the solution.
+	\item Testing results: was the solution successful when defending against defined attacks.
+	\item Instruction set architecture: what ISA the solution was initially designed for.
+	\item Architecture-independent: will the solution be applicable to other architectures, as well as the architecture it was implemented and tested on.
+\end{enumerate}
+
+\subsection{Solutions Presented}
+
+The following solutions have been presented for comparison through a combination of them being prominent work or by being referenced in control-flow attestations schemes which we have already analysed. We will provide a brief description of their methods and focus prior to presenting the results of a comparison of solutions in table~\ref{tab:staticAttestationComparisonRequirements}.
 
 \subsubsection*{SMART: Secure and Minimal Architecture for (Establishing a Dynamic) Root of Trust}
 SMART provides a simple method of attesting the state of a user application through slight hardware alterations \cite{For}. As an input from the verifier it takes a nonce, start memory address and end memory address (as well as additional parameters for an optional start position of user application). The prover replies with a SHA-1 HMAC of the requested code space.
@@ -45,26 +63,12 @@ This solution requires that an attacker will not increase the size of memory on 
 
 AbuHMed at al. \cite{AbuHmed2009} present a software-based solution which focuses on filling empty memory with predictable contents either prior to deployment or post-deployment in an attempt to prevent an attacker from utilizing free space for malicious instructions. An example method of filling empty memory is using generated ciphertext, utilising a key shared with the verifier as the seed. The verification of the memory is then performed in a similar pseudo-random manner as SWATT \cite{Seshadri2004}, but upgrading the pseudo-random number generating algorithm to RC5 (with the possibility of further upgrade to MISTY1, Rijndael or Skipjack). As the solution is not based around the timing of algorithms the authors find that it will be most useful in scenarios where multiple hops are required. They state that, through the use of pseudo-random memory traversal, proxy-based attacks are not possible. The use of predetermined noise to fill empty memory aids in this, however we observe that if a good device and its memory can be cloned, the original device could be vulnerable to a proxy-based attack.
 
-\subsection{Dynamic attestation of code integrity} \label{dynamicAttestationSolutions}
+\subsection{Discussion of Findings}
 
-\subsubsection*{Remote Attestation to Dynamic System Properties: Towards Providing Complete System Integrity Evidence}
+\input{chapters/4/static_attestation_table}
+Table~\ref{tab:staticAttestationComparisonRequirements} shows how the solutions compare when taking some key properties into account. Most solutions are created only using software, this aids in ease of implementation and reducing cost. A large amount of the focus of the software-only mechanisms centres on proving the integrity of the verification software, which is a legitimate concern. Using a hardware-based mechanism assists in reducing this concern as it is assumed it cannot be modified. As can be seen, the choice of ISA is not important when performing static attestation, this is due to instructions not being the main focus (unlike control-flow attestation).
 
-Kil et al. \cite{Kil2009} aim to solve a different problem of attestation - that of dynamic attestation. It uses various different components to measure run-time statistics such as data invariants. They state that they aim for full coverage of the source code rather than all execution paths, the problem of achieving coverage is described as the equivalent to solving the halting problem. By being heavily interwoven with the Linux kernel they track all system calls. It heavily relies on the TPM to do the heavy lifting of signing attestation reports and isolating records of violations. This solution utilises a Merkel hash tree for use in authenticating input files for the proc file.
+One notable assumption presumed by static-attestation solutions is that CPU clockspeed cannot be increased, or that CPU has not been changed. They tend to use optimised algorithms for computing checksums in order to make it easier to detect additional time added by attackers' attempts to circumvent the procedure.
 
-\subsection{Attacks on software-based static attestation} \label{attestationSolutionsAttacks}
+This paper \cite{Castelluccia2009} finds that software-based attestation is a problematic solution. They attack SWATT \cite{Seshadri2004} by adding a hook into the attestation code which swaps out malicious code to data memory, and as a result they recommend covering all memory in attestation processes (which, they note, would not be easy in embedded systems). They find that the time overhead relied upon by SWATT \cite{Seshadri2004} is imprecise and that their attacks fit within the tolerance. The paper also attacks solutions which fill empty memory with noise, as they found they could compress legitimate applications to make room for malicious ones.
 
-\subsubsection*{On the Difficulty of Software-Based Attestation of Embedded Devices}
-
-This paper \cite{Castelluccia2009} finds that software-based attestation is a problematic solution. They attack SWATT \cite{Seshadri2004} by adding a hook into the attestation code which swaps out malicious code to data memory, and as a result they recommend covering all memory in attestation processes (which they note would not be easy in embedded systems). They find that the time overhead relied upon by SWATT \cite{Seshadri2004} is imprecise and that their attacks fit within the tolerance. The paper also attacks solutions which fill empty memory with noise, as they found they could compress legitimate applications to make room for malicious ones.
-
-\subsection{Conclusions on attestation} \label{attestationConclusion}
-
-To provide attestation one usually requires a nonce and an area of memory to attest. The problem of offline attestation (audit) is that a previous good report could be cloned. To overcome this we should consider sequence numbers - where they need to be unique each time the process occurs, these would be stored alongside the HMAC prior to being encrypted. Another option could be using a time-stamp, however the time value would have to be strongly protected and secure in order to prevent an attacker from changing the time to the desired time when the attack is planned in order to create a ``good'' report. Chaining reports together may provide protection against this.
-
-It seems that a large amount of the focus of the software-only mechanisms centre on proving the integrity of the verification software, which is a legitimate concern. Secure operating conditions or self attestation should be able to provide for this.
-
-A key learning from the solutions and the attack described is the importance of attesting all parts of memory.
-
-Proxy attacks should not be a problem for self attestation if attestation is only performed through internal APIs.
-
-One major assumption presumed by all is that CPU clockspeed cannot be increased, or that CPU has not been changed. They all also use optimised algorithms for computing checksums in order to make it easier to detect additional time added by attackers' attempts to circumvent the procedure.
