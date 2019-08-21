@@ -12,11 +12,16 @@ One example of an invasive attack is probing bus lines between blocks on a chip 
 
 Semi-invasive attacks  require the surface of chip to be exposed, however the security is compromised without directly modifying the chip. Examples of semi-invasive attacks include observing electro-magnetic eminations using a suitable probe \cite{Gandolfi2007},\cite{Quisquater2001}, injecting faults using laser \cite{Bar-el2006} or white light \cite{Skorobogatov2007}. Numerous more have been discussed in literature \cite{Skorobogatov2005}.
 
+An example of a semi-invasive fault injection attack is one where laser light is used. In this case light arriving on a metal surface induces a current, which if intense enough could induce a fault in a circuit \cite{Habing1965}. White light has been proposed as alternative to laser-based attacks \cite{Anderson1996},\cite{Skorobogatov2007}, however as it is not directional it is challenging to focus on a particular areas of a microprocessor and therefore provide a targeted attack.
+  
+\subsection{Non-Invasive Attacks}
+Non-invasive attacks can be used to derive information without modification of hardware through information that leaks during computation of a given command, or attempting to inject faults in manners other than light. Examples include monitoring power consumption \cite{Maurer1999},\cite{MangardStefan2007Paa:} and injecting faults by glitching the power supply \cite{Anderson1996},\cite{Bar-el2006}. 
+
 \subsubsection*{Fault Injection}
 
 Variations in supply voltage may cause processors to misinterpret or skip instructions \cite{Anderson1996},\cite{Blomer2010}, this is applicable to control-flow as the misinterpreting or skipping of instructions are attacks used to subvert the control-flow of applications.
 Variations in external clock can cause data to be misread \cite{Anderson1996},\cite{Street},\cite{Kommerling1999} (i.e. data is attempted to be read before memory has time to latch-out correct value). This can lead to the missing of instructions, which can be an attack vector if software is written in an insecure manner (such as aborting an operation if an \verb|if| check is successful).
-Extremes of temperature can cause unpredictable effects in a microprocessor \cite{Boneh},\cite{Govindavajhala2003}. Two examples of these effects are random modification of RAM cells due to overheating and read write temperature thresholds in most non-volatile memory (NVM) not coinciding \cite{Bar-el2006}. In this case if the temperature is set to a level where write ops work but read do not a number of attacks can be mounted. Laser light can be used where light arriving on a metal surface induces a current, which if intense enough could induce a fault in a circuit \cite{Habing1965}. White light has been proposed as alternative to laser-based attacks \cite{Anderson1996},\cite{Skorobogatov2007}, however as it is not directional it is challenging to focus on a particular areas of a microprocessor and therefore provide a targeted attack. Electromagnetic flux has been used to change values in RAM, where strong eddy currents can affect microprocessors although this has only been observed in insecure microprocessors \cite{Samyde2003}.
+Extremes of temperature can cause unpredictable effects in a microprocessor \cite{Boneh},\cite{Govindavajhala2003}. Two examples of these effects are random modification of RAM cells due to overheating and read write temperature thresholds in most non-volatile memory (NVM) not coinciding \cite{Bar-el2006}. In this case if the temperature is set to a level where write ops work but read do not a number of attacks can be mounted. Electromagnetic flux has been used to change values in RAM, where strong eddy currents can affect microprocessors although this has only been observed in insecure microprocessors \cite{Samyde2003}.
 
 \begin{lstlisting}[language={[Sharp]C},caption={An example of code which is vulnerable to skipping of instructions},label={lst:instructionSkip}]
 int CheckNumberOfAttempts(int attemptCount, int attemptLimit)
@@ -28,10 +33,7 @@ int CheckNumberOfAttempts(int attemptCount, int attemptLimit)
 }
 \end{lstlisting}
 
-The effects of fault injection include resetting data where data is forced to a blank state, data randomisation where data can be changed to a new random value and modifying of opcodes where instructions executed on a chip's CPU are changed which often has the same effect as previous examples but additionally allows for the removal of functions and breaking of loops \cite{Anderson1996}.
-  
-\subsection{Non-Invasive Attacks}
-Non-invasive attacks can be used to derive information without modification of hardware through information that leaks during computation of a given command, or attempting to inject faults in manners other than light. Examples include monitoring power consumption \cite{Maurer1999},\cite{MangardStefan2007Paa:} and injecting faults by glitching the power supply \cite{Anderson1996},\cite{Bar-el2006}.
+The effects of fault injection include resetting data where data is forced to a blank state, data randomisation where data can be changed to a new random value and modifying of opcodes where instructions executed on a chip's CPU are changed, which often has the same effect as previous examples but additionally allows for the removal of functions and breaking of loops \cite{Anderson1996}. An example of code written in such a manner that it is vulnerable to an attack where instructions are skipped is shown in listing~\ref{lst:instructionSkip}. Here if the \verb|return| call (line 4) is skipped, the function will continue to process in a manner not intended by its developer.
 
 \section{Software Attacks}
 
