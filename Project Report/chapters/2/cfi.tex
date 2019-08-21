@@ -40,11 +40,6 @@ Some have argued that ensuring CFI without the use of shadow stacks (SSs) \cite{
 	\item Storage of shadow stacks can be cumbersome - especially if they are to be secure (which they would have to be if memory access is an assumed capability of an attacker).
 	\item Maintaining a shadow stack in multi-threaded systems will be troublesome - searching through the SS for a process ID will add additional time overhead to any processing.
 	\item Recursive functions can add multiple entries of the same return address to the SS, and this is an unnecessary addition so is reduced down to a single bit flag (or counter) by some solutions \cite{Christoulakis2016}. This can raise the problem of manipulating the number of recursions by an attacker, however it is argued by some that this is a very limited attack.
-\ifnotesincluded
-\furtherwork{Ref for number of iterations not being bad?}
-\fi
-
-
 	\item Instructions such as \verb|longjmp| will skip back through multiple return addresses, so this needs to be taken into account - either by removing the instruction from the ISA or another method such as iterating through the SS until the return address is identified (with the above addresses then removed from the SS to maintain a proper representation of the stack).
 	\item It has been found that shadow stacks can introduce an overhead of up to 13\% \cite{Dang}, which when compared to the overhead values of 5-10\% described in \cite{Szekeres2013} as the limits for adoption proves to be problematic.
 \end{itemize}

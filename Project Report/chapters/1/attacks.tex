@@ -28,10 +28,7 @@ int CheckNumberOfAttempts(int attemptCount, int attemptLimit)
 }
 \end{lstlisting}
 
-The effects of fault injection include resetting data where data is forced to a blank state, data randomisation where data can be changed to a new random value and modifying of opcodes where instructions executed on a chip's CPU are changed which often has the same effect as previous examples but additionally allows for the removal of functions and breaking of loops \cite{Anderson1996}. 
-\ifnotesincluded
-\furtherwork{Countermeasures given in \cite{Bar-el2006}}
-\fi
+The effects of fault injection include resetting data where data is forced to a blank state, data randomisation where data can be changed to a new random value and modifying of opcodes where instructions executed on a chip's CPU are changed which often has the same effect as previous examples but additionally allows for the removal of functions and breaking of loops \cite{Anderson1996}.
   
 \subsection{Non-Invasive Attacks}
 Non-invasive attacks can be used to derive information without modification of hardware through information that leaks during computation of a given command, or attempting to inject faults in manners other than light. Examples include monitoring power consumption \cite{Maurer1999},\cite{MangardStefan2007Paa:} and injecting faults by glitching the power supply \cite{Anderson1996},\cite{Bar-el2006}.

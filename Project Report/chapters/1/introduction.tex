@@ -35,10 +35,7 @@ Other examples of programming control flow statements which could form basic blo
 \end{figure}
 
 \subsection{Control-flow graphs}
-Control-flow graphs (CFGs) are the graphical representation of the series of valid transitions between basic blocks within an application (see figure~\ref{fig:basicCFG} for a CFG of listing~\ref{lst:basic_code}). It is conceivable that a CFG can become enormous as the size of an application grows, as the number of different valid paths along the graph will rapidly increase.
-\ifnotesincluded
-\furtherwork{(need to find reference for this)}
-\fi. Valid control flow is where the flow which follows a CFG for a given application. Using figure \ref{fig:basicCFG} as an example for the code in listing \ref{lst:basic_code}, BBL 1 $\rightarrow$ BBL 2 and BBL 1 $\rightarrow$ BBL 3 are both valid flows, however BBL 1 $\rightarrow$ BBL 2 $\rightarrow$ BBL 3 is invalid. To create BBL 1 $\rightarrow$ BBL 2 $\rightarrow$ BBL 3 an attacker could change the value of \verb|secondNum| to one which is greater than or equal to \verb|firstNum| once the first \verb|if| statement has been passed. 
+Control-flow graphs (CFGs) are the graphical representation of the series of valid transitions between basic blocks within an application (see figure~\ref{fig:basicCFG} for a CFG of listing~\ref{lst:basic_code}). It is conceivable that a CFG can become enormous as the size of an application grows, as the number of different valid paths along the graph will rapidly increase. Valid control flow is where the flow which follows a CFG for a given application. Using figure \ref{fig:basicCFG} as an example for the code in listing \ref{lst:basic_code}, BBL 1 $\rightarrow$ BBL 2 and BBL 1 $\rightarrow$ BBL 3 are both valid flows, however BBL 1 $\rightarrow$ BBL 2 $\rightarrow$ BBL 3 is invalid. To create BBL 1 $\rightarrow$ BBL 2 $\rightarrow$ BBL 3 an attacker could change the value of \verb|secondNum| to one which is greater than or equal to \verb|firstNum| once the first \verb|if| statement has been passed. 
 
 \subsection{Types of branches}
 Basic blocks transitions are triggered by branches, so in order to understand control-flow it is important to understand the difference between the various branch types: direct, indirect, unintended and function returns.
