@@ -26,7 +26,7 @@ LiteHAX \cite{Dessouky2018} uses the `angr' \cite{Shoshitaishvili2016} framework
 
 During assessment of angr using the sample `fauxware' binary included with the tool and through using networkx utilities, we have found that only single edges are identified, as shown in a sample of the output file at listing~\ref{lst:angr_result}. While this is useful for checking single transitions, the aim of the proposed solution is to track the entire path taken during execution, therefore we would require a list of valid paths rather than single edges.
 
-\begin{lstlisting}[caption={Example of results from angr CFG analysis of the file `fauxware'},label={lst:angr_result}]
+\begin{lstlisting}[caption={An excerpt from the results of an angr CFG analysis of the file `fauxware'},label={lst:angr_result}]
 <CFGNode rejected+0x16 0x400713[10]> <CFGNode 0x400570L[6]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196115, 'stmt_idx': 'default'}
 <CFGNode main+0xa0 0x4007bdL[10]> <CFGNode accepted 0x4006ed[14]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196285L, 'stmt_idx': 'default'}
 <CFGNode main+0xa0 0x4007bdL[10]> <CFGNode main+0xaa 0x4007c7L[2]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196285L, 'stmt_idx': 'default'}
