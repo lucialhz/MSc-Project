@@ -58,7 +58,7 @@ CCFI-Cache implements a hardware-based solution where control-flow metadata (inc
 HCFI implements a shadow-stack on additional hardware \cite{Danger2018}. The paper does not describe how it ensures the integrity of forward edges but it does provide a thorough analysis of backward-edge protection through the use of a shadow stack. It is not clear if this solution requires code instrumentation or not.
 
 \subsubsection*{HAFIX}
-HAFIX (like HCFI \cite{Danger2018}) focuses on backward-edge protection through their implementation of a shadow stack \cite{Davi2015}. HAFIX and HCFI have different approaches with regards to handling recursive functions and loops. This solution requires code instrumentation.
+HAFIX (like HCFI \cite{Danger2018}) focuses on backward-edge protection through their implementation of a shadow stack \cite{Davi2015}. HAFIX and HCFI have different approaches with regard to handling recursive functions and loops. This solution requires code instrumentation.
 
 \subsubsection*{SOFIA}
 SOFIA works in a similar manner to SEP \cite{Lee2019}, where instructions are decrypted using program counters of previously executed instructions \cite{Davi2015}. SOFIA handles instructions with multiple callers by creating a multiplexor block, which allows two predecessors, so multiple predecessors can  be used by creating layers of multiplexor blocks. The fast expansion of multiplexor blocks could prove problematic in terms of size and operating time of applications. The solution requires code instrumentation (for creating the multiplexor blocks and encryption of instructions).

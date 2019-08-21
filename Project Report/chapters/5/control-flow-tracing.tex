@@ -18,7 +18,7 @@ To achieve the best coverage for the proposed solution, level 3 (Basic Blocks en
 \subsection{Representing the execution path}
 
 We can build up a hash of the flow by taking the ID (or memory address) of the source node and hashing that with the previous hash. At the start ($ID_1$) the previous hash would be replaced with zero, a nonce or a hash created as part of the static attestation process. The resulting chain would appear as: 
-$H_1 = H(ID_1,0)$ (or $H_1 = H(ID_1,nonce)$), $H_2 = H(ID_2,H_1)$ ... $H_n = H(ID_n,H_{n-1})$.
+$H_1 = H(ID_1,0)$ (or $H_1 = H(ID_1,nonce)$), $H_2 = H(ID_2,H_1)$ \ldots $H_n = H(ID_n,H_{n-1})$.
 
 The hash function implemented would be BLAKE2 \cite{Aumasson2013}, as it is a lightweight and a widely used hash function with many supported implementations in different programming languages (meaning the embedded code could use its C implementation while the CFG building application could use its Python implementation).
 
@@ -26,7 +26,7 @@ To trigger the saving of the execution path hash, the proposed solution would im
 
 \subsubsection*{Challenges of CFG tracking}
 
-Loops are a considerable issue with regards to tracking control flow, as the number of possible paths could be overwhelming, especially if the loops contain branch instructions or function calls.
+Loops are a considerable issue with regard to tracking control flow, as the number of possible paths could be overwhelming, especially if the loops contain branch instructions or function calls.
 
 To overcome the problems presented by loops, C-FLAT \cite{Abera2016} begins with treating loops as sub-programs. Where each run of a loop has a hash derived from it, and the total number of each time that hash was calculated is stored (therefore storing the number of times that exact sequence occurs). This has the potential to prove problematic, as a variety of paths through a loop could lead to a large number of combinations being stored. 
 

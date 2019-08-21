@@ -18,7 +18,7 @@ When compared to the security requirements defined, the proposed solution perfor
 
 Obvious vulnerabilities in the solution are the breach of the `secure world' where the measurement engine is manipulated to create `good' attestation files, deletion of files and resulting loss of audit capabilities (a backup method would somewhat alleviate this problem) and cloning of audit files. Cloning of audit files represents a significant problem due to the fact that this is an offline process, so a method will need to be used to ensure freshness of files, for example a tamper-proof date-time stamp.
 
-Proxy-based attacks (as described in \cite{Seshadri2007} and \cite{Li2011}) are a threat to a simple implementation of the solution. Again, the inclusion of an anti-tamper real time clock (similar to the one provided by the Java iButton described in \cite{Chong2003}) for use in signing or date-stamping the audit records would mitigate against this vulnerability.
+Proxy-based attacks (as described in \cite{Seshadri2007} and \cite{Li2011}) are a threat to a simple implementation of the solution. Again, the inclusion of an anti-tamper real-time clock (similar to the one provided by the Java iButton described in \cite{Chong2003}) for use in signing or date-stamping the audit records would mitigate against this vulnerability.
 
 Key management has been an open problem in the field of embedded systems, where the use of a TPM is not a given. The secure storage of a cryptographic key is vital for providing audit capabilities, as the signing of or applying a MAC to an audit record is vital for proving its origin.
 

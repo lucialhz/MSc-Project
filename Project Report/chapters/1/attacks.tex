@@ -35,7 +35,7 @@ Non-invasive attacks can be used to derive information without modification of h
 
 \section{Software attacks}
 
-Attacks on software represent a likely threat to the security of embedded systems as they can be carried out remotely or simply stumbled upon (fuzzed). Once an exploit is discovered it is highly repeatable and can be crafted into a number of different attack methods. Embedded systems can be more vulnerable than other computer systems due to the language used to write applications - C. As C provides the developer with memory operations but, as a result, also presents the attacker with an opportunity to exploit any bugs in the code, usually by manipulating memory.
+Attacks on software represent a likely threat to the security of embedded systems as they can be carried out remotely or simply stumbled upon (fuzzed). Once an exploit is discovered it is highly repeatable and can be crafted into a number attack methods. Embedded systems can be more vulnerable than other computer systems due to the language used to write applications - C. As C provides the developer with memory operations but, as a result, also presents the attacker with an opportunity to exploit any bugs in the code, usually by manipulating memory.
 
 \subsection{Common software attacks methods}
 
@@ -43,7 +43,7 @@ The aim of a \textbf{buffer overflow attack} is to manipulate control-flow infor
 
 When performing an \textbf{injected code attack}, control flow is diverted to existing injected code (usually as data). To mitigate against this, NX bit can be implemented which marks data memory as non-executable.
 
-Existing code such as system functions or sequences of code which, when combined, have unintended consequences can be be the target of a deviated control-flow. This is known as a \textbf{code re-use attack}. See also return oriented programming and return-to-libc attacks.
+Existing code such as system functions or sequences of code which, when combined, have unintended consequences can be the target of a deviated control-flow. This is known as a \textbf{code re-use attack}. See also return oriented programming and return-to-libc attacks.
 
 An attacker can string together (ordinarily benign) existing code sequences to form gadgets, which can result in malicious program actions. This attack is referred to as \textbf{return-oriented programming (ROP)}. This is done through changing the return addresses on the stack to point at each snippet of the code sequence.
 
