@@ -36,12 +36,6 @@ Break statements need to be dealt with in a special manner as they are an additi
 
 \subsubsection*{Instrumentation}
 
-Branches are identified, with direct jump addresses stored in a branch table then replaced with the address of the trampoline assembly code which, when executing, triggers the measurement engine to be add the source address and destination address to the hash chain before redirecting the program counter to the corresponding entry on the branch table.
+The instrumentation process allows us to modify the object code of the existing application in a manner which enables the monitoring of control-flow. In the case of the proposed solution, branches are identified and the destination address of the direct jumps are then added to the \textbf{branch table}. The destination addresses are then replaced with the address of the trampoline assembly code. 
 
-\subsubsection*{Trampolines}
-
-A trampoline enables redirecting execution to a single piece of simple and secure code without needing to add too many instructions during instrumentation. A trampoline can carry out a number of functions but in C-FLAT \cite{Abera2016} it manages the return address register as well as the register holding the destination address in indirect branches. 
-
-\subsubsection*{Hardware-assisted}
-
-A co-processor designed specifically for the purpose of providing audit of control-flow would offload the heavy lifting and therefore have a negligible impact on normal operation. Examples of designs which could be tailored to provide auditing are provided in \cite{DeClercq2017}. A hardware-assisted solution could keep track of instructions executed (in the form of a hash), to add further granularity.
+The addition of trampoline assembly code enables redirecting execution to a single piece of simple and secure code without needing to add too many instructions during instrumentation. A trampoline may carry out a number of functions. For example, in C-FLAT \cite{Abera2016} it manages the return address register as well as the register holding the destination address for indirect branches. When executed the trampoline will trigger the measurement engine, adding the source address and destination address to the hash chain before redirecting the program counter to the corresponding destination entry on the branch table and hence continue with the normal execution of the application.
