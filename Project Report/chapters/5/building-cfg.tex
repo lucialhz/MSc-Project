@@ -24,9 +24,9 @@ Jakstab \cite{Kinder2008},\cite{Kinder2010}, like LLVM can be used to create a d
 
 LiteHAX \cite{Dessouky2018} uses the `angr' \cite{Shoshitaishvili2016} framework to generate the CFG outputting a networkx \cite{Hagberg2008} DiGraph. `angr' is primarily a reverse engineering tool, with the additional functionality of creating CFGs for target applications. It is notable that the framework is still under active development, meaning additional enhancements in the area of CFG generation may be added. `angr' offers two types of computation methods: \verb|CFGFast| (a static CFG generation method) and \verb|CFGEmulated| (a dynamic CFG generation method), which provide different levels of coverage for the resulting CFG.  
 
-During assessment of angr, utilising networkx utilities, we have found that only single edges are identified, as shown in a sample of the output file at listing~\ref{lst:angr_result}. While this is useful for checking single transitions, the aim of the proposed solution is to track the entire path taken during execution, therefore we would require a list of valid paths rather than single edges.
+During assessment of angr using the sample `fauxware' binary included with the tool and through using networkx utilities, we have found that only single edges are identified, as shown in a sample of the output file at listing~\ref{lst:angr_result}. While this is useful for checking single transitions, the aim of the proposed solution is to track the entire path taken during execution, therefore we would require a list of valid paths rather than single edges.
 
-\begin{lstlisting}[caption={Example of results from angr CFG analysis of fauxware in form of .edgelist output from networkx utilities},label={lst:angr_result}]
+\begin{lstlisting}[caption={Example of results from angr CFG analysis of the file `fauxware'},label={lst:angr_result}]
 <CFGNode rejected+0x16 0x400713[10]> <CFGNode 0x400570L[6]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196115, 'stmt_idx': 'default'}
 <CFGNode main+0xa0 0x4007bdL[10]> <CFGNode accepted 0x4006ed[14]> {'jumpkind': 'Ijk_Call', 'ins_addr': 4196285L, 'stmt_idx': 'default'}
 <CFGNode main+0xa0 0x4007bdL[10]> <CFGNode main+0xaa 0x4007c7L[2]> {'jumpkind': 'Ijk_FakeRet', 'ins_addr': 4196285L, 'stmt_idx': 'default'}
