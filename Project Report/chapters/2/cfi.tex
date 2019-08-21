@@ -3,21 +3,15 @@
 Control-flow integrity (CFI) was introduced in the introduction to this project. As it is a key part of this project we shall provide an in-depth discussion of its important principles. CFI is described as a security policy which states that software execution must follow a path of a Control-Flow Graph (CFG). CFI can be provided in a number of ways including signature modelling, shadow stacks and through the enforcement of basic block transitions along a CFG.
 
 \subsection{Control Flow Graphs}
-Abadi et al. \cite{Abadi2005} introduced CFI as a method to protect the secure execution of software, using static analysis of an application binary to create a Control Flow Graph (CFG). Only control flow transfers which follow the CFG are permitted.
+Abadi et al. \cite{Abadi2005} introduced CFI as a method to protect the secure execution of software, using static analysis of an application binary to create a Control Flow Graph (CFG). Only control flow transfers which follow the CFG are permitted. The authors state that CFGs can be defined by analysis-type methods or explicit policies. Examples of analysis-type methods include source-code analysis, binary analysis or execution profiling. An example of an explicit security policy method is writing as security automata as seen in \cite{Erlingsson2004}. 
 
-Clerq and Verbauwhede \cite{DeClercq2017} posed CFGs as part of a solution for tracking instructions causing control flow transfers, however Lee et al. \cite{Lee2019} note that they do not focus on sequential transitions. They argue that the method used in \cite{DeClercq2017} (where forward edges are described as control flow transfers caused by jumps and calls, and backward edges are described as those caused by returns) is disadvantageous as by considering all jumps and calls equally there is a loss in distinction between jumps to register-determined and instruction-determined locations. They state that when implementing a scheme, instruction-dependant transitions are simpler to process than instruction-independent transitions. CFI schemes such as SEP \cite{Lee2019} and SOFIA \cite{DeClercq2017b} go one step further to provide integrity protection for each individual instruction.
+CFGs have also been used to provide protection against soft faults (single-event upsets) using software based methods \cite{Oh2002},\cite{Sharma2012},\cite{Venkatasubramanian2003}. 
 
-Adabi et al. \cite{Abadi2005} state that CFGs can be defined by analysis-type methods or explicit policies. Examples of analysis-type methods include source-code analysis, binary analysis or execution profiling. An example of an explicit security policy method is writing as security automata as seen in \cite{Erlingsson2004}. 
-\ifnotesincluded
-\furtherwork{What is this???}
-\fi
+In the solution suggested by Adabi et al. \cite{Abadi2005}, it restricts control flow through the use of in-lined labels and checks. They embed the CFG in program code through a set of static intermediate bit patterns, which are used to check if a legitimate jump has occurred in the destination code. One problem with this implementation is that transitions are evaluated at the destinations of all branches and jumps but not at the sources. The result of this is a failure to prevent jumps into the middle of functions (e.g. ones which bypass security checks such as access control).
 
-CFGs have been used to provide protection against soft faults (single-event upsets) using software based methods \cite{Oh2002},\cite{Sharma2012},\cite{Venkatasubramanian2003}. 
-The solution put forward by Adabi et al. \cite{Abadi2005} restricts control flow through in-lined labels and checks. The CFG is embedded through a set of static intermediate bit patterns in program code. The problem with this is that they are evaluated at the destinations of all branches and jumps but not at the sources. These fail to prevent jumps into the middle of functions (e.g. ones which bypass security checks such as access control).
+Clerq and Verbauwhede \cite{DeClercq2017} posed CFGs as part of a solution for tracking instructions causing control flow transfers, however Lee et al. \cite{Lee2019} note that they do not focus on sequential transitions due to their focus on basic blocks (BBLs). Lee et al. also argue that the method used in \cite{DeClercq2017} where, forward edges are described as control flow transfers caused by jumps and calls, and backward edges are described as those caused by returns, is disadvantageous, as by considering all jumps and calls equally there is a loss in distinction between jumps to register-determined and instruction-determined locations. CFI schemes such as SEP \cite{Lee2019} and SOFIA \cite{DeClercq2017b} act on this observation and go one step further to provide integrity protection for each individual instruction, removing the need for a CFG and just ensuring that sequential flow is correct.
 
-The method described in \cite{Abadi2005} ensures that whenever an instruction transfers control, it targets a valid destination as determined by the CFG (ahead of time). When the destination is determined at runtime this must go through a dynamic check. Dynamic checks are enabled through the the use of static analysis and machine-code rewriting, forming an instrumentation process. Machine-code is rewritten using modern tools for binary instrumentation in order to overcome the resulting new memory addresses which are the product of the rewriting process \cite{Edwards2001},\cite{Srivastava1994}.
-
-Generating a CFG from static analysis is troublesome, and often an over-approximation is used which is not fully precise \cite{Carlini2015},\cite{Kinder2012}, the survey \cite{Burow} assists the understanding of CFG generation methods by classifying the precision of computing CFGs using different static analysis techniques.
+Generating a CFG from static analysis is troublesome, and often an over-approximation is used which is not fully precise \cite{Carlini2015},\cite{Kinder2012}, the survey \cite{Burow} assists the understanding of CFG generation methods by classifying the precision of generated CFGs using different static analysis techniques.
 
 \subsection{Hardware-based CFI}
 
@@ -27,15 +21,18 @@ Hardware-based CFI is provided by the addition of dedicated hardware which is ei
 
 Software-based CFI was first introduced in the seminal paper by Adabi et al. \cite{Abadi2005}. This has been the foundation for further research surveyed by Burow et al. \cite{Burow}, which provides a detailed insight into the technical properties of a number of software-based CFI solutions.
 
+Due to the nature of software-based CFI, it is not a reliable protection against hardware memory attacks unless used in conjunction with hardware featuring protection for such software. The solutions presented in \cite{Abera2016} and \cite{Nyman2017a} do just this; they make use of ARM TrustZone to provide CFI capabilities.
+
+Software-based CFI will not be discussed in further detail in this project due to its susceptibility to hardware-attacks, however the engineering and algorithms presented by software-based solutions should be taken into account when researching CFI methods.
+
 \subsection{Alternatives to Basic Block CFG-based CFI}
 
+While basic blocks and CFGs are an elegant approach to ensuring CFI, there has been considerable research undertaken on alternative methods also providing CFI.
+
 \subsubsection*{Signature modelling}
-Here, if a series of executed instructions do not follow the trace of the program's CFG the control-flow integrity has been lost. Yang et al. \cite{Yang2013} describe this method through their implementation in software. They also performed a thorough analysis of various existing solutions. The methodology of signature modelling was successfully implemented using a hardware-based method in the work carried out by Werner et al \cite{Werner2016}.
+CFI through signature modelling states that if a series of executed instructions do not follow the trace of the program's CFG the control-flow integrity has been lost. Yang et al. \cite{Yang2013} describe this method through their implementation in software. They also performed a thorough analysis of various existing solutions. The methodology of signature modelling was successfully implemented using a hardware-based method in the work carried out by Werner et al \cite{Werner2016}.
 
 A problem with signature modelling is that the number of unique sequences of instructions (and their accompanying signatures) accumulate very quickly, requiring more storage if they are to be used as a comparison. This is a particular problem when considering embedded systems due to their inherent limitation of storage capacity. Another difficulty is the necessity to compute signatures in real-time, which would require additional processing and therefore an increase in processing overhead. Although, as we have seen in other methods \cite{Davi2015},\cite{Lee2019}, decryption is a common method of ensuring CFI, so perhaps this is not an unreasonable expectation.
-
-\subsubsection*{Verification on transition}
-
 
 \subsubsection*{Shadow Stacks}
 Some have argued that ensuring CFI without the use of shadow stacks (SSs) \cite{Christoulakis2016}, also known as shadow call stacks (SCSs) is an impossible task and that``the use of a shadow stack is mandatory for any practical CFI deployment''. A shadow stack consists separate stack, stored in memory (protected or unprotected, depending on the solution), which contains just the return addresses. This solves the problem of ROP, especially when working with commonly called functions or system functions, as the implementation of the shadow stack ensures the calling function also has to be the return function (at least until \verb|longjmp| is used, which adds a further complication). There are some flaws with shadow stacks which include:
@@ -52,9 +49,3 @@ Some have argued that ensuring CFI without the use of shadow stacks (SSs) \cite{
 	\item It has been found that shadow stacks can introduce an overhead of up to 13\% \cite{Dang}, which when compared to the overhead values of 5-10\% described in \cite{Szekeres2013} as the limits for adoption proves to be problematic.
 \end{itemize}
 
-\subsubsection*{Other alternatives}
-
-Branch limitation is an alternative to CFG \cite{He2017} \cite{Corporation2017}.
-Another alternative is Code Pointer Integrity described in \cite{Security2017} and implemented in \cite{Kuznetsov:204783},\cite{Mashtizadeh2014} and \cite{Szekeres2013}.
-
-Generalised path signature analysis is described by \cite{Mahmood1988} while \cite{Werner2016} implemented it using an ARM Cortex-M3 microprocessor.
