@@ -2,7 +2,7 @@
 
 \subsection{Established Criteria}
 
-We will compare each solution described in \ref{staticAttestationSolutions} using a set of defined properties. These properties are built using those described in \ref{comparisonOfCFISolutions} as a template and refined to suite the solutions for static attestation presented. The result of this comparison will be used to help define the static attestation phase of the proposed solution, and may also provide inspiration for the overall proposed solution.
+We will compare each solution described in \ref{staticAttestationSolutions} using a set of defined properties. These properties are built using those described in \ref{comparisonOfCFISolutions} as a template and refined to suit the solutions for static attestation presented. The result of this comparison will be used to help define the static attestation phase of the proposed solution, and may also provide inspiration for the overall proposed solution.
 
 \subsubsection*{Properties}
 The properties which will be used for comparison are:
@@ -16,7 +16,7 @@ The properties which will be used for comparison are:
 
 \subsection{Solutions Presented}
 
-The following solutions have been presented for comparison through a combination of them being prominent work or by being referenced in control-flow attestations schemes which we have already analysed. We will provide a brief description of their methods and focus prior to presenting the results of a comparison of solutions in table~\ref{tab:staticAttestationComparisonRequirements}.
+The following solutions have been presented for comparison through a combination of them being prominent work or by being referenced in control-flow attestation schemes which we have already analysed. We will provide a brief description of their methods and focus prior to presenting the results of a comparison of solutions in table~\ref{tab:staticAttestationComparisonRequirements}.
 
 \subsubsection*{SMART: Secure and Minimal Architecture for (Establishing a Dynamic) Root of Trust}
 SMART provides a simple method of attesting the state of a user application through slight hardware alterations \cite{For}. As an input from the verifier it takes a nonce, start memory address and end memory address (as well as additional parameters for an optional start position of user application). The prover replies with a SHA-1 HMAC of the requested code space.
@@ -70,5 +70,5 @@ Table~\ref{tab:staticAttestationComparisonRequirements} shows how the solutions 
 
 One notable assumption presumed by static-attestation solutions is that CPU clockspeed cannot be increased, or that CPU has not been changed. They tend to use optimised algorithms for computing checksums in order to make it easier to detect additional time added by attackers' attempts to circumvent the procedure.
 
-This paper \cite{Castelluccia2009} finds that software-based attestation is a problematic solution. They attack SWATT \cite{Seshadri2004} by adding a hook into the attestation code which swaps out malicious code to data memory, and as a result they recommend covering all memory in attestation processes (which, they note, would not be easy in embedded systems). They find that the time overhead relied upon by SWATT \cite{Seshadri2004} is imprecise and that their attacks fit within the tolerance. The paper also attacks solutions which fill empty memory with noise, as they found they could compress legitimate applications to make room for malicious ones.
+The paper by Castelluccia et al. \cite{Castelluccia2009} finds that software-based attestation is a problematic solution. In the paper craft an attack against SWATT \cite{Seshadri2004} by adding a hook into the attestation code which swaps out malicious code to data memory, and as a result the authors recommend covering all memory in the attestation processes (which, they note, would not be easy in embedded systems). They find that the time overhead relied upon by SWATT \cite{Seshadri2004} is imprecise and that their attacks fit within the tolerance. The paper also attacks solutions which fill empty memory with noise, as they found they could compress legitimate applications to make room for malicious ones.
 
