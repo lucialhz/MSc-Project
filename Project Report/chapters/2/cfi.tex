@@ -7,7 +7,7 @@ Abadi et al. \cite{Abadi2005} introduced CFI as a method to protect the secure e
 
 CFGs have also been used to provide protection against soft faults (single-event upsets) using software based methods \cite{Oh2002},\cite{Sharma2012},\cite{Venkatasubramanian2003}. 
 
-In the solution suggested by Adabi et al. \cite{Abadi2005}, it restricts control flow through the use of in-lined labels and checks. They embed the CFG in program code through a set of static intermediate bit patterns, which are used to check if a legitimate jump has occurred in the destination code. One problem with this implementation is that transitions are evaluated at the destinations of all branches and jumps but not at the sources. The result of this is a failure to prevent jumps into the middle of functions (e.g. ones which bypass security checks such as access control).
+In the solution suggested by Abadi et al. \cite{Abadi2005}, it restricts control flow through the use of in-lined labels and checks. They embed the CFG in program code through a set of static intermediate bit patterns, which are used to check if a legitimate jump has occurred in the destination code. One problem with this implementation is that transitions are evaluated at the destinations of all branches and jumps but not at the sources. The result of this is a failure to prevent jumps into the middle of functions (e.g. ones which bypass security checks such as access control).
 
 Clerq and Verbauwhede \cite{DeClercq2017} posed CFGs as part of a solution for tracking instructions causing control flow transfers, however Lee et al. \cite{Lee2019} note that they do not focus on sequential transitions due to their focus on basic blocks (BBLs). Lee et al. also argue that the method used in \cite{DeClercq2017} where, forward edges are described as control flow transfers caused by jumps and calls, and backward edges are described as those caused by returns, is disadvantageous, as by considering all jumps and calls equally there is a loss in distinction between jumps to register-determined and instruction-determined locations. CFI schemes such as SEP \cite{Lee2019} and SOFIA \cite{DeClercq2017b} act on this observation and go one step further to provide integrity protection for each individual instruction, removing the need for a CFG and just ensuring that sequential flow is correct.
 
@@ -19,7 +19,7 @@ Hardware-based CFI is provided by the addition of dedicated hardware which is ei
 
 \subsection{Software-based CFI}
 
-Software-based CFI was first introduced in the seminal paper by Adabi et al. \cite{Abadi2005}. This has been the foundation for further research surveyed by Burow et al. \cite{Burow}, which provides a detailed insight into the technical properties of a number of software-based CFI solutions.
+Software-based CFI was first introduced in the seminal paper by Abadi et al. \cite{Abadi2005}. This has been the foundation for further research surveyed by Burow et al. \cite{Burow}, which provides a detailed insight into the technical properties of a number of software-based CFI solutions.
 
 Due to the nature of software-based CFI, it is not a reliable protection against hardware memory attacks unless used in conjunction with hardware featuring protection for such software. The solutions presented in \cite{Abera2016} and \cite{Nyman2017a} do just this; they make use of ARM TrustZone to provide CFI capabilities.
 
