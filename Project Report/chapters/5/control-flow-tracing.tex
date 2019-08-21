@@ -1,8 +1,10 @@
-\section{Tracing Control-Flow}
+\section{Tracing and Monitoring of Control-Flow}
 
-\subsection{Using existing hardware}
+The tracing and monitoring of control-flow is perhaps the most important element of any CFI solution, as all control-flow change events need to be captured in order to ensure CFI. One method of capturing control-flow is through software, where functions are written and APIs provided which intercept control-flow events. Another method is to add dedicated hardware into the processor pipeline, where it intercepts each instruction (when the instruction is retrieved from memory prior to execution).
 
-Recording of every executed instruction is infeasible as the overhead added would be too large if no additional hardware is included, as each instruction processed would require a corresponding context switch and further processing. If each instruction is hashed in real time the computational overhead would increase or if each instruction is recorded in storage prior to processing the memory\slash storage\slash IO capacity would see a significant overhead increase. The use of basic blocks allows us to deal with multiple instructions at a time, and therefore reduce the potential overhead dramatically.
+\subsection{Granularity of monitoring}
+
+If a software-only method were to be used, recording of every executed instruction is infeasible as the overhead added would be too large (if no additional hardware is included), as each instruction processed would require a corresponding context switch and further processing. If each instruction is hashed in real time the computational overhead would increase or if each instruction is recorded in storage prior to processing the memory\slash storage\slash IO capacity would see a significant overhead increase. The use of basic blocks allows us to deal with multiple instructions at a time, and therefore reduce the potential overhead dramatically.
 
 CFG granularity can be broken down into three levels \cite{Abera2016}:
 \begin{enumerate}
@@ -11,22 +13,26 @@ CFG granularity can be broken down into three levels \cite{Abera2016}:
 	\item{Basic Blocks ending in any branch instruction, this would provide the highest level of detail}
 \end{enumerate}
 
-To achieve the best coverage for the solution level 3 (Basic Blocks ending in any branch instruction) would be the optimum granularity to aim for.
+To achieve the best coverage for the proposed solution, level 3 (Basic Blocks ending in any branch instruction) would be the optimum granularity to aim for. We have taken inspiration from C-FLAT\cite{Abera2016} when considering the design for the proposed solution, as it most closely aligns with the objectives of this project.
 
-We can build up a hash of the flow by taking the ID of the source node and hashing that with the previous hash. At the start ($ID_1$) the previous hash would be replaced with zero or a nonce. With the resulting chain appearing as: 
+\subsection{Representing the execution path}
+
+We can build up a hash of the flow by taking the ID (or memory address) of the source node and hashing that with the previous hash. At the start ($ID_1$) the previous hash would be replaced with zero, a nonce or a hash created as part of the static attestation process. The resulting chain would appear as: 
 $H_1 = H(ID_1,0)$ (or $H_1 = H(ID_1,nonce)$), $H_2 = H(ID_2,H_1)$ ... $H_n = H(ID_n,H_{n-1})$.
 
-The solution would implement a dedicated method in the secure world where a save is triggered. This will enable software authors an opportunity to save at key points - for example after a key decision is made. Hashes could also be stored along with variables used if we are able to implement that.
+The hash function implemented would be BLAKE2 \cite{Aumasson2013}, as it is a lightweight and a widely used hash function with many supported implementations in different programming languages (meaning the embedded code could use its C implementation while the CFG building application could use its Python implementation).
 
-BLAKE-2 \cite{Aumasson2013} has been suggested as a lightweight hash function, however this is only one such potential candidate.
+To trigger the saving of the execution path hash, the proposed solution would implement a dedicated method in the secure world where a save is triggered, this will be exposed to software developers through the proposed solution's API. This functionality will enable software authors an opportunity to save at key points - for example after a key decision is made.
 
 \subsubsection*{Challenges of CFG tracking}
 
-Loops are a considerable issue when it comes to tracking control flow, as the number of possible paths could be overwhelming, especially if the loops contain branch instructions or function calls.
+Loops are a considerable issue with regards to tracking control flow, as the number of possible paths could be overwhelming, especially if the loops contain branch instructions or function calls.
 
-To overcome the problems presented by loops, C-FLAT \cite{Abera2016} begins with treating loops as sub-programs. Where each run of a loop has a hash derived from it, and the total number of each time that hash was calculated is stored (therefore storing the number of times that exact sequence occurs). The result of this is the growth of the stored audit (as each loop will need to be referenced separately), when tested by C-FLAT was 1527 bytes for a path containing 16 loop invocations and 18 unique loop paths (this could probably be calculated at compile time, with a warning presented to the developer). Another path containing 12 loop invocations and 14 unique paths resulted in a 1179 byte result. Another second study (which is not as well documented by the paper) produced a maximum result of 490 bytes. The previous hash is also included to show where the was called from. 
+To overcome the problems presented by loops, C-FLAT \cite{Abera2016} begins with treating loops as sub-programs. Where each run of a loop has a hash derived from it, and the total number of each time that hash was calculated is stored (therefore storing the number of times that exact sequence occurs). This has the potential to prove problematic, as a variety of paths through a loop could lead to a large number of combinations being stored. 
 
-Return call matching is used where call and return edges are indexed during static analysis, so only valid routes are authorised. Break statements need to be dealt with in a special manner as they are an additional place where a loop can exit. Section 4.2 of C-FLAT \cite{Abera2016} describes this in detail.
+When this method was tested by C-FLAT \cite{Abera2016}, it was found that the resulting report was 1527 bytes for a path containing 16 loop invocations and 18 unique loop paths. Another path containing 12 loop invocations and 14 unique paths resulted in a 1179 byte result. Another second study (which is not as well documented by the paper) produced a maximum result of 490 bytes. If an application were to present the opportunity for such a large number of loop variabilities, a warning could be presented at compile time.
+
+Break statements need to be dealt with in a special manner as they are an additional place where a loop can exit. Section 4.2 of C-FLAT \cite{Abera2016} describes this in detail.
 
 \subsubsection*{Instrumentation}
 
