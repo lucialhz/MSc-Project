@@ -1,7 +1,0 @@
-\section{ARM TrustZone}
-
-\subsection{An introduction to ARM TrustZone}
-
-ARM TrustZone is a method used to separate``secure'' applications from non-secure ones in two separate worlds, where memory can be designated as \textit{secure} or \textit{not secure}. Execution is transferred from each world either through interrupts or direct function calls. ARM TrustZone is very well described by Ngabonziza et al \cite{Ngabonziza2017}.
-
-Secure world TrustZone applications have access to normal world memory, this will enable static attestation. A secure world application would need to supply the normal world application with a nonce to make sure the response is not a replay.

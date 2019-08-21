@@ -1,6 +1,6 @@
 \section{Introduction to Embedded Systems}
 
-In this section we will define embedded systems, their uses, understand their key properties or criteria and describe some common implementations.
+In this section we will define embedded systems, their uses, understand their key properties or criteria and describe some common implementations. We shall also provide a brief overview of ARM TrustZone, a well-established security-based feature which is now being added to the series of ARM processors targeted towards the embedded systems market.
 
 \subsection{A Definition of Embedded Systems}
 
@@ -36,3 +36,9 @@ Consumer IoT also makes use of embedded systems, exploiting their low cost, powe
 A large number of manufacturers have an interest in embedded systems. A big player is ARM with their Cortex-M Series of CPUs, one example of these being used is in the Pebble smartwatch\footnote{\url{https://www.ifixit.com/Teardown/Pebble+Teardown/13319##s45416}}.
 
 Another common base for embedded systems are field programmable gate arrays (FPGAs) which are essentially software defined circuits. These can be set up in a variety of ways, but in modern applications they often utilise soft-core processors - where FPGA code is used to define a processor (for example following the RISC-V instruction set).
+
+\subsubsection*{ARM TrustZone}
+
+ARM TrustZone is a method used to separate ``secure'' applications from non-secure ones in two separate worlds, where memory can be designated as \textit{secure} or \textit{not secure}. Execution is transferred from each world either through interrupts or direct function calls. ARM TrustZone is very well described by Ngabonziza et al \cite{Ngabonziza2017}.
+
+Secure-world TrustZone applications have access to normal world memory, this enables static attestation to be performed by a ``secure'' application on the memory space of the ``normal-world''.
