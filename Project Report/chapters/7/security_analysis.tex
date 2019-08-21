@@ -1,6 +1,6 @@
 \section{Security Analysis}
 
-The solution presented fits with the security requirements in the following ways:
+The solution presented fits with the practical requirements in the following ways:
 \begin{enumerate}
 	\item \textbf{Works with compiled binaries}: The solution works with compiled binaries, where the binaries go through an instrumentation process.
 	\item \textbf{Works with external binaries}: As with compiled binaries, external binaries will have to undergo instrumentation.
@@ -8,17 +8,19 @@ The solution presented fits with the security requirements in the following ways
 	\item \textbf{Granularity}: The solution provides granularity down to a basic block (BBL) level.
 \end{enumerate}
 
+When compared to the security requirements defined, the proposed solution performs as follows:
+\begin{enumerate}
+	\item \textbf{An attacker must be detected if they change the sequential order of instructions.} This goal has not been met as it would require too much processing for a software-based solution (as discussed in~\ref{implementationGranularity}). This may be caught if it causes control-flow to not follow a legitimate path as defined by the control-flow graph (CFG).
+	\item \textbf{An attacker must be detected if they change the execution order of basic blocks.} This goal has been met, as by changing the execution order of basic blocks the control-flow would not follow the CFG.
+	\item \textbf{An attacker must be detected if they skip instructions.} This will not be immediately detected, however if the skip causes an illegitimate alteration to the control-flow it will be detected.
+	\item \textbf{An attacker must be detected if they subvert control flow to existing code (e.g. return-to-libc)}. This will be caught as this represents a violation of the CFG.
+\end{enumerate}
+
 Obvious vulnerabilities in the solution are the breach of the `secure world' where the measurement engine is manipulated to create `good' attestation files, deletion of files and resulting loss of audit capabilities (a backup method would somewhat alleviate this problem) and cloning of audit files. Cloning of audit files represents a significant problem due to the fact that this is an offline process, so a method will need to be used to ensure freshness of files, for example a tamper-proof date-time stamp.
 
-Proxy-based attacks (as described in \cite{Seshadri2007} and \cite{Li2011}) as well as replay or cloning attacks are a threat to a simple implementation of the solution. The inclusion of an anti-tamper real time clock (similar to the one provided by the Java iButton described in \cite{Chong2003}) for use in signing or date-stamping the audit records would mitigate against this vulnerability.
+Proxy-based attacks (as described in \cite{Seshadri2007} and \cite{Li2011}) are a threat to a simple implementation of the solution. Again, the inclusion of an anti-tamper real time clock (similar to the one provided by the Java iButton described in \cite{Chong2003}) for use in signing or date-stamping the audit records would mitigate against this vulnerability.
 
-Key management has been an open problem in the field of embedded systems, where the use of a TPM is not a given. The secure storage of a cryptographic key is vital for providing audit capabilities, as the signing of or applying a MAC to an audit record is vital from proving its origin.
-
-Granularity to an instruction level can only be provided by a hardware solution which intercepts each instruction.
+Key management has been an open problem in the field of embedded systems, where the use of a TPM is not a given. The secure storage of a cryptographic key is vital for providing audit capabilities, as the signing of or applying a MAC to an audit record is vital for proving its origin.
 
 \subsection{Hardware Implementation}
 Using a hardware solution it would be possible to address further criteria which the software-based solution was unable to address, much like the improvements LO-FAT\cite{Dessouky2017} made on C-FLAT \cite{Abera2016}. By moving monitoring and auditing capabilities to additional hardware such as a co-processor, or dedicated circuitry it would be possible to remove the majority of the overhead introduced when monitoring control-flow. Dedicated hardware with the ability to intercept instructions as they flow through the processing pipeline would enable monitoring of control-flow to a deeper granularity, where individual instructions of a basic block could be tracked in the form of a hash and number of instructions present within the basic block, this would be provided in a similar fashion as CCFI-Cache \cite{Danger2018}.
-
-\subsubsection*{Hardware-assisted}
-
-A co-processor designed specifically for the purpose of providing audit of control-flow would offload the heavy lifting and therefore have a negligible impact on normal operation. Examples of designs which could be tailored to provide auditing are provided in \cite{DeClercq2017}. A hardware-assisted solution could keep track of instructions executed (in the form of a hash), to add further granularity.

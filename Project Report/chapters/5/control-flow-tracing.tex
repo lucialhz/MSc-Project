@@ -2,7 +2,7 @@
 
 The tracing and monitoring of control-flow is perhaps the most important element of any CFI solution, as all control-flow change events need to be captured in order to ensure CFI. One method of capturing control-flow is through software, where functions are written and APIs provided which intercept control-flow events. Another method is to add dedicated hardware into the processor pipeline, where it intercepts each instruction (when the instruction is retrieved from memory prior to execution).
 
-\subsection{Granularity of monitoring}
+\subsection{Granularity of monitoring}\label{implementationGranularity}
 
 If a software-only method were to be used, recording of every executed instruction is infeasible as the overhead added would be too large (if no additional hardware is included), as each instruction processed would require a corresponding context switch and further processing. If each instruction is hashed in real time the computational overhead would increase or if each instruction is recorded in storage prior to processing the memory\slash storage\slash IO capacity would see a significant overhead increase. The use of basic blocks allows us to deal with multiple instructions at a time, and therefore reduce the potential overhead dramatically.
 
