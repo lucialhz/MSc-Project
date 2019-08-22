@@ -4,16 +4,16 @@ The tracing and monitoring of control-flow is perhaps the most important element
 
 \subsection{Granularity of Monitoring}\label{implementationGranularity}
 
-If a software-only method were to be used, recording of every executed instruction is infeasible as the overhead added would be too large (if no additional hardware is included), as each instruction processed would require a corresponding context switch and further processing. If each instruction is hashed in real time the computational overhead would increase or if each instruction is recorded in storage prior to processing the memory\slash storage\slash IO capacity would see a significant overhead increase. The use of basic blocks allows us to deal with multiple instructions at a time, and therefore reduce the potential overheads dramatically.
+If a software-only method were to be used, recording of every executed instruction is infeasible as the overhead added would be too large (if no additional hardware is included), as each instruction processed would require a corresponding context switch and further processing. If each instruction is hashed in real time the computational overhead would increase or, if each instruction is recorded in storage prior to processing the memory\slash storage\slash IO, capacity would see a significant overhead increase. The use of basic blocks allows us to deal with multiple instructions at a time, and therefore reduce the potential overheads dramatically.
 
 CFG granularity can be broken down into three levels \cite{Abera2016}:
 \begin{enumerate}
 	\item{Entire functions}
 	\item{Basic Blocks ending in a direct branch (this would cover most ROP attacks)}
-	\item{Basic Blocks ending in any branch instruction, this would provide the highest level of detail}
+	\item{Basic Blocks ending in any branch instruction (providing the highest level of detail)}
 \end{enumerate}
 
-To achieve the best coverage for the proposed solution, level 3 (Basic Blocks ending in any branch instruction) would be the optimum granularity to aim for. We have taken inspiration from C-FLAT\cite{Abera2016} when considering the design for the proposed solution, as it most closely aligns with the objectives of this project.
+To achieve the best coverage for the proposed solution, level 3 (basic Blocks ending in any branch instruction) would be the optimum granularity to aim for. We have taken inspiration from C-FLAT\cite{Abera2016} when considering the design for the proposed solution, as it most closely aligns with the objectives of this project.
 
 \subsection{Representing the Execution Path}
 
@@ -30,7 +30,7 @@ Loops are a considerable issue with regard to tracking control flow, as the numb
 
 To overcome the problems presented by loops, C-FLAT \cite{Abera2016} begins with treating loops as sub-programs. Where each run of a loop has a hash derived from it, and the total number of each time that hash was calculated is stored (therefore storing the number of times that exact sequence occurs). This has the potential to prove problematic, as a variety of paths through a loop could lead to a large number of combinations being stored. 
 
-When this method was tested by C-FLAT \cite{Abera2016}, it was found that the resulting report was 1527 bytes for a path containing 16 loop invocations and 18 unique loop paths. Another path containing 12 loop invocations and 14 unique paths resulted in a 1179 byte result. Another second study (which is not as well documented by the paper) produced a maximum result of 490 bytes. If an application were to present the opportunity for such a large number of loop variabilities, a warning could be presented at compile time.
+When this method was tested by C-FLAT \cite{Abera2016}, it was found that the resulting report was 1527 bytes for a path containing 16 loop invocations and 18 unique loop paths. Another path containing 12 loop invocations and 14 unique paths resulted in a 1179 byte result. A second study (which is not as well documented by the paper) produced a maximum result of 490 bytes. If an application were to present the opportunity for such a large number of loop variabilities, a warning could be presented at compile time.
 
 Break statements need to be dealt with in a special manner as they are an additional place where a loop can exit. Section 4.2 of C-FLAT \cite{Abera2016} describes this in detail.
 

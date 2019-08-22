@@ -2,7 +2,7 @@
 
 The objectives of this project are to investigate and implement a solution for audit of the control flow of applications.
 
-The solution will statically attest the application before including this in the result in dynamic results of the control-flow monitoring. It will store this result and a signature\slash MAC on the long-term storage of the device.
+The solution will statically attest the application before including this with the dynamic results of the control-flow monitoring. It will store the resulting report and a signature\slash MAC on the long-term storage of the device.
 
 In this section we will define the requirements which we will aim to meet with the solution proposed as a result of this project. These have been built up using the literature for CFI and attestation methods as well as the requirements identified from the attack model.
 
@@ -20,8 +20,8 @@ In this section we will define the requirements which we will aim to meet with t
 \begin{enumerate}
 	\item \textbf{An attacker must be detected if they change the sequential order of instructions.} Re-ordering instructions can be used to bypass cryptographic protections (similar to ECB vulnerabilities) to achieve the attackers goals.
 	\item \textbf{An attacker must be detected if they change the execution order of basic blocks.} Re-ordering BBLs can be used to execute code in a manner which violates the control-flow graph.
-	\item \textbf{An attacker must be detected if they skip instructions} Skipping instructions can be used to bypass checks.
-	\item \textbf{An attacker must be detected if they subvert control flow to existing code (e.g. return-to-libc)} Subverting control-flow to external existing code could enable an attacker to perform functions not permitted through normal usage of the application.
+	\item \textbf{An attacker must be detected if they skip instructions.} Skipping instructions can be used to bypass checks.
+	\item \textbf{An attacker must be detected if they subvert control flow to existing code (e.g. return-to-libc).} Subverting control-flow to external existing code could enable an attacker to perform functions not permitted through normal usage of the application.
 \end{enumerate}
 
 \subsection{Attacker Model}

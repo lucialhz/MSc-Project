@@ -10,7 +10,7 @@ A number of tools have been used in the CFI solutions already examined. These to
 
 \subsubsection*{LLVM}
 
-LLVM \cite{LLVM:CGO04} consists of a collection of tools which have the primary function of compilation. It provides various methods of building CFGs, using different parts of some of the many toolchains. Unfortunately, building CFGs in LLVM is not as simple task, as this functionality is not a main feature. Some of the CFG methods included in LLVM create a CFG in the ``dot'' format, which is widely used in representing CFGs (The ``Jakstab'' tool also outputs generated CFGs in ``dot'' format \cite{Kinder2008}). If LLVM were to be used for generating CFGs, source code of an application would be required. This could prove problematic when adding the proposed solution to legacy systems. However, due to the prominence of LLVM, the CFG production functionality may be added into the compilation tool-chain, removing the need for extra steps to be undertaken by the software developer.
+LLVM \cite{LLVM:CGO04} consists of a collection of tools which have the primary function of compilation. It provides various methods of building CFGs, using different parts of some of the many toolchains. Unfortunately, building CFGs in LLVM is not as simple task, as this functionality is not a main feature. Some of the CFG methods included in LLVM create a CFG in the ``dot'' format, which is widely used in representing CFGs (the ``Jakstab'' tool also outputs generated CFGs in ``dot'' format \cite{Kinder2008}). If LLVM were to be used for generating CFGs, source code of an application would be required. This could prove problematic when adding the proposed solution to legacy systems. However, due to the prominence of LLVM, the CFG production functionality may be added into the compilation tool-chain, removing the need for extra steps to be undertaken by the software developer if compatibility with legacy systems is not a requirement.
 
 \subsubsection*{Vulcan}
 
@@ -18,7 +18,7 @@ Vulcan \cite{Edwards2001} is a far reaching project, designed to enable binary c
 
 \subsubsection*{Jakstab}
 
-Jakstab \cite{Kinder2008},\cite{Kinder2010}, like LLVM can be used to create a dot file containing the CFG. It is currently designed for use on x86 executables, so may need enhancement to support instruction set architectures (ISAs) commonly used in embedded systems such as ARMv8-M or RISC-V. It was successfully used in \cite{Nguyen2013} to construct CFGs for x86 Complex Instruction Set Computer (CISC) instructions. The last development activity on this was 31st March 2017. The tool's author has been trying to improve on the tool with the aim of creating under-approximated CFGs rather than over-approximated ones (which can lead to vulnerabilities in resultant implementations) \cite{Kinder2012}.
+Jakstab \cite{Kinder2008},\cite{Kinder2010}, like LLVM can be used to create a dot file containing the CFG. It is currently designed for use on x86 executables, so will need enhancement to support instruction set architectures (ISAs) commonly used in embedded systems such as ARMv8-M or RISC-V. It was successfully used in \cite{Nguyen2013} to construct CFGs for x86 Complex Instruction Set Computer (CISC) instructions. The last development activity on this was 31st March 2017. The tool's author has been trying to improve on the tool with the aim of creating under-approximated CFGs rather than over-approximated ones (which can lead to vulnerabilities in resultant implementations) \cite{Kinder2012}.
 
 \subsubsection*{`angr' Framework}
 

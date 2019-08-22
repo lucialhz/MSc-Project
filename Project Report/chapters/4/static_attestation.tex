@@ -23,13 +23,13 @@ SMART provides a simple method of attesting the state of a user application thro
 
 Important capabilities required by SMART are:
 \begin{itemize}
-	\item Secure HMAC key storage - this has not been directly addressed here however options are presented such as the key being hard-coded at production time (and never changed again) or by implementing a secure means of modifying by an authorized party, but not reading (i.e. the key can only be read by SMART).
+	\item Secure HMAC key storage - this has not been directly addressed here however options are presented such as the key being hard-coded at production time (and never changed again) or by implementing a secure means of modification by an authorized party, but not reading (i.e. the key can only be read by SMART).
 	\item Secure HMAC key access - only SMART code on ROM can access the HMAC key. This is provided by registers only allowing access to the HMAC key while the program counter is located within SMART application space.
 	\item It is not possible to enter or exit SMART instructions other than in the beginning or end. For example, if the program counter (\verb|pc|) is outside of SMART its previous location must also be outside of SMART (or the last instruction), and if the \verb|pc| is inside SMART its previous location must be at the start or also within SMART.
 	\item Smart code is not editable as it is stored on ROM.
 \end{itemize}
 
-SMART was implemented on low-end microcontroller units (MCUs) such as MSP430 or AVR. After implementation it was realised that only the memory access controller needed to be modified, therefore making the solution potentially compatible with ``black box'' processors such as low-end ARM cores.
+SMART was implemented on the low-end microcontroller units (MCUs) MSP430 and AVR. After implementation it was realised that only the memory access controller needed to be modified, therefore making the solution potentially compatible with ``black box'' processors such as low-end ARM cores.
 
 A criticism of the method would be that it uses SHA1 which is now outdated. It may also succumb to cold-boot attacks however the authors state that due to the typical MCU design (where the processor and memory are a single package) memory could not be accessed directly so therefore is not vulnerable to this attack.
 
@@ -52,7 +52,7 @@ The paper provides a solid description of the design of the checksum and verific
 \subsubsection*{SWATT: SoftWare-based ATTestation for Embedded Devices}
 
 SWATT is a software-based solution which uses a random number generator (for example RC4 for 8-bit architectures, Helix for 32-bit architectures \cite{Ferguson2003}, or using bits from the output of a multi-word T-function for 16 and 32-bit architectures \cite{Klimov2004}) to generate random memory addresses which are attested \cite{Seshadri2004}. This means an attacker cannot predict which regions they need to leave intact. It is notable that the verification function is not the target of a separate checksum, but as the entire contents of memory are covered by the check it will be checked, just not to the same granularity as other solutions such as VIPER \cite{Li2011} or Pioneer \cite{Seshadri2007}. Like other static attestation methods, SWATT also uses time measurement to ensure an attacker is not manipulating the results. We question whether time-based checking is a reliable component, especially when attestation is taking place remotely, for example, over a network.
-This paper also references solutions which use secure coprocessors which are used during system initialisation to bootstrap trust. Examples of these are TCG (Trusted Computing Group, formerly known as TCPA) and Next-Generation Secure Computing Base (NGSCB, formerly Palladium) which may be of interest at a later point as we will be able to see if they produce a useful output after start-up has occurred.
+This paper also references solutions which use secure coprocessors which are used during system initialisation to bootstrap trust. Examples of these are TCG (Trusted Computing Group, formerly known as TCPA) and Next-Generation Secure Computing Base (NGSCB, formerly Palladium).
 
 This paper notes that ``without secure hardware, a (potentially) compromised device cannot be trusted to verify itself correctly'' and therefore an external verifier is required. It also states that the solution described in \cite{Kennell2003} requires the use of a virtual memory subsystem and therefore will not work with many embedded systems as they have no support for virtual memory.
 
