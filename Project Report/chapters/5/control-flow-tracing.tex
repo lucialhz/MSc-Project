@@ -28,9 +28,11 @@ $H_1 = H(ID_1,0)$ (or $H_1 = H(ID_1,nonce)$), $H_2 = H(ID_2,H_1)$ \ldots $H_n = 
   \label{fig:controlFlowHash}
 \end{figure}
 
+Figure~\ref{fig:controlFlowHash} demonstrates how a hash would be constructed along two different control-flow paths. Even though execution flows through BBL5 in both paths, the hashes would be different as they have been constructed from different sets of hashes.
+
 The hash function implemented would be BLAKE2 \cite{Aumasson2013}, as it is a lightweight and a widely used hash function with many supported implementations in different programming languages (meaning the embedded code could use its C implementation while the CFG building application could use its Python implementation).
 
-To trigger the saving of the execution path hash, the proposed solution would implement a dedicated method in the secure world where a save is triggered, this will be exposed to software developers through the proposed solution's API. This functionality will enable software authors an opportunity to save at key points - for example after a key decision is made.
+To trigger the saving of the execution path hash, the proposed solution would implement a dedicated method in the secure world where a save is triggered, this will be exposed to software developers through the proposed solution's API. This functionality will enable software authors an opportunity to save at key points - for example after a key decision is made. The hash itself will be constructed by a measurement engine in the ``secure world''.
 
 \subsubsection*{Challenges of CFG tracking}
 
@@ -55,3 +57,5 @@ The addition of trampoline assembly code enables redirecting execution to a sing
   \caption{The systematic design of control-flow measurement in ARM TrustZone}
   \label{fig:graphicalRepresentation}
 \end{figure}
+
+Figure~\ref{fig:graphicalRepresentation} shows how trampolines are used to interface user applications with control-flow audit functionality. The figure also demonstrates how the API will expose the functionality of the measurement engine, and how the measurement engine takes input from the static attestation engine.
