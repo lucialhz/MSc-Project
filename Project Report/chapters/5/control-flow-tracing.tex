@@ -20,6 +20,14 @@ To achieve the best coverage for the proposed solution, level 3 (basic Blocks en
 We can build up a hash of the flow by taking the ID (or memory address) of the source node and hashing that with the previous hash. At the start ($ID_1$) the previous hash would be replaced with zero, a nonce or a hash created as part of the static attestation process. The resulting chain would appear as: 
 $H_1 = H(ID_1,0)$ (or $H_1 = H(ID_1,nonce)$), $H_2 = H(ID_2,H_1)$ \ldots $H_n = H(ID_n,H_{n-1})$.
 
+\begin{figure}
+  \centering
+  \vspace*{0.5in}
+  \includegraphics[scale=0.5]{CFGhash.png}
+  \caption{Construction of a control-flow hash}
+  \label{fig:controlFlowHash}
+\end{figure}
+
 The hash function implemented would be BLAKE2 \cite{Aumasson2013}, as it is a lightweight and a widely used hash function with many supported implementations in different programming languages (meaning the embedded code could use its C implementation while the CFG building application could use its Python implementation).
 
 To trigger the saving of the execution path hash, the proposed solution would implement a dedicated method in the secure world where a save is triggered, this will be exposed to software developers through the proposed solution's API. This functionality will enable software authors an opportunity to save at key points - for example after a key decision is made.
@@ -39,3 +47,11 @@ Break statements need to be dealt with in a special manner as they are an additi
 The instrumentation process allows us to modify the object code of the existing application in a manner which enables the monitoring of control-flow. In the case of the proposed solution, branches are identified and the destination address of the direct jumps are then added to the branch table. The destination addresses are then replaced with the address of the trampoline assembly code. 
 
 The addition of trampoline assembly code enables redirecting execution to a single piece of simple and secure code without needing to add too many instructions during instrumentation. A trampoline may carry out a number of functions. For example, in C-FLAT \cite{Abera2016} it manages the return address register as well as the register holding the destination address for indirect branches. When executed, the trampoline will trigger the measurement engine, add the source and destination address to the hash chain, redirect the program counter to the corresponding destination entry on the branch table therefore finally continuing with the normal execution of the application.
+
+\begin{figure}
+  \centering
+  \vspace*{0.5in}
+  \includegraphics[scale=0.5]{GraphicalRepresentation.png}
+  \caption{The systematic design of control-flow measurement in ARM TrustZone}
+  \label{fig:graphicalRepresentation}
+\end{figure}
