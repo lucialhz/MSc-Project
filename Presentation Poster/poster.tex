@@ -152,9 +152,10 @@
 \begin{block}{Introduction}
 
 \begin{itemize}
-	\item With the expected proliferation of drone-based services in smart cities comes the need for further regulation and security; \vspace*{0.4cm}
-	\item Secure channel protocols tend to assume a prior relationship between communicating entities. A multi-stakeholder environment, such as a smart city, offers the potential for a multiplicity of drone-based applications, requiring many organizations to interact with each other; \vspace*{0.4cm}
-	\item In this paper, we propose a group-based Certificateless Authenticated Key Agreement (CL-AKA) protocol, which enables trusted communication between untrusting parties, i.e. entities that belong to different organizations.
+	\item Control-flow integrity is an important measure of secure software execution; \vspace*{0.4cm}
+	\item Control-flow integrity is a policy which states that the execution flow of an application must follow the control-flow graph generated from the application; \vspace*{0.4cm}
+	\item The problem of enforcing control-flow integrity can be approached from a three different directions: prevention, detection and attestation; \vspace*{0.4cm}
+	\item In this paper, we intend to add a fourth method of enforcing control-flow integrity - audit.We will propose a solution which enables the tracking and storing of control-flow data in audit-friendly reports.
 \end{itemize}
 
 \end{block}
@@ -163,9 +164,9 @@
 %	PROTOCOL INITIALIZATION
 %----------------------------------------------------------------------------------------
 
-\begin{block}{Protocol Initialization}
+\begin{block}{Control-Flow Graphs}
 
-The initialization phase is performed offline and prepares entities for the online key agreement procedure. It is split into six algorithms: setup, set-ephemeral-key, partial-private-key-extract, set-secret-value, set-private-key, and set-public-key. The initialization phase aims to provide each user $u_i$ with a private/public key pair, respectively $\langle D_i, x_i\rangle$ and $\langle q_i, P_i\rangle$.
+Control-flow graphs (CFG) are a method used to formally describe the legitimate paths an application can take during execution. A simple of measure of control-flow integrity is to check whether instructions are processed in an order which abides by the application's CFG.
 
 \end{block}
 
@@ -179,11 +180,11 @@ The initialization phase is performed offline and prepares entities for the onli
 
 \begin{column}{\twocolwid} % Begin a column which is two columns wide (column 2)
 
-\begin{figure}
-\includegraphics[width=\linewidth]{images/stock.jpg}
-\caption{UAV swarm in smart city}
-\vspace{-1cm}
-\end{figure}
+%\begin{figure}
+%\includegraphics[width=\linewidth]{images/stock.jpg}
+%\caption{UAV swarm in smart city}
+%\vspace{-1cm}
+%\end{figure}
 
 %----------------------------------------------------------------------------------------
 %	KEY AGREEMENT
@@ -193,6 +194,12 @@ The initialization phase is performed offline and prepares entities for the onli
 
 \begin{column}{\onecolwid}\vspace{-.6in} % The first column within column 2 (column 2.1)
 
+\begin{figure}
+\includegraphics[width=\linewidth]{images/CFGIllegal.png}
+\caption{Illegal control-flow}
+\vspace{-1cm}
+\end{figure}
+
 \begin{block}{Key Agreement}
 
 \textbf{Setup} Each user $u_i$ sends a key establishment request, containing its temporary identity $TID_i$, partial public key $q_i$, and expiration date/time $t_i$ of its partial public key. \\
@@ -200,6 +207,16 @@ The initialization phase is performed offline and prepares entities for the onli
 \textbf{Round 2} Upon reception of $H_3(k_j)$ and $P_{j,i}$, each user $u_i$ computes $sid_i^w=H_3(k_1)||...||H3(k_n)$. Each user $u_i$ then generates the set of $t_{j,i}=e(P_{j,i},D_i)^{x_i}P_j^{r_i}=g^{r_jx_i+r_ix_j}$, $V_{j,i}=H_2(t_{j,i}||sid_i^w)$, and $K_{j,i}=V_{j,i}\oplus k_i$. The set of $K_{j,i}$ is broadcast. \\
 \textbf{Key generation} Upon reception of $K_{i,j}$, $u_i$ computes $\tilde{k}_j=V_{j,i}\oplus K_{i,j}$ and checks whether $H_3(\tilde{k}_j)=H_3(k_j)$ is valid. Upon successful verification, each user $u_i$ generates the session key, \[sk_i^w=H_3(k_1||...||k_n||sid_i^w||pid_i^w)\]
 
+\end{block}
+
+\begin{figure}
+\includegraphics[width=\linewidth]{images/CFGhash.png}
+\caption{CFG hash}
+\vspace{-1cm}
+\end{figure}
+
+\begin{block}{Basic Blocks}
+Basic Blocks go block block block
 \end{block}
 
 \end{column} % End of column 2.1
@@ -236,6 +253,12 @@ Communication overhead & $2(n-1)|P|$ \\
 \end{table}
 
 \end{block}
+
+\begin{figure}
+\includegraphics[width=\linewidth]{images/Files.png}
+\caption{Audit files}
+\vspace{-1cm}
+\end{figure}
 
 \end{column} % End of column 2.2
 
@@ -297,7 +320,7 @@ The proposed protocol enables a fleet of UAVs to derive a unique symmetric key. 
 \begin{itemize}
 \item Web: \href{https://scc.rhul.ac.uk/}{https://scc.rhul.ac.uk/}
 \item Email: \href{luke.atherton.2018@live.rhul.ac.uk}{luke.atherton.2018@live.rhul.ac.uk}
-%\item Phone: +1 (000) 111 1111
+\item Twitter: @LucialHz
 \end{itemize}
 
 \end{alertblock}
