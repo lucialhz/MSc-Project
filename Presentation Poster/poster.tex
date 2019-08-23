@@ -1,0 +1,313 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Jacobs Landscape Poster
+% LaTeX Template
+% Version 1.1 (14/06/14)
+%
+% Created by:
+% Computational Physics and Biophysics Group, Jacobs University
+% https://teamwork.jacobs-university.de:8443/confluence/display/CoPandBiG/LaTeX+Poster
+% 
+% Further modified by:
+% Nathaniel Johnston (nathaniel@njohnston.ca)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[final]{beamer}
+
+\usepackage[scale=1.24]{beamerposter} % Use the beamerposter package for laying out the poster
+
+%
+%\usepackage[english]{babel}
+%\usepackage[rflt]{floatflt}
+%\usepackage{graphicx}
+%\usepackage{url}
+%\usepackage{multirow}
+%\usepackage[rflt]{floatflt}
+%\usepackage{graphicx}
+%\usepackage{multirow}
+\usepackage{supertabular}
+%\usepackage{spverbatim}
+%\usepackage{paralist}
+%\usepackage{multicol}
+%\usepackage{csquotes}
+%\usepackage{flushend}
+%\usepackage{cite}
+%\usepackage{amsmath}
+%\usepackage{amsfonts}
+%\usepackage{amssymb}
+\usepackage{pifont}
+%\usepackage{booktabs}
+%\usepackage{caption}
+\usepackage{array}
+
+
+%---------------------------------------------------------------------------------------
+% Customised RHUL stuff
+%---------------------------------------------------------------------------------------
+
+% Some RHUL colours
+\xdefinecolor{rhulgreen}{cmyk}{0.94,0,1,0}
+\xdefinecolor{rhullime}{cmyk}{0.20,0,1,0.1}
+\xdefinecolor{rhulyellow}{cmyk}{0,0.35,1,0}
+\xdefinecolor{rhulred}{cmyk}{0,0.96,0.90,0}
+\xdefinecolor{rhulpink}{cmyk}{0.12,1,0,0}
+\xdefinecolor{rhulteal}{cmyk}{0.84,0,0.38,0}
+\xdefinecolor{rhulsky}{cmyk}{0.86,0.08,0,0}
+\xdefinecolor{rhulblue}{cmyk}{0.9,0.48,0,0}
+\xdefinecolor{rhulpurple}{cmyk}{0.51,0.79,0,0}
+\xdefinecolor{rhulorange}{cmyk}{0,0.7,1,0}%primary colour
+\xdefinecolor{rhulgrey}{cmyk}{0.65,0.43,0.26,0.78}%primary colour
+
+
+\usetheme{confposter} % Use the confposter theme supplied with this template
+
+\setbeamercolor{block title}{fg=rhulorange,bg=white} % Colors of the block titles
+\setbeamercolor{block body}{fg=rhulgrey,bg=white} % Colors of the body of blocks
+\setbeamercolor{block alerted title}{fg=white,bg=rhulorange} % Colors of the highlighted block titles
+\setbeamercolor{block alerted body}{fg=rhulgrey,bg=rhulorange!20} % Colors of the body of highlighted blocks
+% Many more colors are available for use in beamerthemeconfposter.sty
+
+% Many more colors are available for use in beamerthemeconfposter.sty
+
+%-----------------------------------------------------------
+% Define the column widths and overall poster size
+% To set effective sepwid, onecolwid and twocolwid values, first choose how many columns you want and how much separation you want between columns
+% In this template, the separation width chosen is 0.024 of the paper width and a 4-column layout
+% onecolwid should therefore be (1-(# of columns+1)*sepwid)/# of columns e.g. (1-(4+1)*0.024)/4 = 0.22
+% Set twocolwid to be (2*onecolwid)+sepwid = 0.464
+% Set threecolwid to be (3*onecolwid)+2*sepwid = 0.708
+
+\newlength{\sepwid}
+\newlength{\onecolwid}
+\newlength{\twocolwid}
+\newlength{\threecolwid}
+\setlength{\paperwidth}{48in} % A0 width: 46.8in
+\setlength{\paperheight}{36in} % A0 height: 33.1in
+\setlength{\sepwid}{0.024\paperwidth} % Separation width (white space) between columns
+\setlength{\onecolwid}{0.22\paperwidth} % Width of one column
+\setlength{\twocolwid}{0.464\paperwidth} % Width of two columns
+\setlength{\threecolwid}{0.708\paperwidth} % Width of three columns
+\setlength{\topmargin}{-0.5in} % Reduce the top margin size
+%-----------------------------------------------------------
+
+\usepackage{graphicx}  % Required for including images
+
+\usepackage{booktabs} % Top and bottom rules for tables
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION 
+%----------------------------------------------------------------------------------------
+
+\title{Towards Auditing of Control-Flow Integrity} % Poster title
+
+\author[Your Name]{Luke Atherton { - Supervised by: Konstantinos Markantonakis}}
+
+\institute{Information Security Group, Smart Card and IoT Security Center\\Royal Holloway, University of London} % Institution(s)
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\addtobeamertemplate{block end}{}{\vspace*{1ex}} % White space under blocks
+\addtobeamertemplate{block alerted end}{}{\vspace*{1ex}} % White space under highlighted (alert) blocks
+
+\setlength{\belowcaptionskip}{2ex} % White space under figures
+\setlength\belowdisplayshortskip{2ex} % White space under equations
+
+\begin{frame}[t] % The whole poster is enclosed in one beamer frame
+
+\begin{columns}[t] % The whole poster consists of three major columns, the second of which is split into two columns twice - the [t] option aligns each column's content to the top
+
+\begin{column}{\sepwid}\end{column} % Empty spacer column
+
+\begin{column}{\onecolwid} % The first column
+
+%----------------------------------------------------------------------------------------
+%	OBJECTIVES
+%----------------------------------------------------------------------------------------
+
+\begin{alertblock}{Objectives}
+
+\begin{itemize}
+\item Investigate existing method providing control-flow integrity;
+\item Propose a solution for enabling the audit of control-flow integrity.
+\end{itemize}
+
+\end{alertblock}
+
+%----------------------------------------------------------------------------------------
+%	INTRODUCTION
+%----------------------------------------------------------------------------------------
+
+\begin{block}{Introduction}
+
+\begin{itemize}
+	\item With the expected proliferation of drone-based services in smart cities comes the need for further regulation and security; \vspace*{0.4cm}
+	\item Secure channel protocols tend to assume a prior relationship between communicating entities. A multi-stakeholder environment, such as a smart city, offers the potential for a multiplicity of drone-based applications, requiring many organizations to interact with each other; \vspace*{0.4cm}
+	\item In this paper, we propose a group-based Certificateless Authenticated Key Agreement (CL-AKA) protocol, which enables trusted communication between untrusting parties, i.e. entities that belong to different organizations.
+\end{itemize}
+
+\end{block}
+
+%----------------------------------------------------------------------------------------
+%	PROTOCOL INITIALIZATION
+%----------------------------------------------------------------------------------------
+
+\begin{block}{Protocol Initialization}
+
+The initialization phase is performed offline and prepares entities for the online key agreement procedure. It is split into six algorithms: setup, set-ephemeral-key, partial-private-key-extract, set-secret-value, set-private-key, and set-public-key. The initialization phase aims to provide each user $u_i$ with a private/public key pair, respectively $\langle D_i, x_i\rangle$ and $\langle q_i, P_i\rangle$.
+
+\end{block}
+
+\end{column} % End of the first column
+
+%----------------------------------------------------------------------------------------
+%	STOCK IMAGE
+%----------------------------------------------------------------------------------------
+
+\begin{column}{\sepwid}\end{column} % Empty spacer column
+
+\begin{column}{\twocolwid} % Begin a column which is two columns wide (column 2)
+
+\begin{figure}
+\includegraphics[width=\linewidth]{images/stock.jpg}
+\caption{UAV swarm in smart city}
+\vspace{-1cm}
+\end{figure}
+
+%----------------------------------------------------------------------------------------
+%	KEY AGREEMENT
+%----------------------------------------------------------------------------------------
+
+\begin{columns}[t,totalwidth=\twocolwid] % Split up the two columns wide column
+
+\begin{column}{\onecolwid}\vspace{-.6in} % The first column within column 2 (column 2.1)
+
+\begin{block}{Key Agreement}
+
+\textbf{Setup} Each user $u_i$ sends a key establishment request, containing its temporary identity $TID_i$, partial public key $q_i$, and expiration date/time $t_i$ of its partial public key. \\
+\textbf{Round 1} Each user $u_i$ verifies that $t_j$ is not out-of-date. Upon successful verification, $u_i$ chooses a random $r_i \in \mathbb{Z}_q^*$, $k_i \in \{0,1\}^k$, and generates a set of ephemeral keys $P_{i,j}=r_i(q_jP+P_0)=r_i(q_j+s)P$ for $1\leq j\leq n$ and $j\neq i$. Each user $u_i$ then broadcasts the set of $P_{i,j}$ along with $H_3(k_i)$. \\
+\textbf{Round 2} Upon reception of $H_3(k_j)$ and $P_{j,i}$, each user $u_i$ computes $sid_i^w=H_3(k_1)||...||H3(k_n)$. Each user $u_i$ then generates the set of $t_{j,i}=e(P_{j,i},D_i)^{x_i}P_j^{r_i}=g^{r_jx_i+r_ix_j}$, $V_{j,i}=H_2(t_{j,i}||sid_i^w)$, and $K_{j,i}=V_{j,i}\oplus k_i$. The set of $K_{j,i}$ is broadcast. \\
+\textbf{Key generation} Upon reception of $K_{i,j}$, $u_i$ computes $\tilde{k}_j=V_{j,i}\oplus K_{i,j}$ and checks whether $H_3(\tilde{k}_j)=H_3(k_j)$ is valid. Upon successful verification, each user $u_i$ generates the session key, \[sk_i^w=H_3(k_1||...||k_n||sid_i^w||pid_i^w)\]
+
+\end{block}
+
+\end{column} % End of column 2.1
+
+%----------------------------------------------------------------------------------------
+%	EVALUATION
+%----------------------------------------------------------------------------------------
+
+\begin{column}{\onecolwid}\vspace{-.6in} % The second column within column 2 (column 2.2)
+
+\begin{block}{Evaluation}
+
+\begin{itemize}
+	\item The {\em Syther} tool will be used to formally analyze the protocol; \vspace*{0.3cm}
+	\item The experimental setup will consist of a set of Raspberry Pi 2 Model B+ System-on-Chip, communicating via wireless LAN interface. \vspace*{0.3cm}
+	\item The number of users $n$ taking part in the key agreement is a critical parameter to the computational cost and its effects will be analyzed. We expect the bilinear pairings to be the most expensive operations.
+\end{itemize}
+
+\vspace*{-1cm}
+\begin{table}
+\begin{tabular}{p{20cm} c}
+\toprule
+Criteria & Protocol \\
+\midrule
+Number of rounds & $2$ \\
+Number of modular exponentiations & $n-1$ \\
+Number of bilinear pairings & $n-1$ \\
+Number of elliptic curve scalar point multiplication & $3n-2$ \\
+Communication overhead & $2(n-1)|P|$ \\
+\bottomrule
+\end{tabular}
+\vspace{0.1cm}
+\caption{Complexity analysis}
+\end{table}
+
+\end{block}
+
+\end{column} % End of column 2.2
+
+\end{columns} % End of the split of column 2 - any content after this will now take up 2 columns width
+
+\end{column} % End of the second column
+
+%----------------------------------------------------------------------------------------
+%	BENEFITS
+%----------------------------------------------------------------------------------------
+
+\begin{column}{\sepwid}\end{column} % Empty spacer column
+
+\begin{column}{\onecolwid} % The third column
+
+\begin{alertblock}{Benefits}
+
+The proposed protocol enables confidentiality, message integrity, and authenticity in subsequent communication. Provisioning untrusted UAV networks with trusted communication provides ground for further research and applications:
+\begin{itemize}
+\item Collaborative cybersecurity deterrence mechanism;
+\item Network extension using trusted relay nodes;
+\item Collaborative mission exercise, e.g. time-critical operations;
+\item Anonymous communication for user privacy.
+\end{itemize}
+
+\end{alertblock}
+
+%----------------------------------------------------------------------------------------
+%	CONCLUSION
+%----------------------------------------------------------------------------------------
+\vspace*{1cm}
+\begin{block}{Conclusion}
+
+The proposed protocol enables a fleet of UAVs to derive a unique symmetric key. It captures the following security properties: mutual authentication, mutual key agreement, joint key control, key freshness, entity revocation, non-repudiation, forward secrecy, known-key security, and conditional privacy. Since the protocol is certificateless-based, the necessity for a public key infrastructure is eliminated, as well as the key escrow problem. This research paper will be submitted to the {\em DASC 2018} conference.
+
+\end{block}
+
+%----------------------------------------------------------------------------------------
+%	REFERENCES
+%----------------------------------------------------------------------------------------
+\vspace*{1cm}
+\begin{block}{References}
+
+\nocite{*} % Insert publications even if they are not cited in the poster
+\small{\bibliographystyle{unsrt}
+\bibliography{bib}}
+
+\end{block}
+
+%----------------------------------------------------------------------------------------
+%	CONTACT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\setbeamercolor{block alerted title}{fg=white,bg=rhulorange} % Change the alert block title colors
+\setbeamercolor{block alerted body}{fg=black,bg=white} % Change the alert block body colors
+
+\begin{alertblock}{Contact Information}
+
+\begin{itemize}
+\item Web: \href{https://scc.rhul.ac.uk/}{https://scc.rhul.ac.uk/}
+\item Email: \href{luke.atherton.2018@live.rhul.ac.uk}{luke.atherton.2018@live.rhul.ac.uk}
+%\item Phone: +1 (000) 111 1111
+\end{itemize}
+
+\end{alertblock}
+
+%----------------------------------------------------------------------------------------
+
+\end{column} % End of the third column
+
+\end{columns} % End of all the columns in the poster
+
+\end{frame} % End of the enclosing frame
+
+\end{document}
