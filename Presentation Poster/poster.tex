@@ -180,12 +180,6 @@ Control-flow graphs (CFG) are a method used to formally describe the legitimate 
 
 \begin{column}{\twocolwid} % Begin a column which is two columns wide (column 2)
 
-%\begin{figure}
-%\includegraphics[width=\linewidth]{images/stock.jpg}
-%\caption{UAV swarm in smart city}
-%\vspace{-1cm}
-%\end{figure}
-
 %----------------------------------------------------------------------------------------
 %	KEY AGREEMENT
 %----------------------------------------------------------------------------------------
@@ -200,13 +194,14 @@ Control-flow graphs (CFG) are a method used to formally describe the legitimate 
 \vspace{-1cm}
 \end{figure}
 
-\begin{block}{Key Agreement}
+\begin{block}{Control-Flow Integrity}
 
-\textbf{Setup} Each user $u_i$ sends a key establishment request, containing its temporary identity $TID_i$, partial public key $q_i$, and expiration date/time $t_i$ of its partial public key. \\
-\textbf{Round 1} Each user $u_i$ verifies that $t_j$ is not out-of-date. Upon successful verification, $u_i$ chooses a random $r_i \in \mathbb{Z}_q^*$, $k_i \in \{0,1\}^k$, and generates a set of ephemeral keys $P_{i,j}=r_i(q_jP+P_0)=r_i(q_j+s)P$ for $1\leq j\leq n$ and $j\neq i$. Each user $u_i$ then broadcasts the set of $P_{i,j}$ along with $H_3(k_i)$. \\
-\textbf{Round 2} Upon reception of $H_3(k_j)$ and $P_{j,i}$, each user $u_i$ computes $sid_i^w=H_3(k_1)||...||H3(k_n)$. Each user $u_i$ then generates the set of $t_{j,i}=e(P_{j,i},D_i)^{x_i}P_j^{r_i}=g^{r_jx_i+r_ix_j}$, $V_{j,i}=H_2(t_{j,i}||sid_i^w)$, and $K_{j,i}=V_{j,i}\oplus k_i$. The set of $K_{j,i}$ is broadcast. \\
-\textbf{Key generation} Upon reception of $K_{i,j}$, $u_i$ computes $\tilde{k}_j=V_{j,i}\oplus K_{i,j}$ and checks whether $H_3(\tilde{k}_j)=H_3(k_j)$ is valid. Upon successful verification, each user $u_i$ generates the session key, \[sk_i^w=H_3(k_1||...||k_n||sid_i^w||pid_i^w)\]
+Control-flow intregity can be proved using several methods:
+\textbf{Prevention} Example of prevention include ...
 
+\textbf{Detection} Exmaple of detection include...
+
+\textbf{Attestation} Example of attestatio include...
 \end{block}
 
 \begin{figure}
@@ -214,10 +209,6 @@ Control-flow graphs (CFG) are a method used to formally describe the legitimate 
 \caption{CFG hash}
 \vspace{-1cm}
 \end{figure}
-
-\begin{block}{Basic Blocks}
-Basic Blocks go block block block
-\end{block}
 
 \end{column} % End of column 2.1
 
@@ -227,31 +218,8 @@ Basic Blocks go block block block
 
 \begin{column}{\onecolwid}\vspace{-.6in} % The second column within column 2 (column 2.2)
 
-\begin{block}{Evaluation}
-
-\begin{itemize}
-	\item The {\em Syther} tool will be used to formally analyze the protocol; \vspace*{0.3cm}
-	\item The experimental setup will consist of a set of Raspberry Pi 2 Model B+ System-on-Chip, communicating via wireless LAN interface. \vspace*{0.3cm}
-	\item The number of users $n$ taking part in the key agreement is a critical parameter to the computational cost and its effects will be analyzed. We expect the bilinear pairings to be the most expensive operations.
-\end{itemize}
-
-\vspace*{-1cm}
-\begin{table}
-\begin{tabular}{p{20cm} c}
-\toprule
-Criteria & Protocol \\
-\midrule
-Number of rounds & $2$ \\
-Number of modular exponentiations & $n-1$ \\
-Number of bilinear pairings & $n-1$ \\
-Number of elliptic curve scalar point multiplication & $3n-2$ \\
-Communication overhead & $2(n-1)|P|$ \\
-\bottomrule
-\end{tabular}
-\vspace{0.1cm}
-\caption{Complexity analysis}
-\end{table}
-
+\begin{block}{Control-flow Monitoring}
+We propose to insert x
 \end{block}
 
 \begin{figure}
@@ -259,6 +227,16 @@ Communication overhead & $2(n-1)|P|$ \\
 \caption{Audit files}
 \vspace{-1cm}
 \end{figure}
+
+\begin{block}{Audit Files}
+As well as containing the control-flow hash, the audit files will contain:
+\begin{itemize}
+	\item Initial attestation report; \vspace*{0.3cm}
+	\item Digital signature of previous report; \vspace*{0.3cm}
+	\item Operating environment information such as important variables and currently running processes.
+\end{itemize}
+
+\end{block}
 
 \end{column} % End of column 2.2
 
@@ -290,7 +268,7 @@ The proposed solutions enables the a new method of handling control-flow within 
 \vspace*{1cm}
 \begin{block}{Conclusion}
 
-The proposed protocol enables a fleet of UAVs to derive a unique symmetric key. It captures the following security properties: mutual authentication, mutual key agreement, joint key control, key freshness, entity revocation, non-repudiation, forward secrecy, known-key security, and conditional privacy. Since the protocol is certificateless-based, the necessity for a public key infrastructure is eliminated, as well as the key escrow problem. This research paper will be submitted to the {\em DASC 2018} conference.
+Further work also
 
 \end{block}
 
