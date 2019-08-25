@@ -152,8 +152,8 @@
 \begin{block}{Introduction}
 
 \begin{itemize}
-	\item Control-flow integrity is an important measure of secure software execution; \vspace*{0.4cm}
-	\item Control-flow integrity is a policy which states that the execution flow of an application must follow the control-flow graph generated from the application; \vspace*{0.4cm}
+	\item Control-flow integrity is a useful measure of secure software execution; \vspace*{0.4cm}
+	\item When using control-flow integrity as a policy is states that the execution flow of an application must follow the control-flow graph generated from the application; \vspace*{0.4cm}
 	\item The problem of enforcing control-flow integrity can be approached from a three different directions: prevention, detection and attestation; \vspace*{0.4cm}
 	\item In this paper, we intend to add a fourth method of enforcing control-flow integrity - audit.We will propose a solution which enables the tracking and storing of control-flow data in audit-friendly reports.
 \end{itemize}
@@ -196,12 +196,14 @@ Control-flow graphs (CFG) are a method used to formally describe the legitimate 
 
 \begin{block}{Control-Flow Integrity}
 
-Control-flow intregity can be proved using several methods:
-\textbf{Prevention} Example of prevention include ...
+Control-flow integrity can be proved using several methods:
 
-\textbf{Detection} Exmaple of detection include...
 
-\textbf{Attestation} Example of attestatio include...
+\textbf{Prevention} Theoretically CFI could not compromised. E.g. Read xor Write or deterministically encrypted instructions (ref).
+
+\textbf{Detection} CFI compromise is detected during executions. E.g. stack canaries or shadow stacks (ref).
+
+\textbf{Attestation} Variation of solutions have been examined, where control-flow is tracked at real time and used in an attestation protocol.
 \end{block}
 
 \begin{figure}
@@ -217,6 +219,12 @@ Control-flow intregity can be proved using several methods:
 %----------------------------------------------------------------------------------------
 
 \begin{column}{\onecolwid}\vspace{-.6in} % The second column within column 2 (column 2.2)
+
+\begin{figure}
+\includegraphics[width=\linewidth]{images/GraphicalRepresentation.png}
+\caption{ARM TrustZone Implementation}
+\vspace{-1cm}
+\end{figure}
 
 \begin{block}{Control-flow Monitoring}
 We propose to insert x
