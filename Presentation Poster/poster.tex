@@ -155,7 +155,7 @@
 	\item Control-flow integrity is a useful measure of secure software execution; \vspace*{0.4cm}
 	\item When using control-flow integrity as a policy is states that the execution flow of an application must follow the control-flow graph generated from the application; \vspace*{0.4cm}
 	\item The problem of enforcing control-flow integrity can be approached from a three different directions: prevention, detection and attestation; \vspace*{0.4cm}
-	\item In this paper, we intend to add a fourth method of enforcing control-flow integrity - audit.We will propose a solution which enables the tracking and storing of control-flow data in audit-friendly reports.
+	\item In this paper, we intend to add a fourth method of enforcing control-flow integrity - audit. We will propose a solution which enables the tracking and storing of control-flow data in audit-friendly reports.
 \end{itemize}
 
 \end{block}
@@ -166,7 +166,11 @@
 
 \begin{block}{Control-Flow Graphs}
 
-Control-flow graphs (CFG) are a method used to formally describe the legitimate paths an application can take during execution. A simple of measure of control-flow integrity is to check whether instructions are processed in an order which abides by the application's CFG.
+Control-flow graphs (CFG) are a method used to formally describe the legitimate paths an application can take during execution. A simple of measure of control-flow integrity is to verify whether instructions are processed in an order which abides by the application's CFG.
+
+CFGs consist of vertices - basic blocks, and edges - transition. Basic blocks represent a sequence of instructions which will always run from beginning to end. Transitions are made, for example, when a $jump$ occurs.
+
+Transitions can take several forms:
 
 \end{block}
 
