@@ -26,6 +26,8 @@
 
 \usepackage[scale=1.24]{beamerposter} % Use the beamerposter package for laying out the poster
 
+\usepackage[utf8]{inputenc}
+\DeclareUnicodeCharacter{2217}{*}
 %
 %\usepackage[english]{babel}
 %\usepackage[rflt]{floatflt}
@@ -50,6 +52,17 @@
 %\usepackage{caption}
 \usepackage{array}
 
+%\usepackage[british]{babel}
+%\usepackage[
+%backend=biber,
+%style=ieee,
+%sorting=none,
+%urldate=long,
+%doi=false,
+%isbn=false
+%]{biblatex}
+%
+%\addbibresource{bib.bib}
 
 %---------------------------------------------------------------------------------------
 % Customised RHUL stuff
@@ -139,7 +152,7 @@
 \begin{alertblock}{Objectives}
 
 \begin{itemize}
-\item Investigate existing method providing control-flow integrity;
+\item Investigate existing methods providing control-flow integrity;
 \item Propose a solution for enabling the audit of control-flow integrity.
 \end{itemize}
 
@@ -152,10 +165,10 @@
 \begin{block}{Introduction}
 
 \begin{itemize}
-	\item Control-flow integrity is a useful measure of secure software execution; \vspace*{0.4cm}
-	\item When using control-flow integrity as a policy is states that the execution flow of an application must follow the control-flow graph generated from the application; \vspace*{0.4cm}
-	\item The problem of enforcing control-flow integrity can be approached from a three different directions: prevention, detection and attestation; \vspace*{0.4cm}
-	\item In this paper, we intend to add a fourth method of enforcing control-flow integrity - audit. We will propose a solution which enables the tracking and storing of control-flow data in audit-friendly reports.
+	\item Control-flow integrity (CFI) is a useful measure of secure software execution; \vspace*{0.4cm}
+	\item When using control-flow integrity as a policy it states that the execution flow of an application must follow the control-flow graph generated from the application; \vspace*{0.4cm}
+	\item The problem of enforcing control-flow integrity can be approached from three different directions: \textit{prevention}, \textit{detection} and \textit{attestation}; \vspace*{0.4cm}
+	\item In this paper, we intend to add a fourth method of enforcing CFI - \textit{audit}. We will propose a solution which enables the tracking and storing of control-flow data in audit-friendly reports.
 \end{itemize}
 
 \end{block}
@@ -166,11 +179,11 @@
 
 \begin{block}{Control-Flow Graphs}
 
-Control-flow graphs (CFG) are a method used to formally describe the legitimate paths an application can take during execution. A simple of measure of control-flow integrity is to verify whether instructions are processed in an order which abides by the application's CFG.
+Control-flow graphs (CFG) are a method used to formally describe the legitimate paths an application can take during execution. A simple measure of control-flow integrity is to verify whether instructions are processed in an order which abides by the application's CFG.
 
-CFGs consist of vertices - basic blocks, and edges - transition. Basic blocks represent a sequence of instructions which will always run from beginning to end. Transitions are made, for example, when a $jump$ occurs.
+CFGs consist of vertices - $basic$ $blocks$ (BBL), and edges - $transitions$. Basic blocks represent a sequence of instructions which will always run from beginning to end.
 
-Transitions can take several forms:
+Transitions can take several forms including direct branches, where $jump$ destinations are hard-coded and indirect branches, where the destination is determined at run-time (the destination is contained within a  register or memory address).
 
 \end{block}
 
@@ -192,29 +205,32 @@ Transitions can take several forms:
 
 \begin{column}{\onecolwid}\vspace{-.6in} % The first column within column 2 (column 2.1)
 
-\begin{figure}
-\includegraphics[width=\linewidth]{images/CFGIllegal.png}
-\caption{Illegal control-flow}
-\vspace{-1cm}
-\end{figure}
+\begin{block}{CFG Violation}
 
-\begin{block}{Control-Flow Integrity}
+CFG violation occurs when an attacker manipulates the execution so that it does not follow any legitimate routes described in the application's CFG.
 
-Control-flow integrity can be proved using several methods:
+Taking the CFG shown in Figure~\ref{fig:CFGhash} which shows the legitimate flows of $ BBL~1 \rightarrow BBL~2 \rightarrow BBL~4 \rightarrow BBL 5~$ and $ BBL~1 \rightarrow BBL~3 \rightarrow BBL~5$. An example of a path with violates the CFG is $ BBL~1 \rightarrow BBL~2 \rightarrow BBL~3\rightarrow BBL~5$, where the transition $BBL~2 \rightarrow BBL~3$ is unauthorised.
 
-
-\textbf{Prevention} Theoretically CFI could not compromised. E.g. Read xor Write or deterministically encrypted instructions (ref).
-
-\textbf{Detection} CFI compromise is detected during executions. E.g. stack canaries or shadow stacks (ref).
-
-\textbf{Attestation} Variation of solutions have been examined, where control-flow is tracked at real time and used in an attestation protocol.
 \end{block}
 
 \begin{figure}
 \includegraphics[width=\linewidth]{images/CFGhash.png}
 \caption{CFG hash}
+\label{fig:CFGhash}
 \vspace{-1cm}
 \end{figure}
+
+\begin{block}{Control-Flow Integrity}
+
+Control-flow integrity can be provided using several methods:
+
+
+\textbf{Prevention} Theoretically CFI could not be compromised. E.g. Read $\oplus$ Write or deterministically encrypted instructions \cite{Lee2019}.
+
+\textbf{Detection} CFI compromise is detected during execution. E.g. stack canaries or shadow stacks \cite{Christoulakis2016}.
+
+\textbf{Attestation} A variety of solutions have been examined, where control-flow is tracked at real time and used in an attestation protocol.
+\end{block}
 
 \end{column} % End of column 2.1
 
@@ -227,11 +243,14 @@ Control-flow integrity can be proved using several methods:
 \begin{figure}
 \includegraphics[width=\linewidth]{images/GraphicalRepresentation.png}
 \caption{ARM TrustZone Implementation}
+\label{fig:representation}
 \vspace{-1cm}
 \end{figure}
 
 \begin{block}{Control-flow Monitoring}
-We propose to insert x
+The paper proposes a solution which enables control-flow monitoring utilising functionality provided by ARM TrustZone. Figure~\ref{fig:representation} shows the control-flow measurement engine which is placed within the \textit{secure world}, with user applications existing in \textit{normal world} having been instrumented to execute via ``tramplolines'', as used in \cite{Abera2016}. Trampolines inform the measurement engine of each transition made.
+
+A transition triggers the measurement engine to create a hash representing the control-flow taken, as shown in Figure~\ref{fig:CFGhash}.
 \end{block}
 
 \begin{figure}
@@ -241,12 +260,7 @@ We propose to insert x
 \end{figure}
 
 \begin{block}{Audit Files}
-As well as containing the control-flow hash, the audit files will contain:
-\begin{itemize}
-	\item Initial attestation report; \vspace*{0.3cm}
-	\item Digital signature of previous report; \vspace*{0.3cm}
-	\item Operating environment information such as important variables and currently running processes.
-\end{itemize}
+As well as containing the control-flow hash, the audit files will contain an initial attestation report; the digital signature of the previous report and operating environment information such as important variables and currently running processes.
 
 \end{block}
 
@@ -266,10 +280,10 @@ As well as containing the control-flow hash, the audit files will contain:
 
 \begin{alertblock}{Benefits}
 
-The proposed solutions enables the a new method of handling control-flow within embedded systems:
+The proposed solution enables the a new approach to control-flow integrity within embedded systems, providing:
 \begin{itemize}
 \item Historic evidence of control-flow;
-\item Binding of variables to control-flow snapshot;
+\item Binding of variables to a control-flow snapshot;
 \end{itemize}
 
 \end{alertblock}
@@ -280,7 +294,9 @@ The proposed solutions enables the a new method of handling control-flow within 
 \vspace*{1cm}
 \begin{block}{Conclusion}
 
-Further work also
+The proposed solution enables the tracing and recording of control-flow through the re-writing of binaries to divert execution to a monitoring engine.
+
+Further suggested work includes implementation of the solution, both in its current form and using hardware. The use of CFGs should be compared with other techniques such as generalized path signature analysis (GPSA).
 
 \end{block}
 
@@ -291,7 +307,7 @@ Further work also
 \begin{block}{References}
 
 \nocite{*} % Insert publications even if they are not cited in the poster
-\small{\bibliographystyle{unsrt}
+\footnotesize{\bibliographystyle{unsrt}
 \bibliography{bib}}
 
 \end{block}
